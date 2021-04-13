@@ -11,13 +11,13 @@ button {
 }
 
 .button .primary {
-    color: var(--text-weiß);
+    color: var(--text-white);
     background-color: var(--accent);
 }
 
 .button .secondary {
     color: var(--text-dark);
-    background-color: var(--light-gray));
+    background-color: var(--light-gray);
 }
 
 .imgButton {
