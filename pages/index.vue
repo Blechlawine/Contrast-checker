@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import MenuBar from "../components/MenuBar/Menubar.vue";
+import MenuBar from "../components/Menubar/Menubar.vue";
 
 export default {
     name: 'index',
