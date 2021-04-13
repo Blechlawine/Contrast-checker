@@ -5,7 +5,8 @@ export default {
     title: 'Components/Menubar'
 };
 
-export const Primary = () => ({
+export const Primary = (args, {argTypes}) => ({
     components: { Menubar },
-    template: '<Menubar/>',
+    props: Object.keys(argTypes),
+    template: '<MenuBar v-bind="$props"/>',
 });
