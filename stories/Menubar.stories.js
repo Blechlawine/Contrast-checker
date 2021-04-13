@@ -1,12 +1,23 @@
-import Menubar from "../components/Menubar/Menubar";
+import Menubar from '../components/Menubar/Menubar.vue';
 
 export default {
-    component: Menubar,
-    title: 'Components/Menubar'
-};
+    title: "Components/Menubar",
+    component: Menubar
+}
 
-export const Primary = (args, {argTypes}) => ({
+const Template = (args, {argTypes}) => ({
     components: { Menubar },
     props: Object.keys(argTypes),
-    template: '<MenuBar v-bind="$props"/>',
+    template: '<menubar v-bind="$props"/>'
 });
+
+export const Menu = Template.bind({});
+
+Menu.args = {
+    appName: "Test",
+    tabs: [
+        { id: 0, title: "Contrast-checker", active: true },
+        { id: 1, title: "Palette" },
+        { id: 2, title: "Converter" }
+    ]
+};
