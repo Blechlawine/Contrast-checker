@@ -25,21 +25,4 @@ export default {
 </script>
 
 <style>
-:root {
-    --text-dark: #2E2E2E;
-    --text-white: #FFFFFF;
-    --light-gray: #E9E9E9;
-    --accent: #00BCD4;
-    --gray: #BBBBBB;
-    --shadow: rgba(97, 97, 97, 0.18);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-    font-family: "Roboto", sans-serif;
-    color: var(--text-dark);
-}
 </style>
