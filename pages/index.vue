@@ -1,16 +1,19 @@
 <template>
     <div id="app">
         <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
+        <HueSlider/>
     </div>
 </template>
 
 <script>
 import MenuBar from "../components/Menubar/Menubar.vue";
+import HueSlider from "../components/Slider/HueSlider.jsx";
 
 export default {
     name: 'index',
     components: {
-        MenuBar
+        MenuBar,
+        HueSlider
     },
     data() {
         return {
