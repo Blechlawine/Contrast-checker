@@ -8,21 +8,18 @@
 import MenuBar from "../components/Menubar/Menubar.vue";
 
 export default {
-    name: 'index',
+    name: 'converter',
     components: {
         MenuBar
     },
     data() {
         return {
             tabs: [
-                { id: 0, title: "Contrast-checker", link: "/", active: true },
+                { id: 0, title: "Contrast-checker", link: "/" },
                 { id: 1, title: "Palette", link: "/palette" },
-                { id: 2, title: "Converter", link: "/converter" }
+                { id: 2, title: "Converter", link: "/converter", active: true }
             ]
         }
     }
 }
 </script>
-
-<style>
-</style>

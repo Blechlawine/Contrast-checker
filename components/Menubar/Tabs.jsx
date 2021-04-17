@@ -41,7 +41,7 @@ export default {
                 <div id="tabHighlight" style={this.tabHighlightStyles}></div>
                 <div id="tabs">
                     {this.tabs.map((tab) => (
-                        <div class="tab" id={(tab.active ? "activeTab" : "")} onClick={this.tabClick}>{tab.title}</div>
+                        <div class="tab" id={(tab.active ? "activeTab" : "")} onClick={this.tabClick}><NuxtLink to={tab.link}>{tab.title}</NuxtLink></div>
                     ))}
                 </div>
             </div>
