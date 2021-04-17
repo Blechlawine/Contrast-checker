@@ -23,7 +23,7 @@ header {
     position: relative;
 }
 
-div.tab {
+.tab {
     padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;
