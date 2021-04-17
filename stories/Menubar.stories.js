@@ -14,7 +14,7 @@ const Template = (args, {argTypes}) => ({
 export const Menu = Template.bind({});
 
 Menu.args = {
-    appName: "Test",
+    appName: "Contrast-checker",
     tabs: [
         { id: 0, title: "Contrast-checker", active: true },
         { id: 1, title: "Palette" },
