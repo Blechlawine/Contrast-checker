@@ -16,8 +16,7 @@ export default class Picker {
     }
 
     getRGBString() {
-        let returnString = "rgb(" + this.r + ", " + this.g + ", " + this.b + ")"
-        return returnString;
+        return "rgb(" + this.r + ", " + this.g + ", " + this.b + ")";
     }
 
     draw() {
