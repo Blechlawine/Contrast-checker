@@ -1,7 +1,6 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createLinearGradient
 
-
-export default class Picker {
+export default class GradientField {
     constructor(canvas, width, height, r, g, b) {
         this.canvas = canvas;
         this.width = width;
@@ -42,4 +41,13 @@ export default class Picker {
         this.ctx.fillStyle = linGrad;
         this.ctx.fillRect(0, 0, this.width, this.height);
     }
+
+    updateRGB(newR, newG, newB) {
+        console.log("worked");
+        this.r = newR;
+        this.g = newG;
+        this.b = newB;
+        this.build();
+    }
+
 }
