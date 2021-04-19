@@ -1,9 +1,11 @@
 <template>
   <div>
-    <input type="range" min="0" max="255" v-model="r" v-on:change="this.updateRGB"/>
+    <!--<input type="range" min="0" max="255" v-model="r" v-on:change="this.updateRGB"/>
+    <input type="range" min="0" max="255" v-model="g" v-on:change="this.updateRGB"/>
+    <input type="range" min="0" max="255" v-model="b" v-on:change="this.updateRGB"/>-->
+    <p>{{this.r + " " + this.g + " " + this.b}}</p>
     <div id="slider"></div>
     <canvas id="gradient"></canvas>
-    <div id="selectedColor"></div>
   </div>
 </template>
 
@@ -23,11 +25,13 @@ export default {
   },
   data: () => {
     return {
-      r: 188,
-      g: 155,
-      b: 27,
       picker: undefined
     }
+  },
+  props: {
+    r: Number,
+    g: Number,
+    b: Number
   },
   mounted() {
     this.$nextTick(function () {
@@ -41,8 +45,5 @@ export default {
 </script>
 
 <style scoped>
-#selectedColor {
-  width: 100px;
-  height: 100px;
-}
+
 </style>

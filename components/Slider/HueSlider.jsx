@@ -54,7 +54,7 @@ export default {
     render(h) {
         return (
             <div class="hueSlider" v-on:click={this.sliderClick} ref="slider">
-                <div v-on:mousedown={this.handleMouseDown} style={this.handleStyles} class="sliderHandle"></div>
+                <div v-on:mousedown={this.handleMouseDown} style={this.handleStyles} class="sliderHandle" v-on:change={this.$emit('hslemit', this.color)}></div>
             </div>
         )
     }
