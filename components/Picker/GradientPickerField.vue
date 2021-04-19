@@ -6,6 +6,7 @@
     <p>{{this.r + " " + this.g + " " + this.b}}</p>
     <div id="slider"></div>
     <canvas id="gradient"></canvas>
+    <div id="circleSelection"></div>
   </div>
 </template>
 
@@ -45,5 +46,8 @@ export default {
 </script>
 
 <style scoped>
-
+#circleSelection {
+  width: 500px;
+  height: 500px;
+}
 </style>
