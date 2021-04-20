@@ -6,7 +6,7 @@
     <p>{{this.r + " " + this.g + " " + this.b}}</p>
     <div id="slider"></div>
     <canvas id="gradient"></canvas>
-    <div id="circleSelection"></div>
+    <!--<div id="test" style="width: 100px; height: 100px"></div>-->
   </div>
 </template>
 
@@ -32,12 +32,20 @@ export default {
   props: {
     r: Number,
     g: Number,
-    b: Number
+    b: Number,
+    w: Number
   },
   mounted() {
     this.$nextTick(function () {
-      this.picker = new GradientField(document.getElementById("gradient"), 200, 200, this.r, this.g, this.b);
-      this.picker.draw();
+      this.picker = new GradientField(document.getElementById("gradient"), this.w, 200, this.r, this.g, this.b);
+      setInterval(() => this.picker.draw(), 1);
+      this.picker.onChange((color) => {
+        /*let test = document.getElementById("test");
+        let rgbString = 'rgb(' + color.r + ", " + color.g + ", " + color.b + ")";
+        test.style.backgroundColor = rgbString
+        console.log(rgbString);*/
+        this.$emit('finRGBemit', color)
+      })
       console.log("mounted");
     });
   }
@@ -46,8 +54,5 @@ export default {
 </script>
 
 <style scoped>
-#circleSelection {
-  width: 500px;
-  height: 500px;
-}
+
 </style>

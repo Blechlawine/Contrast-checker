@@ -1,5 +1,6 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createLinearGradient
 
+
 export default class GradientField {
     constructor(canvas, width, height, r, g, b) {
         this.canvas = canvas;
@@ -21,6 +22,7 @@ export default class GradientField {
         }
 
         this.mouseDown = false;
+
         this.startEventListener();
     }
 
@@ -67,41 +69,59 @@ export default class GradientField {
     }
 
     startEventListener() {
-        this.canvas.addEventListener("mousedown", this.onMouseDown)
-        this.canvas.addEventListener("mousemove", this.onMouseMove)
-        document.addEventListener("mouseup", this.onMouseUp);
-    }
+        let ol = this.canvas.offsetLeft;
+        let ot = this.canvas.offsetTop;
 
-    onMouseDown(e) {
-        let cX = e.clientX - this.canvas.offsetLeft;
-        let cY = e.clientY - this.canvas.offsetTop;
+        const onMouseDown = (e) => {
+            let cX = e.clientX - ol;
+            let cY = e.clientY - ot;
 
-        if (
-            cY > this.circle.y &&
-            cY < this.circle.y + this.circle.width &&
-            cX > this.circle.x &&
-            cX < this.circle.width
-        ) {
-            this.mouseDown = true;
-            console.log("moved")
-        } else {
-            this.circle.x = cX;
-            this.circle.y = cY;
-            console.log("clicked")
+            if (
+                cY > this.circle.y &&
+                cY < this.circle.y + this.circle.width &&
+                cX > this.circle.x &&
+                cX < this.circle.width
+            ) {
+                this.mouseDown = true;
+                console.log("moved")
+            } else {
+                this.circle.x = cX;
+                this.circle.y = cY;
+                console.log("clicked")
+            }
+
         }
 
+        const onMouseMove = (e) => {
+            if (this.mouseDown === true) {
+                let cX = e.clientX - this.canvas.offsetLeft;
+                let cY = e.clientY - this.canvas.offsetTop;
+                this.circle.x = cX;
+                this.circle.y = cY;
+            }
+        }
+
+        const onMouseUp = () => {
+            this.mouseDown = false;
+        }
+
+        this.canvas.addEventListener("mousedown", onMouseDown)
+        this.canvas.addEventListener("mousemove", onMouseMove);
+        this.canvas.addEventListener("mousemove", () => this.onChangeCallback(this.getColor()))
+        document.addEventListener("mouseup", onMouseUp);
     }
 
-    onMouseMove(e) {
-        if (this.mouseDown === true) {
-            let cX = e.clientX - this.canvas.offsetLeft;
-            let cY = e.clientY - this.canvas.offsetTop;
-            this.circle.x = cX;
-            this.circle.y = cY;
+    getColor() {
+        let rgbColors = this.ctx.getImageData(this.circle.x, this.circle.y, 1, 1);
+        return {
+            r: rgbColors.data[0],
+            g: rgbColors.data[1],
+            b: rgbColors.data[2]
         }
     }
 
-    onMouseUp() {
-        this.mouseDown = false;
+    onChange(callback) {
+        this.onChangeCallback = callback;
     }
+
 }
