@@ -17,5 +17,5 @@
     border-radius: 50%;
     width: 24px;
     height: 24px;
-    box-shadow: 0 2px 4px var(--shadow);
+    box-shadow: var(--shadow2px);
 }
