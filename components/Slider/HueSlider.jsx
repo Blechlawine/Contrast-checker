@@ -36,6 +36,7 @@ export default {
         setHandlePos(pos) {
             this.handlePosition = pos;
             this.color[0] = scale(this.handlePosition, this.minX, this.maxX, 0, 360);
+            this.$emit("hueChanged", this.color[0]);
         }
     },
     mounted() {
@@ -46,7 +47,7 @@ export default {
     computed: {
         handleStyles() {
             return {
-                "background-color": "hsl(" + this.color[0] + ", " + this.color[1] + "%, " + this.color[2] + "%)",
+                "background-color": `hsl(${this.color[0]}, ${this.color[1]}%, ${this.color[2]}%)`,
                 "margin-left": this.handlePosition + "px"
             };
         }
@@ -54,7 +55,7 @@ export default {
     render(h) {
         return (
             <div class="hueSlider" v-on:click={this.sliderClick} ref="slider">
-                <div v-on:mousedown={this.handleMouseDown} style={this.handleStyles} class="sliderHandle" v-on:change={this.$emit('hslemit', this.color)}></div>
+                <div v-on:mousedown={this.handleMouseDown} style={this.handleStyles} class="sliderHandle"></div>
             </div>
         )
     }

@@ -1,19 +1,25 @@
 <template>
     <div id="app">
         <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
-        <HueSlider/>
+        <!-- <HueSlider/>
+        <SatValPicker/> -->
+        <ColorPicker/>
     </div>
 </template>
 
 <script>
 import MenuBar from "../components/Menubar/Menubar.vue";
-import HueSlider from "../components/Slider/HueSlider.jsx";
+import ColorPicker from "../components/Picker/ColorPicker.jsx";
+// import HueSlider from "../components/Slider/HueSlider.jsx";
+// import SatValPicker from "../components/Picker/SatValPicker.jsx";
 
 export default {
     name: 'index',
     components: {
         MenuBar,
-        HueSlider
+        ColorPicker
+        // HueSlider,
+        // SatValPicker
     },
     data() {
         return {
