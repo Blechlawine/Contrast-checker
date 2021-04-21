@@ -20,12 +20,16 @@ export default {
         hueChanged(hue) {
             this.hue = hue;
             // console.log(this.hslColor);
+        },
+        satValChanged(saturation, lightness) {
+            this.saturation = saturation;
+            this.lightness = lightness;
         }
     },
     render(h) {
         return (
             <div class="colorPicker">
-                <SatValPicker hue={this.hue}/>
+                <SatValPicker hue={this.hue} v-on:satValChanged={this.satValChanged}/>
                 <HueSlider v-on:hueChanged={this.hueChanged}/>
             </div>
         );
