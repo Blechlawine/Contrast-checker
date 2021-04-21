@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         sliderClick(event) {
-            this.setHandlePos(event.clientX - 12);
+            this.setHandlePos(event.clientX - this.$refs.slider.getBoundingClientRect().left);
         },
         handleMouseDown(event) {
             document.addEventListener("mousemove", this.handleMouseMove);
@@ -27,7 +27,7 @@ export default {
         },
         handleMouseMove(event) {
             this.distanceMouseMoved = event.clientX - this.mouseDownPosX;
-            this.setHandlePos(Math.max(Math.min(this.mouseDownPosX + this.distanceMouseMoved - 12, this.maxX), this.minX)); // 12 ist die hälfte der Breite des handles
+            this.setHandlePos(Math.max(Math.min((this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left) + this.distanceMouseMoved, this.maxX), 0)); // 12 ist die hälfte der Breite des handles
         },
         handleMouseUp(event) {
             document.removeEventListener("mousemove", this.handleMouseMove);
@@ -40,8 +40,7 @@ export default {
         }
     },
     mounted() {
-        this.maxX = this.$refs.slider.clientWidth - 6;
-        this.minX = this.$refs.slider.getBoundingClientRect().left - 12;
+        this.maxX = this.$refs.slider.clientWidth - 4;
         this.setHandlePos(this.minX);
     },
     computed: {
