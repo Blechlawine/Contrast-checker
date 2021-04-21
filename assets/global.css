@@ -8,6 +8,9 @@
 
     /* Das bleibt weiß */
     --white: #FFFFFF;
+
+    /* Schatten */
+    --shadow4px: 0 4px 8px var(--shadow), 0 2px 4px var(--shadow);
 }
 
 * {
