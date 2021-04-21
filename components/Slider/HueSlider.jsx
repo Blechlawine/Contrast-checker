@@ -17,17 +17,17 @@ export default {
 
     },
     methods: {
-        sliderClick(event) {
-            this.setHandlePos(event.clientX - this.$refs.slider.getBoundingClientRect().left);
-        },
         handleMouseDown(event) {
             document.addEventListener("mousemove", this.handleMouseMove);
             document.addEventListener("mouseup", this.handleMouseUp);
             this.mouseDownPosX = event.clientX;
+            let relativeX = (this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left);
+            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX));
         },
         handleMouseMove(event) {
             this.distanceMouseMoved = event.clientX - this.mouseDownPosX;
-            this.setHandlePos(Math.max(Math.min((this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left) + this.distanceMouseMoved, this.maxX), 0)); // 12 ist die hälfte der Breite des handles
+            let relativeX = (this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left) + this.distanceMouseMoved;
+            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX));
         },
         handleMouseUp(event) {
             document.removeEventListener("mousemove", this.handleMouseMove);
@@ -53,8 +53,8 @@ export default {
     },
     render(h) {
         return (
-            <div class="hueSlider" v-on:click={this.sliderClick} ref="slider">
-                <div v-on:mousedown={this.handleMouseDown} style={this.handleStyles} class="sliderHandle"></div>
+            <div v-on:mousedown={this.handleMouseDown} class="hueSlider" ref="slider">
+                <div style={this.handleStyles} class="sliderHandle"></div>
             </div>
         )
     }
