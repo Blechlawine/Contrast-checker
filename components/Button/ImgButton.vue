@@ -1,18 +1,14 @@
 <template>
     <button class="imgButton" @click="onClick">
-        <Icon :iconType="icon"/>
+        <span class="material-icons">{{icon}}</span>
     </button>
 </template>
 
 <script>
     import "./button.css";
-    import Icon from "../Icon.vue";
 
     export default {
         name: "imgbutton",
-        components: {
-            Icon
-        },
         props: {
             icon: {
                 type: String,
