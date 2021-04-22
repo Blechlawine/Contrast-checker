@@ -31,6 +31,14 @@ a {
     color: inherit;
 }
 
+.material-icons {
+    -webkit-user-select: none;
+}
+
+.material-icons.middle {
+    font-size: 18px;
+}
+
 .material-icons.smol {
     font-size: 16px;
 }
