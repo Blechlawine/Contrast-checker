@@ -10,32 +10,59 @@ export default {
     },
     data() {
         return {
-            valuesWidth: 0
+            valueIndex: 0,
+            width: 0,
+            open: false
         };
     },
     mounted() {
-        this.valuesWidth = this.$refs.value.clientWidth;
+        let length = 0;
+        this.values.map((v) => {
+            if(v.length > length) length = v.length;
+        });
+        this.width = length;
+    },
+    methods: {
+        onValueClick(event) {
+            let val = event.currentTarget.innerHTML;
+            this.valueIndex = this.values.indexOf(val);
+            this.open = false;
+        },
+        toggleDropdown() {
+            this.open = !this.open;
+        }
     },
     computed: {
-        value() {
-            return this.values[0];
-        },
-        valuesWidthStyle() {
+        valueStyle() {
             return {
-                "width": this.valuesWidth + "px"
+                "border": `2px solid ${this.open ? "var(--accent)" : "var(--light-gray)"}`
+            };
+        },
+        widthStyle() {
+            return {
+                "width": `calc(${this.width}ch + 24px + 10px + 20px)`
+            };
+        },
+        value() {
+            return this.values[this.valueIndex];
+        },
+        valuesOpen() {
+            return {
+                "opacity": this.open ? 1 : 0,
+                "pointerEvents": this.open ? "auto" : "none"
             };
         }
     },
     render(h) {
         return (
             <div class="dropdown">
-                <div class="dropdownValue" ref="value">
+                <div class="dropdownValue" ref="value" style={[this.widthStyle, this.valueStyle]}>
                     <p>{this.value}</p>
-                    <span class="material-icons">expand_more</span>
+                    <span onClick={this.toggleDropdown} class="material-icons">{this.open ? "expand_less" : "expand_more"}</span>
                 </div>
-                <div class="dropdownValues" style={this.valuesWidthStyle}>
+                <div class="dropdownValues" style={[this.widthStyle, this.valuesOpen]}>
                     {this.values.map(v => (
-                        <span>{v}</span>
+                        <span onClick={this.onValueClick}>{v}</span>
                     ))}
                 </div>
             </div>

@@ -1,25 +1,28 @@
 .dropdown {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    width: max-content;
 }
 
 .dropdownValue {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 
     grid-gap: 10px;
 
-    border: 2px solid var(--accent);
     border-radius: 6px;
     padding: 6px 8px;
     padding-left: 12px;
 }
 
+.dropdownValue span {
+    cursor: pointer;
+}
+
 .dropdownValues {
+    position: absolute;
+    /* margin-top: 40px; */
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
