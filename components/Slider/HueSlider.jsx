@@ -1,61 +1,39 @@
-import "./HueSlider.css";
+import Slider from "./Slider.jsx";
 import { scale } from "../../assets/utils.js";
 
 export default {
     name: "hueslider",
+    components: {
+        Slider
+    },
     data() {
         return {
-            color: [ 0, 100, 50 ],
-            handlePosition: 0,
-            mouseDownPosX: 0,
-            distanceMouseMoved: 0,
-            minX: 0,
-            maxX: 0
+            hueData: 0
         };
     },
     props: {
-
-    },
-    methods: {
-        handleMouseDown(event) {
-            document.addEventListener("mousemove", this.handleMouseMove);
-            document.addEventListener("mouseup", this.handleMouseUp);
-            this.mouseDownPosX = event.clientX;
-            let relativeX = (this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left);
-            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX));
-        },
-        handleMouseMove(event) {
-            this.distanceMouseMoved = event.clientX - this.mouseDownPosX;
-            let relativeX = (this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left) + this.distanceMouseMoved;
-            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX));
-        },
-        handleMouseUp(event) {
-            document.removeEventListener("mousemove", this.handleMouseMove);
-            document.removeEventListener("mouseup", this.handleMouseUp);
-        },
-        setHandlePos(pos) {
-            this.handlePosition = pos;
-            this.color[0] = scale(this.handlePosition, this.minX, this.maxX, 0, 360);
-            this.$emit("hueChanged", this.color[0]);
+        hue: {
+            type: Number,
+            default: 0
         }
     },
     mounted() {
-        this.maxX = this.$refs.slider.clientWidth - 4;
-        this.setHandlePos(this.minX);
+        this.hueData = this.hue;
+    },
+    methods: {
+        onSlide(hue) {
+            this.hueData = hue;
+            this.$emit("hueChanged", this.hueData);
+        }
     },
     computed: {
-        handleStyles() {
-            return {
-                "background-color": `hsl(${this.color[0]}, ${this.color[1]}%, ${this.color[2]}%)`,
-                "margin-left": this.handlePosition + "px"
-            };
+        handleBackground() {
+            return `hsl(${this.hueData}, 100%, 50%)`;
         }
     },
     render(h) {
         return (
-            <div v-on:mousedown={this.handleMouseDown} class="hueSlider" ref="slider">
-                <div style={this.handleStyles} class="sliderHandle"></div>
-            </div>
+            <Slider initialValue={this.hue} min={0} max={360} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" v-on:onSlide={this.onSlide} handleBackground={this.handleBackground}/>
         )
     }
 }
