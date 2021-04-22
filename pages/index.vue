@@ -4,22 +4,21 @@
         <!-- <HueSlider/>
         <SatValPicker/> -->
         <ColorPicker/>
+        <NumberInput :number="5"/>
     </div>
 </template>
 
 <script>
 import MenuBar from "../components/Menubar/Menubar.vue";
 import ColorPicker from "../components/Picker/ColorPicker.jsx";
-// import HueSlider from "../components/Slider/HueSlider.jsx";
-// import SatValPicker from "../components/Picker/SatValPicker.jsx";
+import NumberInput from "../components/Input/NumberInput.jsx";
 
 export default {
     name: 'index',
     components: {
         MenuBar,
-        ColorPicker
-        // HueSlider,
-        // SatValPicker
+        ColorPicker,
+        NumberInput
     },
     data() {
         return {
