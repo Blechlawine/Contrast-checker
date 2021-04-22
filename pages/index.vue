@@ -6,6 +6,7 @@
         <ColorPicker/>
         <NumberInput :number="5"/>
         <Dropdown :values="this.colorsDropdown" />
+        <HexField/>
     </div>
 </template>
 
@@ -14,10 +15,12 @@ import MenuBar from "../components/Menubar/Menubar.vue";
 import ColorPicker from "../components/Picker/ColorPicker.jsx";
 import NumberInput from "../components/Input/NumberInput.jsx";
 import Dropdown from "../components/Input/Dropdown.jsx";
+import HexField from "../components/Input/HexField";
 
 export default {
     name: 'index',
     components: {
+      HexField,
         MenuBar,
         ColorPicker,
         NumberInput,
