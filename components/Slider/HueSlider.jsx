@@ -9,29 +9,26 @@ export default {
     },
     data() {
         return {
-            hueData: 0
         };
     },
     props: {
         hue: {
             type: Number,
             default: 0
+        },
+        handlePosition: {
+            type: Number,
+            required: true
         }
     },
-    mounted() {
-        this.hueData = this.hue;
-    },
     methods: {
-        onSlide(hue) {
-            this.hueData = hue;
-            this.$emit("hueChanged", this.hueData);
+        onSlide(val) {
+            this.$emit("hueChanged", val);
         }
     },
     computed: {
         handleBackground() {
-            // console.log(chroma(this.$store.state.colors.chrome._rgb));
-            // console.log(this.$store.getters["colors/chrome"]);
-            return `hsl(${this.$store.state.colors.hue}, 100%, 50%)`;
+            return `hsl(${this.hue}, 100%, 50%)`;
         }
     },
     render(h) {

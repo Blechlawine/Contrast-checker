@@ -15,8 +15,8 @@ export default {
         return {
             saturation: 0,
             value: 1,
-            // handlePosX: 0,
-            // handlePosY: 0,
+            handlePosX: 0,
+            handlePosY: 0,
             mouseDownPosX: 0,
             mouseDownPosY: 0,
             distanceMouseMovedX: 0,
@@ -49,14 +49,12 @@ export default {
             document.removeEventListener("mouseup", this.handleMouseUp);
         },
         setHandlePos(x, y) {
-            // this.handlePosX = x;
-            // this.handlePosY = y;
-            let sat = scale(x, this.minX, this.maxX, 0, 1);
-            let val = scale(y, this.maxY, this.minY, 0, 1);
-            let payload = chroma({h: this.$store.state.colors.hue, s: sat, v: val});
-            console.log(payload);
-            this.$store.commit("colors/set", payload);
-            // this.$emit("satValChanged", this.saturation, this.lightness);
+            this.handlePosX = x;
+            this.handlePosY = y;
+            this.saturation = scale(x, this.minX, this.maxX, 0, 1);
+            this.value = scale(y, this.maxY, this.minY, 0, 1);
+
+            this.$emit("satValChanged", this.saturation, this.value);
         }
     },
     mounted() {
@@ -66,21 +64,15 @@ export default {
     computed: {
         gradientStyles() {
             return {
-                "background": `linear-gradient(to top, black, rgba(255, 255, 255, 0)), linear-gradient(to right, hsla(${this.$store.getters["colors/chrome"].get("hsv.h")}, 0%, 100%, 1), hsla(${this.$store.getters["colors/chrome"].get("hsv.h")}, 100%, 50%, 1))`
+                "background": `linear-gradient(to top, black, rgba(255, 255, 255, 0)), linear-gradient(to right, hsla(${this.hue}, 0%, 100%, 1), hsla(${this.hue}, 100%, 50%, 1))`
             };
         },
         handleStyles() {
             return {
-                "background-color": this.$store.getters["colors/chrome"].css(),
+                "background-color": chroma({h: this.hue, s: this.saturation, v: this.value}).css(),
                 "margin-left": this.handlePosX + "px",
                 "margin-top": this.handlePosY + "px"
             };
-        },
-        handlePosX() {
-            return scale(this.$store.getters["colors/chrome"].get("hsv.s"), 0, 1, this.minX, this.maxX);
-        },
-        handlePosY() {
-            return scale(this.$store.getters["colors/chrome"].get("hsv.v"), 0, 1, this.maxY, this.minY);
         }
     },
     render(h) {
