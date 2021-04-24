@@ -33,7 +33,7 @@ export default {
     },
     render(h) {
         return (
-            <Slider min={0} max={360} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" handleBackground={this.handleBackground} v-on:onSlide={this.onSlide}/>
+            <Slider min={0} max={360} valueIn={this.hue} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" handleBackground={this.handleBackground} v-on:onSlide={this.onSlide}/>
         )
     }
 }

@@ -9,7 +9,8 @@ export default {
     },
     props: {
         number: {
-            type: Number
+            type: Number,
+            required: true
         },
         min: {
             type: Number,
@@ -24,20 +25,28 @@ export default {
             default: 1
         }
     },
+    watch: {
+        number: function (newNuber, oldNuber) {
+            this.numberData = newNuber;
+        }
+    },
     methods: {
         addNumber() {
-            this.changeNumber(this.numberData + this.step);
+            this.changeNumber(this.number + this.step);
         },
         subNumber() {
-            this.changeNumber(this.numberData - this.step);
+            this.changeNumber(this.number - this.step);
         },
         onInput(event) {
             this.changeNumber(event.target.value);
         },
         changeNumber(number) {
             this.numberData = Math.max(Math.min(number, this.max), this.min);
-            this.$emit("numberChanged", this.numberData);
+            this.$emit("onNumberChanged", this.numberData);
         }
+    },
+    mounted() {
+        this.numberData = this.number;
     },
     render(h) {
         return (<div class="numberInput">

@@ -8,15 +8,22 @@ export default {
     props: {
         hue: {
             type: Number,
-            required: true
+            required: true,
+            default: 0
+        },
+        saturationIn: {
+            type: Number
+        },
+        valueIn: {
+            type: Number
         }
     },
     data() {
         return {
             saturation: 0,
-            value: 1,
-            handlePosX: 0,
-            handlePosY: 0,
+            value: 0,
+            // handlePosX: 0,
+            // handlePosY: 0,
             mouseDownPosX: 0,
             mouseDownPosY: 0,
             distanceMouseMovedX: 0,
@@ -25,6 +32,14 @@ export default {
             maxX: 0,
             minY: 0,
             maxY: 0
+        }
+    },
+    watch: {
+        saturationIn: function(newSatIn) {
+            this.saturation = newSatIn;
+        },
+        valueIn: function(newValIn) {
+            this.value = newValIn;
         }
     },
     methods: {
@@ -49,8 +64,8 @@ export default {
             document.removeEventListener("mouseup", this.handleMouseUp);
         },
         setHandlePos(x, y) {
-            this.handlePosX = x;
-            this.handlePosY = y;
+            // this.handlePosX = x;
+            // this.handlePosY = y;
             this.saturation = scale(x, this.minX, this.maxX, 0, 1);
             this.value = scale(y, this.maxY, this.minY, 0, 1);
 
@@ -60,6 +75,8 @@ export default {
     mounted() {
         this.maxX = this.$refs.field.clientWidth - 4;
         this.maxY = this.$refs.field.clientHeight - 4;
+        this.saturation = this.saturationIn;
+        this.value = this.valueIn;
     },
     computed: {
         gradientStyles() {
@@ -73,6 +90,12 @@ export default {
                 "margin-left": this.handlePosX + "px",
                 "margin-top": this.handlePosY + "px"
             };
+        },
+        handlePosX() {
+            return scale(this.saturationIn, 0, 1, this.minX, this.maxX);
+        },
+        handlePosY() {
+            return scale(this.valueIn, 0, 1, this.maxY, this.minY);
         }
     },
     render(h) {

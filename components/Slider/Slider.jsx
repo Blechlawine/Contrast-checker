@@ -7,7 +7,7 @@ export default {
     data() {
         return {
             value: 0,
-            handlePosition: 0,
+            // handlePosition: 0,
             mouseDownPosX: 0,
             distanceMouseMoved: 0,
             minX: 0,
@@ -15,6 +15,9 @@ export default {
         };
     },
     props: {
+        valueIn: {
+            type: Number
+        },
         min: {
             type: Number,
             required: true
@@ -50,7 +53,7 @@ export default {
             document.removeEventListener("mouseup", this.handleMouseUp);
         },
         setHandlePos(pos) {
-            this.handlePosition = pos;
+            // this.handlePosition = pos;
             this.value = scale(pos, this.minX, this.maxX, this.min, this.max);
             this.$emit("onSlide", this.value);
         }
@@ -70,6 +73,9 @@ export default {
             return {
                 "background": this.background
             };
+        },
+        handlePosition() {
+            return scale(this.valueIn, this.min, this.max, this.minX, this.maxX);
         }
     },
     render(h) {

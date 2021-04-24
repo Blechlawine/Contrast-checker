@@ -3,6 +3,8 @@ import HueSlider from "../Slider/HueSlider.jsx";
 import Dropdown from "../Input/Dropdown.jsx";
 import CopyField from "../Input/CopyField.jsx";
 
+import RGBSliderCollection from "../Slider/SliderCollections/RGBSliderCollection.jsx";
+
 import {scale} from "../../assets/utils.js";
 import * as chroma from "chroma-js";
 
@@ -14,7 +16,8 @@ export default {
         SatValPicker,
         HueSlider,
         Dropdown,
-        CopyField
+        CopyField,
+        RGBSliderCollection
     },
     data() {
         return {
@@ -46,7 +49,7 @@ export default {
     },
     methods: {
         hueChanged(hue) {
-            this.hue = Math.floor(hue);
+            this.hue = Math.round(hue);
         },
         satValChanged(saturation, value) {
             this.saturation = saturation;
@@ -54,6 +57,15 @@ export default {
         },
         sliderModeChanged(modeIndex) {
             this.activeMode = modeIndex;
+        },
+        sliderChanged(value) {
+            if (typeof value.red && typeof value.green && typeof value.blue) {
+                let chrome = chroma({r: value.red, g: value.green, b: value.blue});
+                let hue = chrome.get("hsv.h");
+                this.hue = (isNaN(hue) ? 0 : hue);
+                this.saturation = chrome.get("hsv.s");
+                this.value = chrome.get("hsv.v");
+            }
         }
     },
     computed: {
@@ -61,23 +73,35 @@ export default {
             if (this.sliderModes[this.activeMode].toLowerCase() === "rgb") {
                 return chroma({h: this.hue, s: this.saturation, v: this.value}).css();
             } else if (this.sliderModes[this.activeMode].toLowerCase() === "hsl") {
-                let hslSat = Math.floor(chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.s") * 100);
-                let hslLig = Math.floor(chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.l") * 100);
+                let hslSat = Math.round(chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.s") * 100);
+                let hslLig = Math.round(chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.l") * 100);
                 return `hsl(${this.hue}, ${hslSat}%, ${hslLig}%)`;
             } else {
                 return chroma({h: this.hue, s: this.saturation, v: this.value}).hex().toUpperCase();
+            }
+        },
+        getSliderCollection() {
+            switch (this.sliderModes[this.activeMode].toLowerCase()) {
+                case "rgb":
+                    let chrome = chroma({h: this.hue, s: this.saturation, v: this.value});
+
+                    return (<RGBSliderCollection redIn={chrome.get("rgb.r")} greenIn={chrome.get("rgb.g")} blueIn={chrome.get("rgb.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                default: return (<div>Hello</div>);
             }
         }
     },
     render(h) {
         return (
             <div class="colorPicker">
-                <SatValPicker handlePosX={this.satValPicker.handlePosX} handlePosY={this.satValPicker.handlePosY} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged}/>
+                <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged}/>
                 <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged}/>
+                <div class="horizontalDivider"></div>
                 <div class="horizontalFlex">
                     <Dropdown values={this.sliderModes} v-on:onSelect={this.sliderModeChanged}/>
                     <CopyField value={this.copyValue}/>
                 </div>
+                <div class="horizontalDivider"></div>
+                {this.getSliderCollection}
             </div>
         );
     }
