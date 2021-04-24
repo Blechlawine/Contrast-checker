@@ -46,7 +46,7 @@ export default {
     },
     methods: {
         hueChanged(hue) {
-            this.hue = hue;
+            this.hue = Math.floor(hue);
         },
         satValChanged(saturation, value) {
             this.saturation = saturation;
@@ -61,11 +61,11 @@ export default {
             if (this.sliderModes[this.activeMode].toLowerCase() === "rgb") {
                 return chroma({h: this.hue, s: this.saturation, v: this.value}).css();
             } else if (this.sliderModes[this.activeMode].toLowerCase() === "hsl") {
-                let hslSat = chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.s") * 100;
-                let hslLig = chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.l") * 100;
+                let hslSat = Math.floor(chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.s") * 100);
+                let hslLig = Math.floor(chroma({h: this.hue, s: this.saturation, v: this.value}).get("hsl.l") * 100);
                 return `hsl(${this.hue}, ${hslSat}%, ${hslLig}%)`;
             } else {
-                return chroma({h: this.hue, s: this.saturation, v: this.value}).hex();
+                return chroma({h: this.hue, s: this.saturation, v: this.value}).hex().toUpperCase();
             }
         }
     },

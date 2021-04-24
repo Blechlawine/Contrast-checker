@@ -57,9 +57,9 @@ export default {
     render(h) {
         return (
             <div class="dropdown">
-                <div class="dropdownValue" ref="value" style={[this.widthStyle, this.valueStyle]}>
+                <div onClick={this.toggleDropdown} class="dropdownValue" ref="value" style={[this.widthStyle, this.valueStyle]}>
                     <p>{this.value}</p>
-                    <span onClick={this.toggleDropdown} class="material-icons">{this.open ? "expand_less" : "expand_more"}</span>
+                    <span class="material-icons">{this.open ? "expand_less" : "expand_more"}</span>
                 </div>
                 <div class="dropdownValues" style={[this.widthStyle, this.valuesOpen]}>
                     {this.values.map(v => (
