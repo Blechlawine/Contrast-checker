@@ -3,28 +3,33 @@
         <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
         <!-- <HueSlider/>
         <SatValPicker/> -->
-        <ColorPicker/>
+        <ColorPickerBig/>
+        <!-- <ColorPicker/>
         <NumberInput :number="5"/>
         <Dropdown :values="this.colorsDropdown" />
         <CopyField typ="hex"/>
+        <Sliderpart :sliders="['rgb.r', 'rgb.g', 'rgb.b']"/> -->
     </div>
 </template>
 
 <script>
 import MenuBar from "../components/Menubar/Menubar.vue";
-import ColorPicker from "../components/Picker/ColorPicker.jsx";
-import NumberInput from "../components/Input/NumberInput.jsx";
-import Dropdown from "../components/Input/Dropdown.jsx";
-import CopyField from "../components/Input/CopyField";
+import ColorPickerBig from "../components/Picker/ColorPickerBig.jsx";
+// import NumberInput from "../components/Input/NumberInput.jsx";
+// import Dropdown from "../components/Input/Dropdown.jsx";
+// import CopyField from "../components/Input/CopyField.jsx";
+// import Sliderpart from "../components/Picker/Sliderpart.jsx";
 
 export default {
     name: 'index',
     components: {
-        CopyField,
         MenuBar,
-        ColorPicker,
-        NumberInput,
-        Dropdown
+        // CopyField,
+        // ColorPicker,
+        // NumberInput,
+        // Dropdown,
+        // Sliderpart,
+        ColorPickerBig
     },
     data() {
         return {

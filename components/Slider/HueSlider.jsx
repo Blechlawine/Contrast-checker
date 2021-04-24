@@ -1,5 +1,6 @@
 import Slider from "./Slider.jsx";
 import { scale } from "../../assets/utils.js";
+import * as chroma from "chroma-js";
 
 export default {
     name: "hueslider",
@@ -8,32 +9,31 @@ export default {
     },
     data() {
         return {
-            hueData: 0
         };
     },
     props: {
         hue: {
             type: Number,
             default: 0
+        },
+        handlePosition: {
+            type: Number,
+            required: true
         }
     },
-    mounted() {
-        this.hueData = this.hue;
-    },
     methods: {
-        onSlide(hue) {
-            this.hueData = hue;
-            this.$emit("hueChanged", this.hueData);
+        onSlide(val) {
+            this.$emit("hueChanged", val);
         }
     },
     computed: {
         handleBackground() {
-            return `hsl(${this.hueData}, 100%, 50%)`;
+            return `hsl(${this.hue}, 100%, 50%)`;
         }
     },
     render(h) {
         return (
-            <Slider initialValue={this.hue} min={0} max={360} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" v-on:onSlide={this.onSlide} handleBackground={this.handleBackground}/>
+            <Slider min={0} max={360} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" handleBackground={this.handleBackground} v-on:onSlide={this.onSlide}/>
         )
     }
 }

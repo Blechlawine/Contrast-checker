@@ -1,5 +1,6 @@
 import "./Slider.css";
 import { scale } from "../../assets/utils.js";
+import * as chroma from "chroma-js";
 
 export default {
     name: "slider",
@@ -26,10 +27,6 @@ export default {
             type: String,
             required: true
         },
-        initialValue: {
-            type: Number,
-            required: true
-        },
         handleBackground: {
             type: String,
             required: true
@@ -54,7 +51,7 @@ export default {
         },
         setHandlePos(pos) {
             this.handlePosition = pos;
-            this.value = scale(this.handlePosition, this.minX, this.maxX, this.min, this.max);
+            this.value = scale(pos, this.minX, this.maxX, this.min, this.max);
             this.$emit("onSlide", this.value);
         }
     },

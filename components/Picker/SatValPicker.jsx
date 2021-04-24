@@ -1,6 +1,7 @@
 import "./SatValPicker.css";
 
 import { scale } from "../../assets/utils.js";
+import * as chroma from "chroma-js";
 
 export default {
     name: "satValPicker",
@@ -13,7 +14,7 @@ export default {
     data() {
         return {
             saturation: 0,
-            lightness: 100,
+            value: 1,
             handlePosX: 0,
             handlePosY: 0,
             mouseDownPosX: 0,
@@ -50,9 +51,10 @@ export default {
         setHandlePos(x, y) {
             this.handlePosX = x;
             this.handlePosY = y;
-            this.saturation = scale(this.handlePosX, this.minX, this.maxX, 0, 100);
-            this.lightness = scale(this.handlePosY, this.maxY, this.minY, 0, (100 - (this.saturation / 2))); // TODO: hsv in hsl umrechnen
-            this.$emit("satValChanged", this.saturation, this.lightness);
+            this.saturation = scale(x, this.minX, this.maxX, 0, 1);
+            this.value = scale(y, this.maxY, this.minY, 0, 1);
+
+            this.$emit("satValChanged", this.saturation, this.value);
         }
     },
     mounted() {
@@ -67,7 +69,7 @@ export default {
         },
         handleStyles() {
             return {
-                "background-color": `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`,
+                "background-color": chroma({h: this.hue, s: this.saturation, v: this.value}).css(),
                 "margin-left": this.handlePosX + "px",
                 "margin-top": this.handlePosY + "px"
             };
