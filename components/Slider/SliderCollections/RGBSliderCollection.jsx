@@ -2,7 +2,7 @@ import Slider from "../../Slider/Slider.jsx";
 import NumberInput from "../../Input/NumberInput.jsx";
 
 export default {
-    name: "sliderpart",
+    name: "rgbSliderCollection",
     components: {
         Slider,
         NumberInput
