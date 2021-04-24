@@ -21,19 +21,19 @@ export default {
         this.hueData = this.hue;
     },
     methods: {
-        onSlide(hue) {
-            this.hueData = hue;
-            this.$emit("hueChanged", this.hueData);
-        }
+        // onSlide(hue) {
+        //     this.hueData = hue;
+        //     this.$emit("hueChanged", this.hueData);
+        // }
     },
     computed: {
         handleBackground() {
-            return `hsl(${this.hueData}, 100%, 50%)`;
+            return `hsl(${this.$store.state.colors.hue}, 100%, 50%)`;
         }
     },
     render(h) {
         return (
-            <Slider initialValue={this.hue} min={0} max={360} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" v-on:onSlide={this.onSlide} handleBackground={this.handleBackground}/>
+            <Slider valueRef="hue" min={0} max={360} background="linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%)" handleBackground={this.handleBackground}/>
         )
     }
 }

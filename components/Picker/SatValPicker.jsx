@@ -13,9 +13,9 @@ export default {
     data() {
         return {
             saturation: 0,
-            lightness: 100,
-            handlePosX: 0,
-            handlePosY: 0,
+            value: 1,
+            // handlePosX: 0,
+            // handlePosY: 0,
             mouseDownPosX: 0,
             mouseDownPosY: 0,
             distanceMouseMovedX: 0,
@@ -48,11 +48,12 @@ export default {
             document.removeEventListener("mouseup", this.handleMouseUp);
         },
         setHandlePos(x, y) {
-            this.handlePosX = x;
-            this.handlePosY = y;
-            this.saturation = scale(this.handlePosX, this.minX, this.maxX, 0, 100);
-            this.lightness = scale(this.handlePosY, this.maxY, this.minY, 0, (100 - (this.saturation / 2))); // TODO: hsv in hsl umrechnen
-            this.$emit("satValChanged", this.saturation, this.lightness);
+            // this.handlePosX = x;
+            // this.handlePosY = y;
+            let sat = scale(x, this.minX, this.maxX, 0, 1);
+            let val = scale(y, this.maxY, this.minY, 0, 1);
+            this.$store.commit("colors/set", {hsvsaturation: sat, value: val});
+            // this.$emit("satValChanged", this.saturation, this.lightness);
         }
     },
     mounted() {
@@ -62,15 +63,21 @@ export default {
     computed: {
         gradientStyles() {
             return {
-                "background": `linear-gradient(to top, black, rgba(255, 255, 255, 0)), linear-gradient(to right, hsla(${this.hue}, 0%, 100%, 1), hsla(${this.hue}, 100%, 50%, 1))`
+                "background": `linear-gradient(to top, black, rgba(255, 255, 255, 0)), linear-gradient(to right, hsla(${this.$store.state.colors.hue}, 0%, 100%, 1), hsla(${this.$store.state.colors.hue}, 100%, 50%, 1))`
             };
         },
         handleStyles() {
             return {
-                "background-color": `hsl(${this.hue}, ${this.saturation}%, ${this.lightness}%)`,
+                "background-color": `rgb(${this.$store.state.colors.red}, ${this.$store.state.colors.green}, ${this.$store.state.colors.blue})`,
                 "margin-left": this.handlePosX + "px",
                 "margin-top": this.handlePosY + "px"
             };
+        },
+        handlePosX() {
+            return scale(this.$store.state.colors.hsvsaturation, 0, 1, this.minX, this.maxX);
+        },
+        handlePosY() {
+            return scale(this.$store.state.colors.value, 0, 1, this.maxY, this.minY);
         }
     },
     render(h) {

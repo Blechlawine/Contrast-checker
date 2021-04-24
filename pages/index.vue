@@ -7,6 +7,7 @@
         <NumberInput :number="5"/>
         <Dropdown :values="this.colorsDropdown" />
         <CopyField typ="hex"/>
+        <Sliderpart :sliders="['red', 'green', 'blue']"/>
     </div>
 </template>
 
@@ -15,7 +16,8 @@ import MenuBar from "../components/Menubar/Menubar.vue";
 import ColorPicker from "../components/Picker/ColorPicker.jsx";
 import NumberInput from "../components/Input/NumberInput.jsx";
 import Dropdown from "../components/Input/Dropdown.jsx";
-import CopyField from "../components/Input/CopyField";
+import CopyField from "../components/Input/CopyField.jsx";
+import Sliderpart from "../components/Picker/Sliderpart.jsx";
 
 export default {
     name: 'index',
@@ -24,7 +26,8 @@ export default {
         MenuBar,
         ColorPicker,
         NumberInput,
-        Dropdown
+        Dropdown,
+        Sliderpart
     },
     data() {
         return {

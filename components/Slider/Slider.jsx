@@ -6,7 +6,7 @@ export default {
     data() {
         return {
             value: 0,
-            handlePosition: 0,
+            // handlePosition: 0,
             mouseDownPosX: 0,
             distanceMouseMoved: 0,
             minX: 0,
@@ -26,8 +26,8 @@ export default {
             type: String,
             required: true
         },
-        initialValue: {
-            type: Number,
+        valueRef: {
+            type: String,
             required: true
         },
         handleBackground: {
@@ -53,9 +53,12 @@ export default {
             document.removeEventListener("mouseup", this.handleMouseUp);
         },
         setHandlePos(pos) {
-            this.handlePosition = pos;
-            this.value = scale(this.handlePosition, this.minX, this.maxX, this.min, this.max);
-            this.$emit("onSlide", this.value);
+            // this.handlePosition = pos;
+            this.value = scale(pos, this.minX, this.maxX, this.min, this.max);
+            console.log(this.valueRef);
+            let payload = JSON.parse(`{ "${this.valueRef}": ${this.value} }`);
+            this.$store.commit("colors/set", payload);
+            // this.$emit("onSlide", this.value);
         }
     },
     mounted() {
@@ -73,6 +76,11 @@ export default {
             return {
                 "background": this.background
             };
+        },
+        handlePosition() {
+            let variable = "this.$store.state.colors." + this.valueRef;
+            return scale(eval(variable), this.min, this.max, this.minX, this.maxX);
+            //TODO noch ein bisschen ruckelig
         }
     },
     render(h) {
