@@ -1,5 +1,6 @@
 import "./Slider.css";
 import { scale } from "../../assets/utils.js";
+import * as chroma from "chroma-js";
 
 export default {
     name: "slider",
@@ -56,7 +57,8 @@ export default {
             // this.handlePosition = pos;
             this.value = scale(pos, this.minX, this.maxX, this.min, this.max);
             // console.log(this.valueRef);
-            let payload = JSON.parse(`{ "${this.valueRef}": ${this.value} }`);
+            // let payload = JSON.parse(`{ "${this.valueRef}": ${this.value} }`);
+            let payload = this.$store.getters["colors/chrome"].set(this.valueRef, this.value);
             this.$store.commit("colors/set", payload);
             // this.$emit("onSlide", this.value);
         }
@@ -78,8 +80,8 @@ export default {
             };
         },
         handlePosition() {
-            let variable = "this.$store.state.colors." + this.valueRef;
-            return scale(eval(variable), this.min, this.max, this.minX, this.maxX);
+            let variable = this.$store.getters["colors/chrome"].get(this.valueRef);
+            return scale(variable, this.min, this.max, this.minX, this.maxX);
             //TODO noch ein bisschen ruckelig
         }
     },

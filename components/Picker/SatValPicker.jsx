@@ -1,6 +1,7 @@
 import "./SatValPicker.css";
 
 import { scale } from "../../assets/utils.js";
+import * as chroma from "chroma-js";
 
 export default {
     name: "satValPicker",
@@ -52,7 +53,9 @@ export default {
             // this.handlePosY = y;
             let sat = scale(x, this.minX, this.maxX, 0, 1);
             let val = scale(y, this.maxY, this.minY, 0, 1);
-            this.$store.commit("colors/set", {hsvsaturation: sat, value: val});
+            let payload = chroma({h: this.$store.state.colors.hue, s: sat, v: val});
+            console.log(payload);
+            this.$store.commit("colors/set", payload);
             // this.$emit("satValChanged", this.saturation, this.lightness);
         }
     },
@@ -63,21 +66,21 @@ export default {
     computed: {
         gradientStyles() {
             return {
-                "background": `linear-gradient(to top, black, rgba(255, 255, 255, 0)), linear-gradient(to right, hsla(${this.$store.state.colors.hue}, 0%, 100%, 1), hsla(${this.$store.state.colors.hue}, 100%, 50%, 1))`
+                "background": `linear-gradient(to top, black, rgba(255, 255, 255, 0)), linear-gradient(to right, hsla(${this.$store.getters["colors/chrome"].get("hsv.h")}, 0%, 100%, 1), hsla(${this.$store.getters["colors/chrome"].get("hsv.h")}, 100%, 50%, 1))`
             };
         },
         handleStyles() {
             return {
-                "background-color": `rgb(${this.$store.state.colors.red}, ${this.$store.state.colors.green}, ${this.$store.state.colors.blue})`,
+                "background-color": this.$store.getters["colors/chrome"].css(),
                 "margin-left": this.handlePosX + "px",
                 "margin-top": this.handlePosY + "px"
             };
         },
         handlePosX() {
-            return scale(this.$store.state.colors.hsvsaturation, 0, 1, this.minX, this.maxX);
+            return scale(this.$store.getters["colors/chrome"].get("hsv.s"), 0, 1, this.minX, this.maxX);
         },
         handlePosY() {
-            return scale(this.$store.state.colors.value, 0, 1, this.maxY, this.minY);
+            return scale(this.$store.getters["colors/chrome"].get("hsv.v"), 0, 1, this.maxY, this.minY);
         }
     },
     render(h) {

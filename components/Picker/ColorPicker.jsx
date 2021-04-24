@@ -13,17 +13,16 @@ export default {
         return {
             hue: 0,
             saturation: 100,
-            lightness: 50
+            value: 50
         }
     },
     methods: {
         hueChanged(hue) {
             this.hue = hue;
-            // console.log(this.hslColor);
         },
-        satValChanged(saturation, lightness) {
+        satValChanged(saturation, value) {
             this.saturation = saturation;
-            this.lightness = lightness;
+            this.value = value;
         }
     },
     render(h) {

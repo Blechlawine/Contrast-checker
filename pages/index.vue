@@ -7,7 +7,7 @@
         <NumberInput :number="5"/>
         <Dropdown :values="this.colorsDropdown" />
         <CopyField typ="hex"/>
-        <Sliderpart :sliders="['red', 'green', 'blue']"/>
+        <Sliderpart :sliders="['rgb.r', 'rgb.g', 'rgb.b']"/>
     </div>
 </template>
 

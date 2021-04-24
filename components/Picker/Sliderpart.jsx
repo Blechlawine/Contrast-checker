@@ -18,11 +18,6 @@ export default {
             sliderAmount: 3
         };
     },
-    mounted() {
-        if (this.mode === "cmyk") {
-            this.sliderAmount = 4;
-        }
-    },
     methods: {
         // sliidee(index, value) {
         //     let payload = JSON.parse(`{ "${index}": ${value} }`);
