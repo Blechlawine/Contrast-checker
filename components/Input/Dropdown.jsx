@@ -27,6 +27,7 @@ export default {
             let val = event.currentTarget.innerHTML;
             this.valueIndex = this.values.indexOf(val);
             this.open = false;
+            this.$emit("onSelect", this.valueIndex);
         },
         toggleDropdown() {
             this.open = !this.open;
