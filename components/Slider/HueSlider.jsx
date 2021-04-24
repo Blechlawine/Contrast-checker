@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         handleBackground() {
-            return `hsl(${this.$store.state.colors.hue}, 100%, 50%)`;
+            return `hsl(${this.$store.state.colors.chrome.get("hsl.h")}, 100%, 50%)`;
         }
     },
     render(h) {

@@ -55,7 +55,7 @@ export default {
         setHandlePos(pos) {
             // this.handlePosition = pos;
             this.value = scale(pos, this.minX, this.maxX, this.min, this.max);
-            console.log(this.valueRef);
+            // console.log(this.valueRef);
             let payload = JSON.parse(`{ "${this.valueRef}": ${this.value} }`);
             this.$store.commit("colors/set", payload);
             // this.$emit("onSlide", this.value);
