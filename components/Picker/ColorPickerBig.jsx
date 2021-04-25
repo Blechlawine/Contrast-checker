@@ -5,11 +5,17 @@ import CopyField from "../Input/CopyField.jsx";
 
 import RGBSliderCollection from "../Slider/SliderCollections/RGBSliderCollection.jsx";
 import HSLSliderCollection from "../Slider/SliderCollections/HSLSliderCollection.jsx";
+import LABSliderCollection from "../Slider/SliderCollections/LABSliderCollection";
+import CMYKSliderCollection from "../Slider/SliderCollections/CMYKSliderCollection";
+import XYZSliderCollection from "../Slider/SliderCollections/XYZSliderCollection";
 
 import {scale} from "../../assets/utils.js";
+import {rgb_to_cie, cie_to_rgb} from "../../assets/xyzrgb";
+
 import * as chroma from "chroma-js";
 
 import "./ColorPicker.css";
+
 
 export default {
     name: "ColorPickerBig",
@@ -65,7 +71,16 @@ export default {
             if (value.red != undefined && value.green != undefined && value.blue != undefined) {
                 chrome = chroma({r: value.red, g: value.green, b: value.blue});
             } else if (value.hue != undefined && value.saturation != undefined && value.lightness != undefined) {
+                console.log(value.hue, value.saturation, value.lightness)
                 chrome = chroma({h: value.hue, s: value.saturation / 100, l: value.lightness / 100});
+            } else if (value.c != undefined && value.m != undefined && value.y != undefined && value.k != undefined) {
+                chrome = chroma(value.c / 100, value.m / 100, value.y / 100, value.k / 100, 'cmyk')
+            } else if (value.l != undefined && value.a != undefined && value.b != undefined) {
+                chrome = chroma(value.l, value.a, value.b, 'lab');
+            } else if (value.x != undefined && value.y != undefined && value.z != undefined) {
+                let cie = cie_to_rgb(value.x, value.y, value.z);
+                console.log(cie);
+                chrome = chroma({r: cie[0], g: cie[1], b: cie[2]})
             }
             let hue = chrome.get("hsv.h");
             this.hue = (isNaN(hue) ? 0 : hue);
@@ -92,6 +107,14 @@ export default {
                     return (<RGBSliderCollection redIn={chrome.get("rgb.r")} greenIn={chrome.get("rgb.g")} blueIn={chrome.get("rgb.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
                 case "hsl":
                     return (<HSLSliderCollection hueIn={this.hue} saturationIn={chrome.get("hsl.s") * 100} lightnessIn={chrome.get("hsl.l") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                case "cmyk":
+                    return (<CMYKSliderCollection cyanIn={chrome.get("cmyk.c") * 100} magentaIn={chrome.get("cmyk.m") * 100} yellowIn={chrome.get("cmyk.y") * 100} keyIn={chrome.get("cmyk.k") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged}/>)
+                case "lab":
+                    return (<LABSliderCollection lIn={chrome.get("lab.l")} aIn={chrome.get("lab.a")} bIn={chrome.get("lab.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                case "xyz":
+                    let xyz = rgb_to_cie(chrome.get("rgb.r"), chrome.get("rgb.g"), chrome.get("rgb.b"))
+                    console.log(xyz);
+                    return (<XYZSliderCollection xIn={parseInt(xyz[0])} yIn={parseInt(xyz[1])} bIn={1} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
                 default: return (<div>Hello</div>);
             }
         }
