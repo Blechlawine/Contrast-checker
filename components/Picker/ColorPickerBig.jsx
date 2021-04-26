@@ -7,10 +7,10 @@ import RGBSliderCollection from "../Slider/SliderCollections/RGBSliderCollection
 import HSLSliderCollection from "../Slider/SliderCollections/HSLSliderCollection.jsx";
 import LABSliderCollection from "../Slider/SliderCollections/LABSliderCollection";
 import CMYKSliderCollection from "../Slider/SliderCollections/CMYKSliderCollection";
-import XYZSliderCollection from "../Slider/SliderCollections/XYZSliderCollection";
+
+import TextInput from "../Input/TextInput.jsx";
 
 import {scale} from "../../assets/utils.js";
-import {rgb_to_cie, cie_to_rgb} from "../../assets/xyzrgb";
 
 import * as chroma from "chroma-js";
 
@@ -25,7 +25,8 @@ export default {
         Dropdown,
         CopyField,
         RGBSliderCollection,
-        HSLSliderCollection
+        HSLSliderCollection,
+        TextInput
     },
     data() {
         return {
@@ -44,15 +45,14 @@ export default {
                 "HSL",
                 "CMYK",
                 "LAB",
-                "XYZ",
                 "Copic",
                 "RAL",
                 "HKS",
                 "Name",
-                "HEX",
-                "Picker"
+                "HEX"
             ],
-            activeMode: 0
+            activeMode: 0,
+            hexBoxValid: true
         }
     },
     methods: {
@@ -77,15 +77,34 @@ export default {
                 chrome = chroma(value.c / 100, value.m / 100, value.y / 100, value.k / 100, 'cmyk')
             } else if (value.l != undefined && value.a != undefined && value.b != undefined) {
                 chrome = chroma(value.l, value.a, value.b, 'lab');
-            } else if (value.x != undefined && value.y != undefined && value.z != undefined) {
-                let cie = cie_to_rgb(value.x, value.y, value.z);
-                console.log(cie);
-                chrome = chroma({r: cie[0], g: cie[1], b: cie[2]})
             }
             let hue = chrome.get("hsv.h");
             this.hue = (isNaN(hue) ? 0 : hue);
             this.saturation = chrome.get("hsv.s");
             this.value = chrome.get("hsv.v");
+        },
+        textIn(value) {
+            this.hexBoxValid = this.checkHEX(value);
+            if (this.hexBoxValid) {
+                let text = value.replace("#", "").replace("0x", "").replace("0X", "");
+                let chrome = chroma(text);
+                let hue = chrome.get("hsv.h");
+                this.hue = (isNaN(hue) ? 0 : hue);
+                this.saturation = chrome.get("hsv.s");
+                this.value = chrome.get("hsv.v");
+            }
+        },
+        checkHEX(hexValue) {
+            if(hexValue.startsWith("#")) {
+                hexValue = hexValue.substring(1);
+            }
+            // fängt mit 0x oder 0X oder # an
+            // hat entweder 6 oder 3 hex character (0-9, a-f, oder A-F)
+            // ^ davor kommt nichts, $ danach kommt nichts
+            if (!(/^(0[xX]|#|)([a-fA-F0-9]{6})$/.test(hexValue))) {
+                return false;
+            }
+            return true;
         }
     },
     computed: {
@@ -111,10 +130,8 @@ export default {
                     return (<CMYKSliderCollection cyanIn={chrome.get("cmyk.c") * 100} magentaIn={chrome.get("cmyk.m") * 100} yellowIn={chrome.get("cmyk.y") * 100} keyIn={chrome.get("cmyk.k") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged}/>)
                 case "lab":
                     return (<LABSliderCollection lIn={chrome.get("lab.l")} aIn={chrome.get("lab.a")} bIn={chrome.get("lab.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
-                case "xyz":
-                    let xyz = rgb_to_cie(chrome.get("rgb.r"), chrome.get("rgb.g"), chrome.get("rgb.b"))
-                    console.log(xyz);
-                    return (<XYZSliderCollection xIn={parseInt(xyz[0])} yIn={parseInt(xyz[1])} bIn={1} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                case "hex":
+                    return (<TextInput valid={this.hexBoxValid} placeholder="#000000" textIn={chrome.hex().toUpperCase()} v-on:changed={this.textIn}/>)
                 default: return (<div>Hello</div>);
             }
         }

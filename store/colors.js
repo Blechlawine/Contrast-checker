@@ -1,6 +1,5 @@
 import * as chroma from 'chroma-js';
 import { scale } from "../assets/utils.js";
-import { cie_to_rgb, rgb_to_cie } from "../assets/xyzrgb.js";
 
 export const state = () => ({
     chrome: chroma("red"),
