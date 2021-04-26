@@ -65,13 +65,13 @@ export default {
             return `linear-gradient(to right, rgb(${atZero.get("rgb.r")}, ${atZero.get("rgb.g")}, ${atZero.get("rgb.b")}), rgba(${atHundred.get("rgb.r")},  ${atHundred.get("rgb.g")}, ${atHundred.get("rgb.b")}))`;
         },
         aBackground() {
-            let atZero = chroma(this.l, 0, this.b, 'lab')
-            let atHundred = chroma(this.l, 100, this.b, 'lab')
+            let atZero = chroma(this.l, -128, this.b, 'lab')
+            let atHundred = chroma(this.l, 127, this.b, 'lab')
             return `linear-gradient(to right, rgb(${atZero.get("rgb.r")}, ${atZero.get("rgb.g")}, ${atZero.get("rgb.b")}), rgba(${atHundred.get("rgb.r")},  ${atHundred.get("rgb.g")}, ${atHundred.get("rgb.b")}))`;
         },
         bBackground() {
-            let atZero = chroma(this.l, this.a, 0, 'lab')
-            let atHundred = chroma(this.l, this.a, 100, 'lab')
+            let atZero = chroma(this.l, this.a, -128, 'lab')
+            let atHundred = chroma(this.l, this.a, 127, 'lab')
             return `linear-gradient(to right, rgb(${atZero.get("rgb.r")}, ${atZero.get("rgb.g")}, ${atZero.get("rgb.b")}), rgba(${atHundred.get("rgb.r")},  ${atHundred.get("rgb.g")}, ${atHundred.get("rgb.b")}))`;
         }
     },
