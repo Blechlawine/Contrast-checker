@@ -7,6 +7,7 @@ import RGBSliderCollection from "../Slider/SliderCollections/RGBSliderCollection
 import HSLSliderCollection from "../Slider/SliderCollections/HSLSliderCollection.jsx";
 import LABSliderCollection from "../Slider/SliderCollections/LABSliderCollection";
 import CMYKSliderCollection from "../Slider/SliderCollections/CMYKSliderCollection";
+import CopicSwatches from "./Swatches/CopicSwatches.jsx";
 
 import TextInput from "../Input/TextInput.jsx";
 
@@ -132,6 +133,8 @@ export default {
                     return (<LABSliderCollection lIn={chrome.get("lab.l")} aIn={chrome.get("lab.a")} bIn={chrome.get("lab.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
                 case "hex":
                     return (<TextInput valid={this.hexBoxValid} placeholder="#000000" textIn={chrome.hex().toUpperCase()} v-on:changed={this.textIn}/>)
+                case "copic":
+                    return (<CopicSwatches/>);
                 default: return (<div>Hello</div>);
             }
         }
