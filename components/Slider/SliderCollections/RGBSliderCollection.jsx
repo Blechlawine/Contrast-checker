@@ -67,6 +67,11 @@ export default {
             return `linear-gradient(to right, rgb(${this.red}, ${this.green}, 0), rgba(${this.red}, ${this.green}, 255))`;
         }
     },
+    mounted() {
+        this.red = this.redIn;
+        this.green = this.greenIn;
+        this.blue = this.blueIn;
+    },
     render(h) {
         return (
             <div class="sliderpart">

@@ -75,6 +75,11 @@ export default {
             return `linear-gradient(to right, rgb(${atZero.get("rgb.r")}, ${atZero.get("rgb.g")}, ${atZero.get("rgb.b")}), rgba(${atHundred.get("rgb.r")},  ${atHundred.get("rgb.g")}, ${atHundred.get("rgb.b")}))`;
         }
     },
+    mounted() {
+        this.l = this.lIn;
+        this.a = this.aIn;
+        this.b = this.bIn;
+    },
     render(h) {
         return (
             <div class="sliderpart">

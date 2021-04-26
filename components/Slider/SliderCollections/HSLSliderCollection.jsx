@@ -67,6 +67,11 @@ export default {
             return `linear-gradient(to right, hsl(${Math.round(this.hue)}, ${Math.round(this.saturation)}%, 0%), hsl(${Math.round(this.hue)}, ${Math.round(this.saturation)}%, 50%), hsl(${Math.round(this.hue)}, ${Math.round(this.saturation)}%, 100%))`;
         }
     },
+    mounted() {
+        this.hue = this.hueIn;
+        this.saturation = this.saturationIn;
+        this.lightness = this.lightnessIn;
+    },
     render(h) {
         return (
             <div class="sliderpart">

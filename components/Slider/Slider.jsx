@@ -35,6 +35,11 @@ export default {
             required: true
         }
     },
+    watch: {
+        valueIn(newValueIn) {
+            this.value = newValueIn;
+        }
+    },
     methods: {
         handleMouseDown(event) {
             document.addEventListener("mousemove", this.handleMouseMove);
@@ -59,8 +64,9 @@ export default {
         }
     },
     mounted() {
+        // console.log(this.valueIn);
         this.maxX = this.$refs.slider.clientWidth - 4;
-        this.setHandlePos(this.minX);
+        this.value = this.valueIn;
     },
     computed: {
         handleStyles() {
@@ -75,7 +81,7 @@ export default {
             };
         },
         handlePosition() {
-            return scale(this.valueIn, this.min, this.max, this.minX, this.maxX);
+            return scale(this.value, this.min, this.max, this.minX, this.maxX);
         }
     },
     render(h) {
