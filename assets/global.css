@@ -5,11 +5,13 @@
     --text-dark: #2E2E2E;
     --text-white: #FFFFFF;
     --light-gray: #E9E9E9;
+    --middle-gray: #959595;
     --accent: #00BCD4;
     --warning-red: rgb(244,67,54);
     --gray: #BBBBBB;
     --shadow: rgba(97, 97, 97, 0.18);
     --background: white;
+    --labelBackground: var(--background);
 
     /* Das bleibt weiß */
     --white: #FFFFFF;
@@ -58,4 +60,27 @@ a {
     width: 100%;
     background-color: var(--light-gray);
     border-radius: 1px;
+}
+
+/* Custom Scrollbar, yeah */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--light-gray);
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--middle-gray);
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
 }

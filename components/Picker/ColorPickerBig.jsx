@@ -7,7 +7,8 @@ import RGBSliderCollection from "../Slider/SliderCollections/RGBSliderCollection
 import HSLSliderCollection from "../Slider/SliderCollections/HSLSliderCollection.jsx";
 import LABSliderCollection from "../Slider/SliderCollections/LABSliderCollection";
 import CMYKSliderCollection from "../Slider/SliderCollections/CMYKSliderCollection";
-import CopicSwatches from "./Swatches/CopicSwatches.jsx";
+import Swatches from "./Swatches/Swatches.jsx";
+// import RALSwatches from "./Swatches/RALSwatches.jsx";
 
 import TextInput from "../Input/TextInput.jsx";
 
@@ -134,7 +135,15 @@ export default {
                 case "hex":
                     return (<TextInput valid={this.hexBoxValid} placeholder="#000000" textIn={chrome.hex().toUpperCase()} v-on:changed={this.textIn}/>)
                 case "copic":
-                    return (<CopicSwatches/>);
+                    return (<Swatches hexIn={chrome.hex()} typ="copic" v-on:changed={this.textIn}/>);
+                case "ral":
+                    return (<Swatches hexIn={chrome.hex()} typ="ral" v-on:changed={this.textIn}/>);
+                case "hks":
+                    return (<Swatches hexIn={chrome.hex()} typ="hks" v-on:changed={this.textIn}/>);
+                case "name":
+                    return (<Swatches hexIn={chrome.hex()} typ="name" v-on:changed={this.textIn}/>);
+                case "pantone":
+                    return (<Swatches hexIn={chrome.hex()} typ="pantone" v-on:changed={this.textIn}/>);
                 default: return (<div>Hello</div>);
             }
         }

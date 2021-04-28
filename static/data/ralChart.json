@@ -1,915 +1,915 @@
 [{
         "name": "RAL 1000 ",
-        "hex ": "#ccc188 "
+        "hex": "ccc188"
     },
 
     {
         "name": "RAL 1001",
-        "hex": "#ceb487 "
+        "hex": "ceb487"
     },
 
     {
         "name": "RAL 1002",
-        "hex": "#d0b173 "
+        "hex": "d0b173"
     },
 
     {
         "name": "RAL 1003",
-        "hex": "#f2ad00 "
+        "hex": "f2ad00"
     },
 
     {
         "name": "RAL 1004",
-        "hex": "#e4a700 "
+        "hex": "e4a700"
     },
 
     {
         "name": "RAL 1005",
-        "hex": "#c79600 "
+        "hex": "c79600"
     },
 
     {
         "name": "RAL 1006",
-        "hex": "#d99300 "
+        "hex": "d99300"
     },
 
     {
         "name": "RAL 1007",
-        "hex": "#e69400 "
+        "hex": "e69400"
     },
 
     {
         "name": "RAL 1011",
-        "hex": "#d8ba2e "
+        "hex": "d8ba2e"
     },
 
     {
         "name": "RAL 1012",
-        "hex": "#af8552 "
+        "hex": "af8552"
     },
 
     {
         "name": "RAL 1013",
-        "hex": "#e5dfcc "
+        "hex": "e5dfcc"
     },
 
     {
         "name": "RAL 1014",
-        "hex": "#dfcea1 "
+        "hex": "dfcea1"
     },
 
     {
         "name": "RAL 1015",
-        "hex": "#e6d9bd "
+        "hex": "e6d9bd"
     },
 
     {
         "name": "RAL 1016",
-        "hex": "#ecea41 "
+        "hex": "ecea41"
     },
 
     {
         "name": "RAL 1017",
-        "hex": "#f6b256 "
+        "hex": "f6b256"
     },
 
     {
         "name": "RAL 1018",
-        "hex": "#fdda38 "
+        "hex": "fdda38"
     },
 
     {
         "name": "RAL 1019",
-        "hex": "#a6937b "
+        "hex": "a6937b"
     },
 
     {
         "name": "RAL 1020",
-        "hex": "#a09465 "
+        "hex": "a09465"
     },
 
     {
         "name": "RAL 1021",
-        "hex": "#f2c000 "
+        "hex": "f2c000"
     },
 
     {
         "name": "RAL 1023",
-        "hex": "#f2bf00 "
+        "hex": "f2bf00"
     },
 
     {
         "name": "RAL 1024",
-        "hex": "#b89650 "
+        "hex": "b89650"
     },
 
     {
         "name": "RAL 1027",
-        "hex": "#a4861a "
+        "hex": "a4861a"
     },
 
     {
         "name": "RAL 1028",
-        "hex": "#ffa600 "
+        "hex": "ffa600"
     },
 
     {
         "name": "RAL 1032",
-        "hex": "#e2ac00 "
+        "hex": "e2ac00"
     },
 
     {
         "name": "RAL 1033",
-        "hex": "#f7a11f "
+        "hex": "f7a11f"
     },
 
     {
         "name": "RAL 1034",
-        "hex": "#eba557 "
+        "hex": "eba557"
     },
 
     {
         "name": "RAL 2000",
-        "hex": "#d97604 "
+        "hex": "d97604"
     },
 
     {
         "name": "RAL 2001",
-        "hex": "#bb4926 "
+        "hex": "bb4926"
     },
 
     {
         "name": "RAL 2002",
-        "hex": "#c13524 "
+        "hex": "c13524"
     },
 
     {
         "name": "RAL 2003",
-        "hex": "#f97a31 "
+        "hex": "f97a31"
     },
 
     {
         "name": "RAL 2004",
-        "hex": "#e8540d "
+        "hex": "e8540d"
     },
 
     {
         "name": "RAL 2008",
-        "hex": "#f46f29 "
+        "hex": "f46f29"
     },
 
     {
         "name": "RAL 2009",
-        "hex": "#db5316 "
+        "hex": "db5316"
     },
 
     {
         "name": "RAL 2010",
-        "hex": "#d55d23 "
+        "hex": "d55d23"
     },
 
     {
         "name": "RAL 2011",
-        "hex": "#ea7625 "
+        "hex": "ea7625"
     },
 
     {
         "name": "RAL 2012",
-        "hex": "#d6654e "
+        "hex": "d6654e"
     },
 
     {
         "name": "RAL 3000",
-        "hex": "#a02725 "
+        "hex": "a02725"
     },
 
     {
         "name": "RAL 3001",
-        "hex": "#a0001c "
+        "hex": "a0001c"
     },
 
     {
         "name": "RAL 3002",
-        "hex": "#991424 "
+        "hex": "991424"
     },
 
     {
         "name": "RAL 3003",
-        "hex": "#870a24 "
+        "hex": "870a24"
     },
 
     {
         "name": "RAL 3004",
-        "hex": "#6c1b2a "
+        "hex": "6c1b2a"
     },
 
     {
         "name": "RAL 3005",
-        "hex": "#581e29 "
+        "hex": "581e29"
     },
 
     {
         "name": "RAL 3007",
-        "hex": "#402226 "
+        "hex": "402226"
     },
 
     {
         "name": "RAL 3009",
-        "hex": "#6d312b "
+        "hex": "6d312b"
     },
 
     {
         "name": "RAL 3011",
-        "hex": "#791f24 "
+        "hex": "791f24"
     },
 
     {
         "name": "RAL 3012",
-        "hex": "#c68873 "
+        "hex": "c68873"
     },
 
     {
         "name": "RAL 3013",
-        "hex": "#992a28 "
+        "hex": "992a28"
     },
 
     {
         "name": "RAL 3014",
-        "hex": "#cf7278 "
+        "hex": "cf7278"
     },
 
     {
         "name": "RAL 3015",
-        "hex": "#e3a0ac "
+        "hex": "e3a0ac"
     },
 
     {
         "name": "RAL 3016",
-        "hex": "#ab392d "
+        "hex": "ab392d"
     },
 
     {
         "name": "RAL 3017",
-        "hex": "#cc515e "
+        "hex": "cc515e"
     },
 
     {
         "name": "RAL 3018",
-        "hex": "#ca3f51 "
+        "hex": "ca3f51"
     },
 
     {
         "name": "RAL 3020",
-        "hex": "#bf111b "
+        "hex": "bf111b"
     },
 
     {
         "name": "RAL 3022",
-        "hex": "#d36b56 "
+        "hex": "d36b56"
     },
 
     {
         "name": "RAL 3027",
-        "hex": "#b01d42 "
+        "hex": "b01d42"
     },
 
     {
         "name": "RAL 3031",
-        "hex": "#a7323e "
+        "hex": "a7323e"
     },
 
     {
         "name": "RAL 4001",
-        "hex": "#865d86 "
+        "hex": "865d86"
     },
 
     {
         "name": "RAL 4002",
-        "hex": "#8f3f51 "
+        "hex": "8f3f51"
     },
 
     {
         "name": "RAL 4003",
-        "hex": "#ca5b91 "
+        "hex": "ca5b91"
     },
 
     {
         "name": "RAL 4004",
-        "hex": "#69193b "
+        "hex": "69193b"
     },
 
     {
         "name": "RAL 4005",
-        "hex": "#7e63a1 "
+        "hex": "7e63a1"
     },
 
     {
         "name": "RAL 4006",
-        "hex": "#912d76 "
+        "hex": "912d76"
     },
 
     {
         "name": "RAL 4007",
-        "hex": "#48233e "
+        "hex": "48233e"
     },
 
     {
         "name": "RAL 4008",
-        "hex": "#853d7d "
+        "hex": "853d7d"
     },
 
     {
         "name": "RAL 4009",
-        "hex": "#9d8493 "
+        "hex": "9d8493"
     },
 
     {
         "name": "RAL 5000",
-        "hex": "#2f4a71 "
+        "hex": "2f4a71"
     },
 
     {
         "name": "RAL 5001",
-        "hex": "#0e4666 "
+        "hex": "0e4666"
     },
 
     {
         "name": "RAL 5002",
-        "hex": "#162e7b "
+        "hex": "162e7b"
     },
 
     {
         "name": "RAL 5003",
-        "hex": "#193058 "
+        "hex": "193058"
     },
 
     {
         "name": "RAL 5004",
-        "hex": "#1a1d2a "
+        "hex": "1a1d2a"
     },
 
     {
         "name": "RAL 5005",
-        "hex": "#004389 "
+        "hex": "004389"
     },
 
     {
         "name": "RAL 5007",
-        "hex": "#38618c "
+        "hex": "38618c"
     },
 
     {
         "name": "RAL 5008",
-        "hex": "#2d3944 "
+        "hex": "2d3944"
     },
 
     {
         "name": "RAL 5009",
-        "hex": "#245878 "
+        "hex": "245878"
     },
 
     {
         "name": "RAL 5010",
-        "hex": "#00427f "
+        "hex": "00427f"
     },
 
     {
         "name": "RAL 5011",
-        "hex": "#1a2740 "
+        "hex": "1a2740"
     },
 
     {
         "name": "RAL 5012",
-        "hex": "#2781bb "
+        "hex": "2781bb"
     },
 
     {
         "name": "RAL 5013",
-        "hex": "#202e53 "
+        "hex": "202e53"
     },
 
     {
         "name": "RAL 5014",
-        "hex": "#667b9a "
+        "hex": "667b9a"
     },
 
     {
         "name": "RAL 5015",
-        "hex": "#0071b5 "
+        "hex": "0071b5"
     },
 
     {
         "name": "RAL 5017",
-        "hex": "#004c91 "
+        "hex": "004c91"
     },
 
     {
         "name": "RAL 5018",
-        "hex": "#138992 "
+        "hex": "138992"
     },
 
     {
         "name": "RAL 5019",
-        "hex": "#005688 "
+        "hex": "005688"
     },
 
     {
         "name": "RAL 5020",
-        "hex": "#00747d "
+        "hex": "00747d"
     },
 
     {
         "name": "RAL 5021",
-        "hex": "#00747d "
+        "hex": "00747d"
     },
 
     {
         "name": "RAL 5022",
-        "hex": "#28275a "
+        "hex": "28275a"
     },
 
     {
         "name": "RAL 5023",
-        "hex": "#486591 "
+        "hex": "486591"
     },
 
     {
         "name": "RAL 5024",
-        "hex": "#6391b0 "
+        "hex": "6391b0"
     },
 
     {
         "name": "RAL 6000",
-        "hex": "#327663 "
+        "hex": "327663"
     },
 
     {
         "name": "RAL 6001",
-        "hex": "#266d3b "
+        "hex": "266d3b"
     },
 
     {
         "name": "RAL 6002",
-        "hex": "#276230 "
+        "hex": "276230"
     },
 
     {
         "name": "RAL 6003",
-        "hex": "#4e553d "
+        "hex": "4e553d"
     },
 
     {
         "name": "RAL 6004",
-        "hex": "#004547 "
+        "hex": "004547"
     },
 
     {
         "name": "RAL 6005",
-        "hex": "#0e4438 "
+        "hex": "0e4438"
     },
 
     {
         "name": "RAL 6006",
-        "hex": "#3b3d33 "
+        "hex": "3b3d33"
     },
 
     {
         "name": "RAL 6007",
-        "hex": "#2b3626 "
+        "hex": "2b3626"
     },
 
     {
         "name": "RAL 6008",
-        "hex": "#302f22 "
+        "hex": "302f22"
     },
 
     {
         "name": "RAL 6009",
-        "hex": "#213529 "
+        "hex": "213529"
     },
 
     {
         "name": "RAL 6010",
-        "hex": "#426e38 "
+        "hex": "426e38"
     },
 
     {
         "name": "RAL 6011",
-        "hex": "#68825f "
+        "hex": "68825f"
     },
 
     {
         "name": "RAL 6012",
-        "hex": "#293a37 "
+        "hex": "293a37"
     },
 
     {
         "name": "RAL 6013",
-        "hex": "#76785b "
+        "hex": "76785b"
     },
 
     {
         "name": "RAL 6014",
-        "hex": "#443f31 "
+        "hex": "443f31"
     },
 
     {
         "name": "RAL 6015",
-        "hex": "#383b34 "
+        "hex": "383b34"
     },
 
     {
         "name": "RAL 6016",
-        "hex": "#00664f "
+        "hex": "00664f"
     },
 
     {
         "name": "RAL 6017",
-        "hex": "#4d8542 "
+        "hex": "4d8542"
     },
 
     {
         "name": "RAL 6018",
-        "hex": "#4b9b3e "
+        "hex": "4b9b3e"
     },
 
     {
         "name": "RAL 6019",
-        "hex": "#b2d8b4 "
+        "hex": "b2d8b4"
     },
 
     {
         "name": "RAL 6020",
-        "hex": "#394937 "
+        "hex": "394937"
     },
 
     {
         "name": "RAL 6021",
-        "hex": "#87a180 "
+        "hex": "87a180"
     },
 
     {
         "name": "RAL 6022",
-        "hex": "#3c372a "
+        "hex": "3c372a"
     },
 
     {
         "name": "RAL 6024",
-        "hex": "#008455 "
+        "hex": "008455"
     },
 
     {
         "name": "RAL 6025",
-        "hex": "#56723d "
+        "hex": "56723d"
     },
 
     {
         "name": "RAL 6026",
-        "hex": "#005c54 "
+        "hex": "005c54"
     },
 
     {
         "name": "RAL 6027",
-        "hex": "#77bbbd "
+        "hex": "77bbbd"
     },
 
     {
         "name": "RAL 6028",
-        "hex": "#2e554b "
+        "hex": "2e554b"
     },
 
     {
         "name": "RAL 6029",
-        "hex": "#006f43 "
+        "hex": "006f43"
     },
 
     {
         "name": "RAL 6032",
-        "hex": "#00855a "
+        "hex": "00855a"
     },
 
     {
         "name": "RAL 6033",
-        "hex": "#3f8884 "
+        "hex": "3f8884"
     },
 
     {
         "name": "RAL 6034",
-        "hex": "#75adb1 "
+        "hex": "75adb1"
     },
 
     {
         "name": "RAL 7000",
-        "hex": "#798790 "
+        "hex": "798790"
     },
 
     {
         "name": "RAL 7001",
-        "hex": "#8c969f "
+        "hex": "8c969f"
     },
 
     {
         "name": "RAL 7002",
-        "hex": "#827d67 "
+        "hex": "827d67"
     },
 
     {
         "name": "RAL 7003",
-        "hex": "#79796c "
+        "hex": "79796c"
     },
 
     {
         "name": "RAL 7004",
-        "hex": "#999a9f "
+        "hex": "999a9f"
     },
 
     {
         "name": "RAL 7005",
-        "hex": "#6d7270 "
+        "hex": "6d7270"
     },
 
     {
         "name": "RAL 7006",
-        "hex": "#766a5d "
+        "hex": "766a5d"
     },
 
     {
         "name": "RAL 7008",
-        "hex": "#756444 "
+        "hex": "756444"
     },
 
     {
         "name": "RAL 7009",
-        "hex": "#585e55 "
+        "hex": "585e55"
     },
 
     {
         "name": "RAL 7010",
-        "hex": "#565957 "
+        "hex": "565957"
     },
 
     {
         "name": "RAL 7011",
-        "hex": "#525a60 "
+        "hex": "525a60"
     },
 
     {
         "name": "RAL 7012",
-        "hex": "#575e62 "
+        "hex": "575e62"
     },
 
     {
         "name": "RAL 7013",
-        "hex": "#585346 "
+        "hex": "585346"
     },
 
     {
         "name": "RAL 7015",
-        "hex": "#4c5057 "
+        "hex": "4c5057"
     },
 
     {
         "name": "RAL 7016",
-        "hex": "#363d43 "
+        "hex": "363d43"
     },
 
     {
         "name": "RAL 7017",
-        "hex": "#2e3236 "
+        "hex": "2e3236"
     },
 
     {
         "name": "RAL 7022",
-        "hex": "#464644 "
+        "hex": "464644"
     },
 
     {
         "name": "RAL 7023",
-        "hex": "#7f8279 "
+        "hex": "7f8279"
     },
 
     {
         "name": "RAL 7024",
-        "hex": "#484b52 "
+        "hex": "484b52"
     },
 
     {
         "name": "RAL 7026",
-        "hex": "#354044 "
+        "hex": "354044"
     },
 
     {
         "name": "RAL 7030",
-        "hex": "#919089 "
+        "hex": "919089"
     },
 
     {
         "name": "RAL 7031",
-        "hex": "#5b686f "
+        "hex": "5b686f"
     },
 
     {
         "name": "RAL 7032",
-        "hex": "#b5b5a7 "
+        "hex": "b5b5a7"
     },
 
     {
         "name": "RAL 7033",
-        "hex": "#7a8376 "
+        "hex": "7a8376"
     },
 
     {
         "name": "RAL 7034",
-        "hex": "#928d75 "
+        "hex": "928d75"
     },
 
     {
         "name": "RAL 7035",
-        "hex": "#c4caca "
+        "hex": "c4caca"
     },
 
     {
         "name": "RAL 7036",
-        "hex": "#949294 "
+        "hex": "949294"
     },
 
     {
         "name": "RAL 7037",
-        "hex": "#7e8082 "
+        "hex": "7e8082"
     },
 
     {
         "name": "RAL 7038",
-        "hex": "#b0b3af "
+        "hex": "b0b3af"
     },
 
     {
         "name": "RAL 7039",
-        "hex": "#6d6b64 "
+        "hex": "6d6b64"
     },
 
     {
         "name": "RAL 7040",
-        "hex": "#9aa0a7 "
+        "hex": "9aa0a7"
     },
 
     {
         "name": "RAL 7042",
-        "hex": "#929899 "
+        "hex": "929899"
     },
 
     {
         "name": "RAL 7043",
-        "hex": "#505455 "
+        "hex": "505455"
     },
 
     {
         "name": "RAL 7044",
-        "hex": "#bab9b0 "
+        "hex": "bab9b0"
     },
 
     {
         "name": "RAL 8000",
-        "hex": "#8b7045 "
+        "hex": "8b7045"
     },
 
     {
         "name": "RAL 8001",
-        "hex": "#9c6935 "
+        "hex": "9c6935"
     },
 
     {
         "name": "RAL 8002",
-        "hex": "#774c3b "
+        "hex": "774c3b"
     },
 
     {
         "name": "RAL 8003",
-        "hex": "#815333 "
+        "hex": "815333"
     },
 
     {
         "name": "RAL 8004",
-        "hex": "#904e3b "
+        "hex": "904e3b"
     },
 
     {
         "name": "RAL 8007",
-        "hex": "#6b442a "
+        "hex": "6b442a"
     },
 
     {
         "name": "RAL 8008",
-        "hex": "#735230 "
+        "hex": "735230"
     },
 
     {
         "name": "RAL 8011",
-        "hex": "#5b3927 "
+        "hex": "5b3927"
     },
 
     {
         "name": "RAL 8012",
-        "hex": "#64312a "
+        "hex": "64312a"
     },
 
     {
         "name": "RAL 8014",
-        "hex": "#49372a "
+        "hex": "49372a"
     },
 
     {
         "name": "RAL 8015",
-        "hex": "#5a2e2a "
+        "hex": "5a2e2a"
     },
 
     {
         "name": "RAL 8016",
-        "hex": "#4f3128 "
+        "hex": "4f3128"
     },
 
     {
         "name": "RAL 8017",
-        "hex": "#45302b "
+        "hex": "45302b"
     },
 
     {
         "name": "RAL 8019",
-        "hex": "#3b3332 "
+        "hex": "3b3332"
     },
 
     {
         "name": "RAL 8022",
-        "hex": "#1e1a1a "
+        "hex": "1e1a1a"
     },
 
     {
         "name": "RAL 8023",
-        "hex": "#a45c32 "
+        "hex": "a45c32"
     },
 
     {
         "name": "RAL 8024",
-        "hex": "#7b5741 "
+        "hex": "7b5741"
     },
 
     {
         "name": "RAL 8025",
-        "hex": "#765d4d "
+        "hex": "765d4d"
     },
 
     {
         "name": "RAL 8028",
-        "hex": "#4f3b2b "
+        "hex": "4f3b2b"
     },
 
     {
         "name": "RAL 9002",
-        "hex": "#dadbd5 "
+        "hex": "dadbd5"
     },
 
     {
         "name": "RAL 9003",
-        "hex": "#f8f9fb "
+        "hex": "f8f9fb"
     },
 
     {
         "name": "RAL 9004",
-        "hex": "#252427 "
+        "hex": "252427"
     },
 
     {
         "name": "RAL 9005",
-        "hex": "#151619 "
+        "hex": "151619"
     },
 
     {
         "name": "RAL 9010",
-        "hex": "#f4f4ed "
+        "hex": "f4f4ed"
     },
 
     {
         "name": "RAL 9011",
-        "hex": "#1f2126 "
+        "hex": "1f2126"
     },
 
     {
         "name": "RAL 8016",
-        "hex": "#f3f6f6 "
+        "hex": "f3f6f6"
     },
 
     {
         "name": "RAL 9017",
-        "hex": "#1b191d "
+        "hex": "1b191d"
     },
 
     {
         "name": "RAL 9018",
-        "hex": "#cbd2d0 "
+        "hex": "cbd2d0"
     },
 
     {
         "name": "RAL 9021",
-        "hex": "#000000 "
+        "hex": "000000"
     }
 ]
