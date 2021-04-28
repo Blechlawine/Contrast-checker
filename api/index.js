@@ -1,6 +1,4 @@
 const express = require("express");
-const {XMLHttpRequest} = require("xmlhttprequest");
-
 
 const fs = require("fs");
 
@@ -9,12 +7,9 @@ const app = express();
 app.use(express.json());
 
 app.get("/copic", (req, res) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET", "../content/copicChart.json", false);
-    xhr.send();
-
-    console.log(xhr.responseText);
-    res.send(xhr.responseText);
+    let data = fs.readFileSync("static/data/copicChart.json", "utf-8");
+    console.log(data);
+    res.json(data);
 });
 
 
