@@ -8,7 +8,6 @@ import HSLSliderCollection from "../Slider/SliderCollections/HSLSliderCollection
 import LABSliderCollection from "../Slider/SliderCollections/LABSliderCollection";
 import CMYKSliderCollection from "../Slider/SliderCollections/CMYKSliderCollection";
 import Swatches from "./Swatches/Swatches.jsx";
-// import RALSwatches from "./Swatches/RALSwatches.jsx";
 
 import TextInput from "../Input/TextInput.jsx";
 
