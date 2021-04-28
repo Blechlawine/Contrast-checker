@@ -9,8 +9,8 @@ export default {
         onSwatchClick(event, id) {
 
         },
-        async getData() {
-            
+        getData() {
+            let data = fetch("/api/copic").then(data => console.log(data.json()));
         },
     },
     computed: {
