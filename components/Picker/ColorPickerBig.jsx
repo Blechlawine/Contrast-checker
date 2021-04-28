@@ -50,7 +50,8 @@ export default {
                 "RAL",
                 "HKS",
                 "Name",
-                "HEX"
+                "HEX",
+                "Pantone"
             ],
             activeMode: 0,
             hexBoxValid: true
