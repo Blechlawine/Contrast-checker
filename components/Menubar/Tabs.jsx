@@ -1,9 +1,12 @@
+var prevHighlightMarginLeft = 0;
+var prevHighlightWidth = 0;
+
 export default {
     name: "Tabs",
     data() {
         return {
-            highlightWidth: 0,
-            highlightMarginLeft: 6
+            highlightWidth: prevHighlightWidth,
+            highlightMarginLeft: prevHighlightMarginLeft,
         };
     },
     props: {
@@ -15,17 +18,11 @@ export default {
     mounted() {
         this.highlightWidth = document.getElementById("activeTab").clientWidth;
         this.highlightMarginLeft = document.getElementById("activeTab").getBoundingClientRect().left - document.getElementById("tabs").getBoundingClientRect().left;
+        prevHighlightMarginLeft = this.highlightMarginLeft;
+        prevHighlightWidth = this.highlightWidth;
     },
     methods: {
-        tabClick(event) {
-            document.getElementById("activeTab").id = "";
-            let xPos = event.currentTarget.getBoundingClientRect().left;
-            let width = event.currentTarget.clientWidth;
-            let parentXPos = document.getElementById("tabs").getBoundingClientRect().left;
-            event.currentTarget.id = "activeTab";
-            this.highlightMarginLeft = xPos - parentXPos;
-            this.highlightWidth = width;
-        }
+
     },
     computed: {
         tabHighlightStyles() {
