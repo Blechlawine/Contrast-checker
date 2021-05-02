@@ -60,7 +60,7 @@ export default {
             this.$emit("changed", color);
         },
         async getData() {
-            let data = await fetch("/api/" + this.typ);
+            let data = await fetch("/api/colors/" + this.typ);
             this.swatches = await data.json();
             this.sortSwatches();
         },

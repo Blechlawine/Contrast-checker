@@ -1,0 +1,16 @@
+{
+    "data": [
+        {
+            "quote": "I am groot.",
+            "groot": "Groot"
+        },
+        {
+            "quote": "No, I am your father.",
+            "groot": "Darth Vader"
+        },
+        {
+            "quote": "I'm Batman",
+            "groot": "Batman"
+        }
+    ]
+}

@@ -60,10 +60,12 @@ export default {
     methods: {
         hueChanged(hue) {
             this.hue = Math.round(hue);
+            this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
         },
         satValChanged(saturation, value) {
             this.saturation = saturation;
             this.value = value;
+            this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
         },
         sliderModeChanged(modeIndex) {
             this.activeMode = modeIndex;
@@ -84,6 +86,7 @@ export default {
             this.hue = (isNaN(hue) ? 0 : hue);
             this.saturation = chrome.get("hsv.s");
             this.value = chrome.get("hsv.v");
+            this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
         },
         textIn(value) {
             this.hexBoxValid = this.checkHEX(value);
@@ -94,6 +97,7 @@ export default {
                 this.hue = (isNaN(hue) ? 0 : hue);
                 this.saturation = chrome.get("hsv.s");
                 this.value = chrome.get("hsv.v");
+                this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
             }
         },
         checkHEX(hexValue) {
