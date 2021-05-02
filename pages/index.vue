@@ -2,20 +2,47 @@
     <div id="app">
         <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
 
-        <h1 id="score">{{this.score}}</h1>
+        <h1 id="score">{{this.score.toString().substring(0, 4)}}</h1>
+
+        <div id="checks">
+            <div class="checkmarkDiv">
+                <p>AA</p>
+                <span class="material-icons" :style="this.aaColor">{{this.AApass ? "done" : "close"}}</span>
+            </div>
+            <div class="checkmarkDiv">
+                <p>AAA</p>
+                <span class="material-icons" :style="this.aaaColor">{{this.AAApass ? "done" : "close"}}</span>
+            </div>
+            <div class="checkmarkDiv">
+                <p>AA Large</p>
+                <span class="material-icons" :style="this.aaLargeColor">{{this.AALargePass ? "done" : "close"}}</span>
+            </div>
+            <div class="checkmarkDiv">
+                <p>AAA Large</p>
+                <span class="material-icons" :style="this.aaaLargeColor">{{this.AAALargePass ? "done" : "close"}}</span>
+            </div>
+            <div class="checkmarkDiv">
+                <p>COLORS</p>
+                <span class="material-icons" :style="this.colorsColor">{{this.COLORPass ? "done" : "close"}}</span>
+            </div>
+            <div class="checkmarkDiv">
+                <p>DIFF</p>
+                <span class="material-icons" :style="this.diffColor">{{this.DIFFPass ? "done" : "close"}}</span>
+            </div>
+        </div>
 
         <div class="colors">
             <div class="foregroundColor" :style="this.foregroundColorBackground">
-                <input type="text" class="largeExampleInput" v-model="this.quoteForeground.groot" :style="this.backgroundColorText" id="backgroundLargeInput">
-                <input type="text" class="smallExampleInput" v-model="this.quoteForeground.quote" :style="this.backgroundColorText" id="backgroundSmallInput">
+                <input type="text" class="largeExampleInput" :value="this.quoteForeground.groot" :style="this.backgroundColorText" id="backgroundLargeInput">
+                <textarea type="text" class="smallExampleInput" :value="this.quoteForeground.quote" :style="this.backgroundColorText" id="backgroundSmallInput"></textarea>
             </div>
             <div class="backgroundColor" :style="this.backgroundColorBackground">
-                <input type="text" class="largeExampleInput" v-model="this.quoteBackground.groot" :style="this.foregroundColorText" id="foregroundLargeInput">
-                <input type="text" class="smallExampleInput" v-model="this.quoteBackground.quote" :style="this.foregroundColorText" id="foregroundSmallInput">
+                <input type="text" class="largeExampleInput" :value="this.quoteBackground.groot" :style="this.foregroundColorText" id="foregroundLargeInput">
+                <textarea type="text" class="smallExampleInput" :value="this.quoteBackground.quote" :style="this.foregroundColorText" id="foregroundSmallInput"></textarea>
             </div>
         </div>
-        <ColorPickerBig id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
-        <ColorPickerBig id="backgroundPicker" class="colorPickerBig" v-on:colorChanged="this.onBackgroundColorChanged"/>
+        <ColorPickerBig :hueIn="0" :satIn="0" :valIn="0" id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
+        <ColorPickerBig :hueIn="0" :satIn="0" :valIn="1" id="backgroundPicker" class="colorPickerBig" v-on:colorChanged="this.onBackgroundColorChanged"/>
     </div>
 </template>
 
@@ -52,14 +79,20 @@ export default {
                 "Picker"
             ],
             foregroundHue: 0,
-            foregroundSat: 1,
-            foregroundVal: 1,
+            foregroundSat: 0,
+            foregroundVal: 0,
             backgroundHue: 0,
-            backgroundSat: 1,
+            backgroundSat: 0,
             backgroundVal: 1,
             quoteForeground: {},
             quoteBackground: {},
-            scoreValue: 210201201
+            scoreValue: 210201201,
+            AApass: false,
+            AAApass: false,
+            AALargePass: false,
+            AAALargePass: false,
+            ColorPass: false,
+            DIFFPass: false
         }
     },
     methods: {
@@ -109,6 +142,36 @@ export default {
                 "background-color": `${chrome.css()}`
             };
         },
+        aaColor() {
+            return {
+                "color": this.AApass ? "#4CAF50" : "#E35141"
+            }
+        },
+        aaaColor() {
+            return {
+                "color": this.AAApass ? "#4CAF50" : "#E35141"
+            }
+        },
+        aaLargeColor() {
+            return {
+                "color": this.AALargePass ? "#4CAF50" : "#E35141"
+            }
+        },
+        aaaLargeColor() {
+            return {
+                "color": this.AAALargePass ? "#4CAF50" : "#E35141"
+            }
+        },
+        colorsColor() {
+            return {
+                "color": this.COLORPass ? "#4CAF50" : "#E35141"
+            }
+        },
+        diffColor() {
+            return {
+                "color": this.DIFFPass ? "#4CAF50" : "#E35141"
+            }
+        },
         score() {
             let rgb1 = chroma({h: this.backgroundHue, s: this.backgroundSat, v: this.backgroundVal});
             let rgb2 = chroma({h: this.foregroundHue, s: this.foregroundSat, v: this.foregroundVal});
@@ -155,18 +218,32 @@ export default {
             let l1 = 0.2126 * c1final.r + 0.7152 * c1final.g + 0.0722 * c1final.b;
             let l2 = 0.2126 * c2final.r + 0.7152 * c2final.g + 0.0722 * c2final.b;
 
-            if(l1 > l2) {
+            if(l1 < l2) {
                 let temp = l1;
                 l1 = l2;
                 l2 = temp;
             }
-            return ((l2 + 0.05) / (l1 + 0.05));
+
+            let passed = ((l1 + 0.05) / (l2 + 0.05));
+
+            this.AApass = passed > 4.5;
+            this.AALargePass = passed > 3;
+            this.AAApass = passed > 7;
+            this.AAALargePass = passed > 4.5;
+
+            return passed;
         }
     }
 }
 </script>
 
 <style>
+
+#app {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 40px;
+}
 
 .colors {
     display: flex;
@@ -202,11 +279,19 @@ export default {
     grid-gap: 24px;
 }
 
-input[type=text] {
+input[type=text], textarea {
     border: none;
     outline: none;
+    resize: none;
+
+    text-align: center;
 
     background: transparent;
+}
+
+textarea {
+    width: 60%;
+    height: 50%;
 }
 
 .largeExampleInput {
@@ -214,20 +299,40 @@ input[type=text] {
 }
 
 #foregroundPicker {
-    margin-left: 25vw;
+    margin-left: 2vw;
 }
 #backgroundPicker {
-    right: 25vw;
+    right: 2vw;
 }
 
 .colorPickerBig {
     position: absolute;
+    margin-top: 200px;
 }
 
 #score {
     text-align: center;
     margin-top: 60px;
-    font-size: 60px;
+    font-size: 120px;
+    font-weight: 400;
 }
 
+#checks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkmarkDiv {
+    width: 10ch;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+}
+
+.checkmarkDiv .material-icons {
+    font-size: 48px;
+}
 </style>

@@ -1,16 +1,124 @@
 {
     "data": [
         {
-            "quote": "I am groot.",
-            "groot": "Groot"
-        },
-        {
             "quote": "No, I am your father.",
             "groot": "Darth Vader"
         },
         {
-            "quote": "I'm Batman",
-            "groot": "Batman"
+            "quote": "Hello there!",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "General Kenobi!",
+            "groot": "General Grievous"
+        },
+        {
+            "quote": "Ah yes, the negotiator.",
+            "groot": "General Grievous"
+        },
+        {
+            "quote": "You have become the very thing you swore to destroy!",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "It's over Anakin, I have the high ground!",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "You underestimate my power!",
+            "groot": "Anakin Skywalker"
+        },
+        {
+            "quote": "From my point of view, the jedi are evil!",
+            "groot": "Anakin Skywalker"
+        },
+        {
+            "quote": "I don’t like sand. It’s coarse and rough and irritating… and it gets everywhere.",
+            "groot": "Anakin Skywalker"
+        },
+        {
+            "quote": "Try not. Do or do not, there is no try.",
+            "groot": "Yoda"
+        },
+        {
+            "quote": "Hmmmmm",
+            "groot": "Yoda"
+        },
+        {
+            "quote": "Truly wonderful, the mind of a child is.",
+            "groot": "Yoda"
+        },
+        {
+            "quote": "Fear is the path to the dark side. Fear leads to anger. Anger leads to hate. Hate leads to suffering.",
+            "groot": "Yoda"
+        },
+        {
+            "quote": "This is where the fun begins",
+            "groot": "Anaking Skywalker"
+        },
+        {
+            "quote": "A Surprise To Be Sure But A Welcome One",
+            "groot": "Palpatine"
+        },
+        {
+            "quote": "I am the senate.",
+            "groot": "Palpatine"
+        },
+        {
+            "quote": "I love democracy.",
+            "groot": "Palpatine"
+        },
+        {
+            "quote": "The dark side of the Force is a pathway to many abilities, some considered to be unnatural.",
+            "groot": "Palpatine"
+        },
+        {
+            "quote": "Impossible. Perhaps the archives are incomplete.",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "Noooooooooooooo!",
+            "groot": "Darth Vader"
+        },
+        {
+            "quote": "That's why I'm here",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "We will watch your career with great interest.",
+            "groot": "Palpatine"
+        },
+        {
+            "quote": "Do it.",
+            "groot": "Palpatine"
+        },
+        {
+            "quote": "Your lightsabers will make a fine addition to my collection.",
+            "groot": "General Grievous"
+        },
+        {
+            "quote": "Well of course I know him, he's me",
+            "groot": "Obi-wan Kenobi"
+        },
+        {
+            "quote": "These are not the droids you're looking for",
+            "groot": "Obi-wan Kenobi"
+        },
+        {
+            "quote": "You were the chosen one! You were supposed to destroy the sith, not join them!",
+            "groot": "Obi-wan Kenobi"
+        },
+        {
+            "quote": "Chancellor Palpatine, Sith lords are our speciality",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "Only a sith deals in absolutes.",
+            "groot": "General Kenobi"
+        },
+        {
+            "quote": "If you strike me down, i shall become more powerful than you can possibly imagine",
+            "groot": "Obi-wan Kenobi"
         }
     ]
 }

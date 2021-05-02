@@ -29,6 +29,31 @@ export default {
         HSLSliderCollection,
         TextInput
     },
+    props: {
+        hueIn: {
+            type: Number,
+            default: 0
+        },
+        satIn: {
+            type: Number,
+            default: 1
+        },
+        valIn: {
+            type: Number,
+            default: 1
+        }
+    },
+    watch: {
+        hueIn(newHueIn) {
+            this.hue = newHueIn;
+        },
+        satIn(newSatIn) {
+            this.saturation = newSatIn;
+        },
+        valIn(newValIn) {
+            this.value = newValIn;
+        }
+    },
     data() {
         return {
             hueSlider: {
@@ -56,6 +81,12 @@ export default {
             activeMode: 0,
             hexBoxValid: true
         }
+    },
+    mounted() {
+        this.hue = this.hueIn;
+        this.saturation = this.satIn;
+        this.value = this.valIn;
+        this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
     },
     methods: {
         hueChanged(hue) {
