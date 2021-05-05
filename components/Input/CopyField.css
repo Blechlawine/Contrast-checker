@@ -20,9 +20,6 @@
     height: 18px;
 }
 
-.hexInput {
-    border: none;
-    outline: none;
-
-    font-size: 14px;
+p {
+    text-align: right;
 }
