@@ -292,6 +292,7 @@ input[type=text], textarea {
 textarea {
     width: 60%;
     height: 50%;
+    overflow-x: hidden;
 }
 
 .largeExampleInput {
