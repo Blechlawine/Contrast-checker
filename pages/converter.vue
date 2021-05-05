@@ -1,14 +1,17 @@
+<!-- TODO: Übernehmen Buttons für Adjustments und hex copyfields für adjustments -->
+
 <template>
 <div id="app">
     <MenuBar appName="Untitled Vue App" :tabs="tabs" />
-
     <div class="content">
         <div class="column">
             <ColorPickerBig :hueIn="0" :satIn="0.8" :valIn="0.8" v-on:colorChanged="this.updateColor"/>
         </div>
         <div class="column">
             <h2>Color</h2>
-            <div id="color" :style="this.colorStyle">{{this.colorName}}</div>
+            <div id="color" :style="this.colorStyle">
+                <p>{{this.colorName}}</p>
+            </div>
             <h2>Adjustments</h2>
             <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="0" :background="this.lighten" v-on:change="this.lightenFactorChange"/>
             <Sliderpart label="Darken" :min="0" :max="100" :valueIn="0" :background="this.darken" v-on:change="this.darkenFactorChange"/>
@@ -85,6 +88,7 @@ export default {
                 s: this.saturation,
                 v: this.value
             }).hex();
+            this.updateColorName();
         },
         updateColorName() {
             if (this.names.length != 0) {
@@ -105,8 +109,7 @@ export default {
         async getData() {
             let data = await fetch("/api/colors/name");
             this.names = await data.json();
-            this.sortNames();
-            this.colorName = this.names[0].name;
+            this.updateColorName();
         },
         lightenFactorChange(value) {
             this.lightenFactor = value;
@@ -268,12 +271,14 @@ export default {
 
     width: 25vw;
     height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#color > * {
-    margin-left: 50%;
-    margin-top: 50%;
-    transform: translate(-50%, -50%);
+#color > p {
+    font-size: 50px;
+    font-weight: regular;
 }
 
 .column > .copyField {
