@@ -11,6 +11,7 @@
       <div :style="this.saturated">saturated</div>
       <div :style="this.darken">darkened</div>
       <div :style="this.brighten">brightened</div>
+      <div :style="this.grayscale">grayscale</div>
     </div>
 
   </div>
@@ -99,6 +100,21 @@ export default {
         "width": 100 + "px",
         "height": 100 + "px"
       }
+    },
+    grayscale() {
+      let chrome = chroma({h: this.hue, s: this.saturation, v: this.value});
+      let rColor = chrome.get("rgb.r");
+      let gColor = chrome.get("rgb.g");
+      let bColor = chrome.get("rgb.b");
+
+      let gray = (rColor + gColor + bColor) / 3;
+
+      return {
+        "background": 'rgb(' + gray + ", " + gray + ", " + gray + ")",
+        "width": 100 + "px",
+        "height": 100 + "px"
+      }
+
     },
     background() {
       return `hsl(${this.hue}, ${this.saturation}, ${this.value})`
