@@ -91,7 +91,7 @@ export default {
             AAApass: false,
             AALargePass: false,
             AAALargePass: false,
-            ColorPass: false,
+            COLORPass: false,
             DIFFPass: false
         }
     },
