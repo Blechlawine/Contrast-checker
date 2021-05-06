@@ -35,6 +35,10 @@ a {
     color: inherit;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 .material-icons {
     -webkit-user-select: none;
 }

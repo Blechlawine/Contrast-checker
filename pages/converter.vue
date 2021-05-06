@@ -1,52 +1,54 @@
 <template>
 <div id="app">
-    <MenuBar appName="Untitled Vue App" :tabs="tabs" />
-    <div class="content">
-        <div class="column">
-            <ColorPickerBig :hueIn="this.hue" :satIn="this.saturation" :valIn="this.value" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName" />
-        </div>
-        <div class="column">
-            <h2>Color</h2>
-            <div id="color" :style="this.colorStyle">
-                <p class="centeredText" :style="this.optimalTextColor">{{this.colorName}}</p>
+    <div class="converter">
+        <MenuBar appName="Untitled Vue App" :tabs="tabs" />
+        <div class="content">
+            <div class="column">
+                <ColorPickerBig :hueIn="this.hue" :satIn="this.saturation" :valIn="this.value" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName" />
             </div>
-            <h2>Adjustments</h2>
-            <div class="sliderpartParent" :style="this.lightenStyle">
-                <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground" />
-                <div class="horizontalFlex">
-                    <CopyField :value="this.hexCopylighten" />
-                    <Button label="Apply" v-on:onClick="this.lightenClicked" />
+            <div class="column">
+                <h2>Color</h2>
+                <div id="color" :style="this.colorStyle">
+                    <p class="centeredText" :style="this.optimalTextColor">{{this.colorName}}</p>
+                </div>
+                <h2>Adjustments</h2>
+                <div class="sliderpartParent" :style="this.lightenStyle">
+                    <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground" />
+                    <div class="horizontalFlex">
+                        <CopyField :value="this.hexCopylighten" />
+                        <Button label="Apply" v-on:onClick="this.lightenClicked" />
+                    </div>
+                </div>
+                <div class="sliderpartParent" :style="this.darkenStyle">
+                    <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground" />
+                    <div class="horizontalFlex">
+                        <CopyField :value="this.hexCopyDarken" />
+                        <Button label="Apply" v-on:onClick="this.darkenClicked" />
+                    </div>
+                </div>
+                <div class="sliderpartParent" :style="this.saturateStyle">
+                    <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground" />
+                    <div class="horizontalFlex">
+                        <CopyField :value="this.hexCopySaturation" />
+                        <Button label="Apply" v-on:onClick="this.saturationClicked" />
+                    </div>
+                </div>
+                <div class="sliderpartParent" :style="this.desaturateStyle">
+                    <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground" />
+                    <div class="horizontalFlex">
+                        <CopyField :value="this.hexCopyDesaturation"/>
+                        <Button label="Apply" v-on:onClick="this.desaturationClicked" />
+                    </div>
                 </div>
             </div>
-            <div class="sliderpartParent" :style="this.darkenStyle">
-                <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground" />
-                <div class="horizontalFlex">
-                    <CopyField :value="this.hexCopyDarken" />
-                    <Button label="Apply" v-on:onClick="this.darkenClicked" />
-                </div>
+            <div class="column">
+                <h2>Converted</h2>
+                <CopyField :value="this.hexText" />
+                <CopyField :value="this.rgbText" />
+                <CopyField :value="this.hslText" />
+                <CopyField :value="this.cmykText" />
+                <CopyField :value="this.labText" />
             </div>
-            <div class="sliderpartParent" :style="this.saturateStyle">
-                <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground" />
-                <div class="horizontalFlex">
-                    <CopyField :value="this.hexCopySaturation" />
-                    <Button label="Apply" v-on:onClick="this.saturationClicked" />
-                </div>
-            </div>
-            <div class="sliderpartParent" :style="this.desaturateStyle">
-                <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground" />
-                <div class="horizontalFlex">
-                    <CopyField :value="this.hexCopyDesaturation"/>
-                    <Button label="Apply" v-on:onClick="this.desaturationClicked" />
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <h2>Converted</h2>
-            <CopyField :value="this.hexText" />
-            <CopyField :value="this.rgbText" />
-            <CopyField :value="this.hslText" />
-            <CopyField :value="this.cmykText" />
-            <CopyField :value="this.labText" />
         </div>
     </div>
 </div>
@@ -410,7 +412,7 @@ export default {
 }
 </script>
 <style>
-.content {
+.converter .content {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -419,7 +421,7 @@ export default {
     grid-gap: 24px;
 }
 
-.column {
+.converter .column {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -430,7 +432,7 @@ export default {
     min-width: 24ch;
 }
 
-#color {
+.converter #color {
     border-radius: 12px;
 
     width: 25vw;
@@ -440,26 +442,26 @@ export default {
     justify-content: center;
 }
 
-#color>p {
+.converter #color>p {
     font-size: 50px;
     font-weight: normal;
 }
 
-.column>.copyField {
+.converter .column>.copyField {
     width: 100%;
 }
 
-.column>.copyField>p {
+.converter .column>.copyField>p {
     flex-grow: 1000;
 }
 
-.sliderpartpart {
+.converter .sliderpartpart {
     border-radius: 12px;
     width: 100%;
     padding: 8px;
 }
 
-.sliderpartParent {
+.converter .sliderpartParent {
     display: flex;
     flex-direction: column;
     width: 100%;
