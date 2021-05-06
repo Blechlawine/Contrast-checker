@@ -4,6 +4,7 @@
 }
 
 .dropdownValue {
+    z-index: 2;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -31,7 +32,7 @@
 
     padding: 6px 0;
 
-    z-index: 1;
+    z-index: 3;
 
     border-radius: 6px;
 
@@ -47,4 +48,13 @@
 
 .dropdownValues .active {
     background-color: var(--light-gray);
+}
+
+.hackyCloseButton {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    cursor: auto;
 }

@@ -52,11 +52,18 @@ export default {
                 "opacity": this.open ? 1 : 0,
                 "pointerEvents": this.open ? "auto" : "none"
             };
+        },
+        hackyCloseButtonStyles() {
+            return {
+                "display": this.open ? "block" : "none",
+                "pointerEvents": this.open ? "auto" : "none"
+            };
         }
     },
     render(h) {
         return (
             <div class="dropdown">
+                <div class="hackyCloseButton" style={this.hackyCloseButtonStyles} onClick={() => {this.open = false}}></div>
                 <div onClick={this.toggleDropdown} class="dropdownValue" ref="value" style={[this.widthStyle, this.valueStyle]}>
                     <p>{this.value}</p>
                     <span class="material-icons">{this.open ? "expand_less" : "expand_more"}</span>
