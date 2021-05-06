@@ -53,7 +53,7 @@ export default {
         };
     },
     mounted() {
-        this.value = this.valueIn;
+        this.slide(this.valueIn);
     },
     methods: {
         slide(value) {
