@@ -256,8 +256,7 @@ export default {
                 "background": 'rgb(' + gray + ", " + gray + ", " + gray + ")",
                 "width": 100 + "px",
                 "height": 100 + "px"
-            }
-
+            };
         },
         hexText() {
             let chrome = chroma({
