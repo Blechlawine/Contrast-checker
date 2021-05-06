@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css2?family=Material+Icons+Outlined');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
     --text-dark: #2E2E2E;
     --text-white: #FFFFFF;
+    --text-white-inactive: #EBEBEB;
+    --text-dark-inactive: #3B3B3B;
     --light-gray: #E9E9E9;
     --middle-gray: #959595;
     --accent: #00BCD4;
