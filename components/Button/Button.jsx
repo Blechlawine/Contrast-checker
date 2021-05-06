@@ -1,7 +1,7 @@
 import "./button.css";
 
 export default {
-    name: "button",
+    name: "Button",
     props: {
         label: {
             type: String

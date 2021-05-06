@@ -13,10 +13,30 @@
                 <p :style="this.optimalTextColor">{{this.colorName}}</p>
             </div>
             <h2>Adjustments</h2>
-            <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground"/>
-            <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground"/>
-            <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground"/>
-            <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground"/>
+            <div class="sliderpartParent" :style="this.lightenStyle">
+                <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground"/>
+                <div class="horizontalFlex">
+                    <Button label="Apply"/>
+                </div>
+            </div>
+            <div class="sliderpartParent" :style="this.darkenStyle">
+                <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground"/>
+                <div class="horizontalFlex">
+                    <Button label="Apply"/>
+                </div>
+            </div>
+            <div class="sliderpartParent" :style="this.saturateStyle">
+                <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground"/>
+                <div class="horizontalFlex">
+                    <Button label="Apply"/>
+                </div>
+            </div>
+            <div class="sliderpartParent" :style="this.desaturateStyle">
+                <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground"/>
+                <div class="horizontalFlex">
+                    <Button label="Apply"/>
+                </div>
+            </div>
         </div>
         <div class="column">
             <h2>Converted</h2>
@@ -35,6 +55,7 @@ import MenuBar from "../components/Menubar/Menubar.vue";
 import ColorPickerBig from "../components/Picker/ColorPickerBig";
 import CopyField from "../components/Input/CopyField.jsx";
 import Sliderpart from "../components/Slider/Sliderpart.jsx";
+import Button from "../components/Button/Button.jsx";
 
 import * as chroma from 'chroma-js';
 import {scale} from "../assets/utils.js";
@@ -45,7 +66,8 @@ export default {
         Sliderpart,
         ColorPickerBig,
         MenuBar,
-        CopyField
+        CopyField,
+        Button
     },
     data() {
         return {
@@ -165,7 +187,7 @@ export default {
                 s: this.saturation,
                 v: this.value
             });
-            let hslh = Math.round(chrome.get("hsl.h"));
+            let hslh = Math.round(chrome.get("hsl.h")) || 0;
             let hsls = Math.round(chrome.get("hsl.s") * 100);
             let hsll = Math.round(chrome.get("hsl.l") * 100);
             return `hsl(${hslh}, ${hsls}%, ${hsll + scale(this.lightenFactor, 0, 100, 0, 100 - hsll)}%)`;
@@ -223,7 +245,7 @@ export default {
                 s: this.saturation,
                 v: this.value
             });
-            let hslh = Math.round(chrome.get("hsl.h"));
+            let hslh = Math.round(chrome.get("hsl.h")) || 0;
             let hsls = Math.round(chrome.get("hsl.s") * 100);
             let hsll = Math.round(chrome.get("hsl.l") * 100);
             return `hsl(${hslh}, ${hsls}, ${hsll})`
@@ -255,7 +277,7 @@ export default {
                 s: this.saturation,
                 v: this.value
             });
-            let lightColor = `hsl(${chrome.get("hsl.h")}, ${chrome.get("hsl.s")}%, 100%)`;
+            let lightColor = `hsl(${chrome.get("hsl.h") || 0}, ${chrome.get("hsl.s")}%, 100%)`;
             return `linear-gradient(to right, ${chrome.css()}, ${lightColor})`
         },
         darkenSliderBackground() {
@@ -284,6 +306,26 @@ export default {
             });
             let desaturated = chrome.set("hsv.s", 0).css();
             return `linear-gradient(to right, ${chrome.css()}, ${desaturated})`
+        },
+        lightenStyle() {
+            return {
+                "background-color": this.lighten
+            };
+        },
+        darkenStyle() {
+            return {
+                "background-color": this.darken
+            };
+        },
+        saturateStyle() {
+            return {
+                "background-color": this.saturate
+            };
+        },
+        desaturateStyle() {
+            return {
+                "background-color": this.desaturate
+            };
         }
     }
 }
@@ -336,6 +378,15 @@ export default {
     border-radius: 12px;
     width: 100%;
     padding: 8px;
+}
+
+.sliderpartParent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    grid-gap: 4px;
+    border-radius: 12px;
+    padding: 6px;
 }
 
 </style>
