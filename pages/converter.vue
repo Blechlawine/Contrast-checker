@@ -1,11 +1,9 @@
-<!-- TODO: Übernehmen Buttons für Adjustments und hex copyfields für adjustments -->
-
 <template>
 <div id="app">
     <MenuBar appName="Untitled Vue App" :tabs="tabs" />
     <div class="content">
         <div class="column">
-            <ColorPickerBig :hueIn="0" :satIn="0.8" :valIn="0.8" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName"/>
+            <ColorPickerBig :hueIn="this.hue" :satIn="this.saturation" :valIn="this.value" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName" />
         </div>
         <div class="column">
             <h2>Color</h2>
@@ -14,40 +12,41 @@
             </div>
             <h2>Adjustments</h2>
             <div class="sliderpartParent" :style="this.lightenStyle">
-                <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground"/>
+                <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground" />
                 <div class="horizontalFlex">
-                    <Button label="Apply" v-on:onClick="lightenClicked"/>
+                    <CopyField :value="this.hexCopylighten" />
+                    <Button label="Apply" v-on:onClick="this.lightenClicked" />
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.darkenStyle">
-                <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground"/>
+                <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground" />
                 <div class="horizontalFlex">
-                    <Button label="Apply" v-on:onClick="darkenClicked"/>
-                    <CopyField :value="this.hexCopyDarken"/>
+                    <CopyField :value="this.hexCopyDarken" />
+                    <Button label="Apply" v-on:onClick="this.darkenClicked" />
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.saturateStyle">
-                <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground"/>
+                <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground" />
                 <div class="horizontalFlex">
-                    <Button label="Apply" v-on:onClick="saturationClicked"/>
-                    <CopyField :value="this.hexCopySaturation"/>
+                    <CopyField :value="this.hexCopySaturation" />
+                    <Button label="Apply" v-on:onClick="this.saturationClicked" />
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.desaturateStyle">
-                <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground"/>
+                <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground" />
                 <div class="horizontalFlex">
-                    <Button label="Apply" v-on:onClick="desaturationClicked"/>
                     <CopyField :value="this.hexCopyDesaturation"/>
+                    <Button label="Apply" v-on:onClick="this.desaturationClicked" />
                 </div>
             </div>
         </div>
         <div class="column">
             <h2>Converted</h2>
-            <CopyField :value="this.hexText"/>
-            <CopyField :value="this.rgbText"/>
-            <CopyField :value="this.hslText"/>
-            <CopyField :value="this.cmykText"/>
-            <CopyField :value="this.labText"/>
+            <CopyField :value="this.hexText" />
+            <CopyField :value="this.rgbText" />
+            <CopyField :value="this.hslText" />
+            <CopyField :value="this.cmykText" />
+            <CopyField :value="this.labText" />
         </div>
     </div>
 </div>
@@ -61,7 +60,9 @@ import Sliderpart from "../components/Slider/Sliderpart.jsx";
 import Button from "../components/Button/Button.jsx";
 
 import * as chroma from 'chroma-js';
-import {scale} from "../assets/utils.js";
+import {
+    scale
+} from "../assets/utils.js";
 
 export default {
     name: 'converter',
@@ -91,9 +92,9 @@ export default {
                     active: true
                 }
             ],
-            hue: 100,
-            saturation: 100,
-            value: 50,
+            hue: 0,
+            saturation: 1,
+            value: 1,
             hex: "",
             names: [],
             desaturationFactor: 0,
@@ -105,7 +106,11 @@ export default {
         }
     },
     methods: {
-        updateColor({ hue, sat, val }) {
+        updateColor({
+            hue,
+            sat,
+            val
+        }) {
             this.hue = hue;
             this.saturation = sat;
             this.value = val;
@@ -151,38 +156,44 @@ export default {
             this.desaturationFactor = value;
         },
         lightenClicked() {
-          let chrome = chroma({
-            h: this.hue,
-            s: this.saturation,
-            v: this.value
-          });
+            let chrome = chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value
+            });
 
-          console.log(this.hue);
+            let chrome2 = chrome.set("hsl.l", chrome.get("hsl.l") + scale(this.lightenFactor, 0, 100, 0, 1 - chrome.get("hsl.l")));
 
-          let hslh = chrome.get("hsl.h") || 0;
-          let hsls = chrome.get("hsl.s") * 100;
-          let hsll = chrome.get("hsl.l") * 100 + scale(this.lightenFactor, 0, 100, 0, 100 - chrome.get("hsl.l") * 100);
-
-          let chrome2 = chroma({
-            h: hslh,
-            s: hsls,
-            l: hsll
-          });
-
-          this.hue = chrome2.get("hsv.h");
-          this.saturation = chrome2.get("hsv.s");
-          this.value = chrome2.get("hsv.v");
-
-          console.log(this.hue);
+            this.updateColor({
+                hue: chrome2.get("hsv.h") || 0,
+                sat: chrome2.get("hsv.s"),
+                val: chrome2.get("hsv.v")
+            });
+            this.updateColorName();
         },
         darkenClicked() {
-          this.value = this.value - scale(this.darkenFactor, 0, 100, 0, this.value)
+            this.updateColor({
+                hue: this.hue,
+                sat: this.saturation,
+                val: this.value - scale(this.darkenFactor, 0, 100, 0, this.value)
+            });
+            this.updateColorName();
         },
         saturationClicked() {
-          this.saturation = this.saturation + scale(this.saturationFactor, 0, 100, 0, 1 - this.saturation);
+            this.updateColor({
+                hue: this.hue,
+                sat: this.saturation + scale(this.saturationFactor, 0, 100, 0, 1 - this.saturation),
+                val: this.value
+            });
+            this.updateColorName();
         },
         desaturationClicked() {
-          this.saturation = this.saturation - scale(this.desaturationFactor, 0, 100, 0, this.saturation)
+            this.updateColor({
+                hue: this.hue,
+                sat: this.saturation - scale(this.desaturationFactor, 0, 100, 0, this.saturation),
+                val: this.value
+            });
+            this.updateColorName();
         }
     },
     mounted() {
@@ -364,14 +375,37 @@ export default {
                 "background-color": this.desaturate
             };
         },
+        hexCopylighten() {
+            let chrome = chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value
+            });
+
+            let chrome2 = chrome.set("hsl.l", chrome.get("hsl.l") + scale(this.lightenFactor, 0, 100, 0, 1 - chrome.get("hsl.l")));
+
+            return chrome2.hex();
+        },
         hexCopyDarken() {
-          return chroma({h: this.hue, s: this.saturation, v: this.value - scale(this.darkenFactor, 0, 100, 0, this.value)}).hex()
+            return chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value - scale(this.darkenFactor, 0, 100, 0, this.value)
+            }).hex();
         },
         hexCopySaturation() {
-          return chroma({h: this.hue, s: this.saturation + scale(this.saturationFactor, 0, 100, 0, 1 - this.saturation), v: this.value})
+            return chroma({
+                h: this.hue,
+                s: this.saturation + scale(this.saturationFactor, 0, 100, 0, 1 - this.saturation),
+                v: this.value
+            }).hex();
         },
         hexCopyDesaturation() {
-          return chroma({h: this.hue, s: this.saturation, v: this.value - scale(this.darkenFactor, 0, 100, 0, this.value)})
+            return chroma({
+                h: this.hue,
+                s: this.saturation - scale(this.desaturationFactor, 0, 100, 0, this.value),
+                v: this.value
+            }).hex();
         }
     }
 }
@@ -407,16 +441,16 @@ export default {
     justify-content: center;
 }
 
-#color > p {
+#color>p {
     font-size: 50px;
     font-weight: normal;
 }
 
-.column > .copyField {
+.column>.copyField {
     width: 100%;
 }
 
-.column > .copyField > p {
+.column>.copyField>p {
     flex-grow: 1000;
 }
 
@@ -434,5 +468,4 @@ export default {
     border-radius: 12px;
     padding: 6px;
 }
-
 </style>

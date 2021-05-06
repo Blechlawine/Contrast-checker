@@ -46,12 +46,15 @@ export default {
     watch: {
         hueIn(newHueIn) {
             this.hue = newHueIn;
+            this.triggerSort++;
         },
         satIn(newSatIn) {
             this.saturation = newSatIn;
+            this.triggerSort++;
         },
         valIn(newValIn) {
             this.value = newValIn;
+            this.triggerSort++;
         }
     },
     data() {
