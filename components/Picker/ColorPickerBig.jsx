@@ -79,7 +79,8 @@ export default {
                 "Pantone"
             ],
             activeMode: 0,
-            hexBoxValid: true
+            hexBoxValid: true,
+            triggerSort: 0
         }
     },
     mounted() {
@@ -145,6 +146,7 @@ export default {
             return true;
         },
         changeEnd() {
+            this.triggerSort += 1;
             this.$emit("onChangeEnd");
         }
     },
@@ -174,15 +176,15 @@ export default {
                 case "hex":
                     return (<TextInput valid={this.hexBoxValid} placeholder="#000000" textIn={chrome.hex().toUpperCase()} v-on:changed={this.textIn}/>)
                 case "copic":
-                    return (<Swatches hexIn={chrome.hex()} typ="copic" v-on:changed={this.textIn}/>);
+                    return (<Swatches hexIn={chrome.hex()} triggerSort={this.triggerSort} typ="copic" v-on:changed={this.textIn}/>);
                 case "ral":
-                    return (<Swatches hexIn={chrome.hex()} typ="ral" v-on:changed={this.textIn}/>);
+                    return (<Swatches hexIn={chrome.hex()} triggerSort={this.triggerSort} typ="ral" v-on:changed={this.textIn}/>);
                 case "hks":
-                    return (<Swatches hexIn={chrome.hex()} typ="hks" v-on:changed={this.textIn}/>);
+                    return (<Swatches hexIn={chrome.hex()} triggerSort={this.triggerSort} typ="hks" v-on:changed={this.textIn}/>);
                 case "name":
-                    return (<Swatches hexIn={chrome.hex()} typ="name" v-on:changed={this.textIn}/>);
+                    return (<Swatches hexIn={chrome.hex()} triggerSort={this.triggerSort} typ="name" v-on:changed={this.textIn}/>);
                 case "pantone":
-                    return (<Swatches hexIn={chrome.hex()} typ="pantone" v-on:changed={this.textIn}/>);
+                    return (<Swatches hexIn={chrome.hex()} triggerSort={this.triggerSort} typ="pantone" v-on:changed={this.textIn}/>);
                 default: return (<div>Hello</div>);
             }
         }

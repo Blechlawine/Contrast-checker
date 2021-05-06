@@ -10,6 +10,9 @@ export default {
         },
         typ: {
             type: String
+        },
+        triggerSort: {
+            type: Number
         }
     },
     data() {
@@ -25,8 +28,10 @@ export default {
         };
     },
     watch: {
-        hexIn(newHexIn) {
+        triggerSort(newTriggerSort) {
             this.sortSwatches();
+        },
+        hexIn(newHexIn) {
         },
         typ(newTypIn) {
             this.getData();
