@@ -41,7 +41,7 @@ export default {
         },
         widthStyle() {
             return {
-                "width": `calc(${this.width}ch + 24px + 10px + 20px)`
+                "width": `calc(${this.width}ch + 24px + 10px + 24px)`
             };
         },
         value() {
