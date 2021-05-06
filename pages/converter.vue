@@ -10,13 +10,13 @@
         <div class="column">
             <h2>Color</h2>
             <div id="color" :style="this.colorStyle">
-                <p>{{this.colorName}}</p>
+                <p :style="this.optimalTextColor">{{this.colorName}}</p>
             </div>
             <h2>Adjustments</h2>
-            <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="0" :background="this.lighten" v-on:change="this.lightenFactorChange"/>
-            <Sliderpart label="Darken" :min="0" :max="100" :valueIn="0" :background="this.darken" v-on:change="this.darkenFactorChange"/>
-            <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="0" :background="this.saturate" v-on:change="this.saturationFactorChange"/>
-            <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="0" :background="this.desaturate" v-on:change="this.desaturationFactorChange"/>
+            <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground"/>
+            <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground"/>
+            <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground"/>
+            <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground"/>
         </div>
         <div class="column">
             <h2>Converted</h2>
@@ -75,7 +75,8 @@ export default {
             saturationFactor: 0,
             darkenFactor: 0,
             lightenFactor: 0,
-            colorName: ""
+            colorName: "",
+            brightText: false
         }
     },
     methods: {
@@ -83,12 +84,13 @@ export default {
             this.hue = hue;
             this.saturation = sat;
             this.value = val;
-            this.hex = chroma({
+            let chrome = chroma({
                 h: this.hue,
                 s: this.saturation,
                 v: this.value
-            }).hex();
-            // this.updateColorName();
+            });
+            this.hex = chrome.hex();
+            this.brightText = chrome.luminance() < 0.5;
         },
         updateColorName() {
             if (this.names.length != 0) {
@@ -128,6 +130,11 @@ export default {
         this.getData();
     },
     computed: {
+        optimalTextColor() {
+            return {
+                "color": (this.brightText ? "white" : "black")
+            };
+        },
         desaturate() {
             let chrome = chroma({
                 h: this.hue,
@@ -241,6 +248,42 @@ export default {
             return {
                 "background": `${chrome.css()}`
             };
+        },
+        lightenSliderBackground() {
+            let chrome = chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value
+            });
+            let lightColor = `hsl(${chrome.get("hsl.h")}, ${chrome.get("hsl.s")}%, 100%)`;
+            return `linear-gradient(to right, ${chrome.css()}, ${lightColor})`
+        },
+        darkenSliderBackground() {
+            let chrome = chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value
+            });
+            let darkColor = chrome.set("hsv.v", 0).css();
+            return `linear-gradient(to right, ${chrome.css()}, ${darkColor})`
+        },
+        saturateSliderBackground() {
+            let chrome = chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value
+            });
+            let saturated = chrome.set("hsv.s", 1).css();
+            return `linear-gradient(to right, ${chrome.css()}, ${saturated})`
+        },
+        desaturateSliderBackground() {
+            let chrome = chroma({
+                h: this.hue,
+                s: this.saturation,
+                v: this.value
+            });
+            let desaturated = chrome.set("hsv.s", 0).css();
+            return `linear-gradient(to right, ${chrome.css()}, ${desaturated})`
         }
     }
 }
