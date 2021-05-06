@@ -5,7 +5,7 @@
     <MenuBar appName="Untitled Vue App" :tabs="tabs" />
     <div class="content">
         <div class="column">
-            <ColorPickerBig :hueIn="0" :satIn="0.8" :valIn="0.8" v-on:colorChanged="this.updateColor"/>
+            <ColorPickerBig :hueIn="0" :satIn="0.8" :valIn="0.8" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName"/>
         </div>
         <div class="column">
             <h2>Color</h2>
@@ -88,7 +88,7 @@ export default {
                 s: this.saturation,
                 v: this.value
             }).hex();
-            this.updateColorName();
+            // this.updateColorName();
         },
         updateColorName() {
             if (this.names.length != 0) {

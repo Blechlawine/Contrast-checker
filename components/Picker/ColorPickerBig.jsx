@@ -129,6 +129,7 @@ export default {
                 this.saturation = chrome.get("hsv.s");
                 this.value = chrome.get("hsv.v");
                 this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
+                this.changeEnd();
             }
         },
         checkHEX(hexValue) {
@@ -142,6 +143,9 @@ export default {
                 return false;
             }
             return true;
+        },
+        changeEnd() {
+            this.$emit("onChangeEnd");
         }
     },
     computed: {
@@ -160,13 +164,13 @@ export default {
             let chrome = chroma({h: this.hue, s: this.saturation, v: this.value});
             switch (this.sliderModes[this.activeMode].toLowerCase()) {
                 case "rgb":
-                    return (<RGBSliderCollection redIn={chrome.get("rgb.r")} greenIn={chrome.get("rgb.g")} blueIn={chrome.get("rgb.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                    return (<RGBSliderCollection redIn={chrome.get("rgb.r")} greenIn={chrome.get("rgb.g")} blueIn={chrome.get("rgb.b")} style="width: 100%" v-on:onChanged={this.sliderChanged} v-on:onChangeEnd={this.changeEnd}/>);
                 case "hsl":
-                    return (<HSLSliderCollection hueIn={this.hue} saturationIn={chrome.get("hsl.s") * 100} lightnessIn={chrome.get("hsl.l") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                    return (<HSLSliderCollection hueIn={this.hue} saturationIn={chrome.get("hsl.s") * 100} lightnessIn={chrome.get("hsl.l") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged} v-on:onChangeEnd={this.changeEnd}/>);
                 case "cmyk":
-                    return (<CMYKSliderCollection cyanIn={chrome.get("cmyk.c") * 100} magentaIn={chrome.get("cmyk.m") * 100} yellowIn={chrome.get("cmyk.y") * 100} keyIn={chrome.get("cmyk.k") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged}/>)
+                    return (<CMYKSliderCollection cyanIn={chrome.get("cmyk.c") * 100} magentaIn={chrome.get("cmyk.m") * 100} yellowIn={chrome.get("cmyk.y") * 100} keyIn={chrome.get("cmyk.k") * 100} style="width: 100%" v-on:onChanged={this.sliderChanged} v-on:onChangeEnd={this.changeEnd}/>)
                 case "lab":
-                    return (<LABSliderCollection lIn={chrome.get("lab.l")} aIn={chrome.get("lab.a")} bIn={chrome.get("lab.b")} style="width: 100%" v-on:onChanged={this.sliderChanged}/>);
+                    return (<LABSliderCollection lIn={chrome.get("lab.l")} aIn={chrome.get("lab.a")} bIn={chrome.get("lab.b")} style="width: 100%" v-on:onChanged={this.sliderChanged} v-on:onChangeEnd={this.changeEnd}/>);
                 case "hex":
                     return (<TextInput valid={this.hexBoxValid} placeholder="#000000" textIn={chrome.hex().toUpperCase()} v-on:changed={this.textIn}/>)
                 case "copic":
@@ -186,8 +190,8 @@ export default {
     render(h) {
         return (
             <div class="colorPicker">
-                <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged}/>
-                <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged}/>
+                <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged} v-on:onChangeEnd={this.changeEnd}/>
+                <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged} v-on:onChangeEnd={this.changeEnd}/>
                 <div class="horizontalDivider"></div>
                 <div class="horizontalFlex">
                     <Dropdown values={this.sliderModes} v-on:onSelect={this.sliderModeChanged}/>

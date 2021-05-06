@@ -64,6 +64,9 @@ export default {
         },
         slide() {
             this.$emit("onChanged", { c: this.cyan, m: this.magenta, y: this.yellow, k: this.key});
+        },
+        slideEnd(value) {
+            this.$emit("onChangeEnd");
         }
     },
     computed: {
@@ -106,28 +109,28 @@ export default {
                         <p>Cyan</p>
                         <NumberInput number={Math.round(this.cyan)} v-on:onNumberChanged={this.sliideeCyan}/>
                     </div>
-                    <Slider min={0} max={100} background={this.cyanBackground} valueIn={this.cyan} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeCyan}/>
+                    <Slider min={0} max={100} background={this.cyanBackground} valueIn={this.cyan} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeCyan} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Magenta</p>
                         <NumberInput number={Math.round(this.magenta)} v-on:onNumberChanged={this.sliideeMagenta}/>
                     </div>
-                    <Slider min={0} max={100} background={this.magentaBackground} valueIn={this.magenta} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeMagenta}/>
+                    <Slider min={0} max={100} background={this.magentaBackground} valueIn={this.magenta} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeMagenta} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Yellow</p>
                         <NumberInput number={Math.round(this.yellow)} v-on:onNumberChanged={this.sliideeYellow}/>
                     </div>
-                    <Slider min={0} max={100} background={this.yellowBackground} valueIn={this.yellow} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeYellow}/>
+                    <Slider min={0} max={100} background={this.yellowBackground} valueIn={this.yellow} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeYellow} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Key</p>
                         <NumberInput number={Math.round(this.key)} v-on:onNumberChanged={this.sliideeKey}/>
                     </div>
-                    <Slider min={0} max={100} background={this.keyBackground} valueIn={this.key} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeKey}/>
+                    <Slider min={0} max={100} background={this.keyBackground} valueIn={this.key} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeKey} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
             </div>
         );

@@ -56,6 +56,7 @@ export default {
         handleMouseUp(event) {
             document.removeEventListener("mousemove", this.handleMouseMove);
             document.removeEventListener("mouseup", this.handleMouseUp);
+            this.$emit("onChangeEnd", this.value);
         },
         setHandlePos(pos) {
             // this.handlePosition = pos;

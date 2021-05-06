@@ -51,6 +51,9 @@ export default {
         },
         slide() {
             this.$emit("onChanged", { hue: this.hue, saturation: this.saturation, lightness: this.lightness });
+        },
+        slideEnd(value) {
+            this.$emit("onChangeEnd");
         }
     },
     computed: {
@@ -80,21 +83,21 @@ export default {
                         <p>Hue</p>
                         <NumberInput number={Math.round(this.hue)} v-on:onNumberChanged={this.sliideeHue}/>
                     </div>
-                    <Slider min={0} max={360} background={this.hueBackground} valueIn={this.hue} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeHue}/>
+                    <Slider min={0} max={360} background={this.hueBackground} valueIn={this.hue} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeHue}  v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Saturation</p>
                         <NumberInput number={Math.round(this.saturation)} v-on:onNumberChanged={this.sliideeSaturation}/>
                     </div>
-                    <Slider min={0} max={100} background={this.saturationBackground} valueIn={this.saturation} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeSaturation}/>
+                    <Slider min={0} max={100} background={this.saturationBackground} valueIn={this.saturation} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeSaturation} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Lightness</p>
                         <NumberInput number={Math.round(this.lightness)} v-on:onNumberChanged={this.sliideeLightness}/>
                     </div>
-                    <Slider min={0} max={100} background={this.lightnessBackground} valueIn={this.lightness} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeLightness}/>
+                    <Slider min={0} max={100} background={this.lightnessBackground} valueIn={this.lightness} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeLightness} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
             </div>
         );

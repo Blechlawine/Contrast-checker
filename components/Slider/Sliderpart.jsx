@@ -54,6 +54,9 @@ export default {
         slide(value) {
             this.value = value;
             this.$emit("change", this.value);
+        },
+        slideEnd(value) {
+            this.$emit("onChangeEnd");
         }
     },
     computed: {
@@ -70,7 +73,7 @@ export default {
                     <p>{this.label}</p>
                     <NumberInput number={this.value} min={this.min} max={this.max} v-on:onNumberChanged={this.slide}/>
                 </div>
-                <Slider valueIn={this.value} min={this.min} max={this.max} background={this.sliderBackground} handleBackground={this.handleBackground} v-on:onSlide={this.slide}/>
+                <Slider valueIn={this.value} min={this.min} max={this.max} background={this.sliderBackground} handleBackground={this.handleBackground} v-on:onSlide={this.slide} v-on:onChangeEnd={this.slideEnd}/>
             </div>
         );
     }

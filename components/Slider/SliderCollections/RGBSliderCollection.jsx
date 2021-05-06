@@ -51,6 +51,9 @@ export default {
         },
         slide() {
             this.$emit("onChanged", { red: this.red, green: this.green, blue: this.blue });
+        },
+        slideEnd(value) {
+            this.$emit("onChangeEnd");
         }
     },
     computed: {
@@ -80,21 +83,21 @@ export default {
                         <p>Red</p>
                         <NumberInput number={Math.round(this.red)} v-on:onNumberChanged={this.sliideeRed}/>
                     </div>
-                    <Slider min={0} max={255} background={this.redBackground} valueIn={this.red} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeRed}/>
+                    <Slider min={0} max={255} background={this.redBackground} valueIn={this.red} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeRed} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Green</p>
                         <NumberInput number={Math.round(this.green)} v-on:onNumberChanged={this.sliideeGreen}/>
                     </div>
-                    <Slider min={0} max={255} background={this.greenBackground} valueIn={this.green} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeGreen}/>
+                    <Slider min={0} max={255} background={this.greenBackground} valueIn={this.green} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeGreen} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>Blue</p>
                         <NumberInput number={Math.round(this.blue)} v-on:onNumberChanged={this.sliideeBlue}/>
                     </div>
-                    <Slider min={0} max={255} background={this.blueBackground} valueIn={this.blue} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeBlue}/>
+                    <Slider min={0} max={255} background={this.blueBackground} valueIn={this.blue} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeBlue} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
             </div>
         );

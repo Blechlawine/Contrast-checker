@@ -52,6 +52,9 @@ export default {
         },
         slide() {
             this.$emit("onChanged", { l: this.l, a: this.a, b: this.b });
+        },
+        slideEnd(value) {
+            this.$emit("onChangeEnd");
         }
     },
     computed: {
@@ -88,21 +91,21 @@ export default {
                         <p>L*</p>
                         <NumberInput number={Math.round(this.l)} v-on:onNumberChanged={this.sliideeL}/>
                     </div>
-                    <Slider min={0} max={100} background={this.lBackground} valueIn={this.l} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeL}/>
+                    <Slider min={0} max={100} background={this.lBackground} valueIn={this.l} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeL} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>a*</p>
                         <NumberInput number={Math.round(this.a)} v-on:onNumberChanged={this.sliideeA}/>
                     </div>
-                    <Slider min={-128} max={127} background={this.aBackground} valueIn={this.a} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeA}/>
+                    <Slider min={-128} max={127} background={this.aBackground} valueIn={this.a} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeA} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
                 <div class="sliderpartpart">
                     <div class="horizontalFlex">
                         <p>b*</p>
                         <NumberInput number={Math.round(this.b)} v-on:onNumberChanged={this.sliideeB}/>
                     </div>
-                    <Slider min={-128} max={127} background={this.bBackground} valueIn={this.b} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeB}/>
+                    <Slider min={-128} max={127} background={this.bBackground} valueIn={this.b} handleBackground={this.handleBackground} v-on:onSlide={this.sliideeB} v-on:onChangeEnd={this.slideEnd}/>
                 </div>
             </div>
         );
