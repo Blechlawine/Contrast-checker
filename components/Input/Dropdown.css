@@ -42,6 +42,7 @@
 
 .dropdownValues span {
     padding: 6px 10px;
+    width: 100%;
     cursor: pointer;
     -webkit-user-select: none;
 }
