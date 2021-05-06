@@ -72,7 +72,7 @@ export default {
         },
         textStyle() {
             let chrome = chroma(this.background);
-            console.log(this.background);
+            //console.log(this.background);
             let brightText = chrome.luminance() < 0.5;
             return {
                 "color": (brightText ? "white" : "black")

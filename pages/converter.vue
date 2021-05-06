@@ -16,25 +16,28 @@
             <div class="sliderpartParent" :style="this.lightenStyle">
                 <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground"/>
                 <div class="horizontalFlex">
-                    <Button label="Apply"/>
+                    <Button label="Apply" v-on:onClick="lightenClicked"/>
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.darkenStyle">
                 <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground"/>
                 <div class="horizontalFlex">
-                    <Button label="Apply"/>
+                    <Button label="Apply" v-on:onClick="darkenClicked"/>
+                    <CopyField :value="this.hexCopyDarken"/>
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.saturateStyle">
                 <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground"/>
                 <div class="horizontalFlex">
-                    <Button label="Apply"/>
+                    <Button label="Apply" v-on:onClick="saturationClicked"/>
+                    <CopyField :value="this.hexCopySaturation"/>
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.desaturateStyle">
                 <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground"/>
                 <div class="horizontalFlex">
-                    <Button label="Apply"/>
+                    <Button label="Apply" v-on:onClick="desaturationClicked"/>
+                    <CopyField :value="this.hexCopyDesaturation"/>
                 </div>
             </div>
         </div>
@@ -146,6 +149,40 @@ export default {
         },
         desaturationFactorChange(value) {
             this.desaturationFactor = value;
+        },
+        lightenClicked() {
+          let chrome = chroma({
+            h: this.hue,
+            s: this.saturation,
+            v: this.value
+          });
+
+          console.log(this.hue);
+
+          let hslh = chrome.get("hsl.h") || 0;
+          let hsls = chrome.get("hsl.s") * 100;
+          let hsll = chrome.get("hsl.l") * 100 + scale(this.lightenFactor, 0, 100, 0, 100 - chrome.get("hsl.l") * 100);
+
+          let chrome2 = chroma({
+            h: hslh,
+            s: hsls,
+            l: hsll
+          });
+
+          this.hue = chrome2.get("hsv.h");
+          this.saturation = chrome2.get("hsv.s");
+          this.value = chrome2.get("hsv.v");
+
+          console.log(this.hue);
+        },
+        darkenClicked() {
+          this.value = this.value - scale(this.darkenFactor, 0, 100, 0, this.value)
+        },
+        saturationClicked() {
+          this.saturation = this.saturation + scale(this.saturationFactor, 0, 100, 0, 1 - this.saturation);
+        },
+        desaturationClicked() {
+          this.saturation = this.saturation - scale(this.desaturationFactor, 0, 100, 0, this.saturation)
         }
     },
     mounted() {
@@ -326,6 +363,15 @@ export default {
             return {
                 "background-color": this.desaturate
             };
+        },
+        hexCopyDarken() {
+          return chroma({h: this.hue, s: this.saturation, v: this.value - scale(this.darkenFactor, 0, 100, 0, this.value)}).hex()
+        },
+        hexCopySaturation() {
+          return chroma({h: this.hue, s: this.saturation + scale(this.saturationFactor, 0, 100, 0, 1 - this.saturation), v: this.value})
+        },
+        hexCopyDesaturation() {
+          return chroma({h: this.hue, s: this.saturation, v: this.value - scale(this.darkenFactor, 0, 100, 0, this.value)})
         }
     }
 }

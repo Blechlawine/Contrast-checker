@@ -1,4 +1,4 @@
-import "./button.css";
+import "./button.css"
 
 export default {
     name: "Button",
@@ -14,7 +14,7 @@ export default {
     },
     render(h) {
         return (
-            <button onClick={this.click}>{this.label}</button>
+            <button class={"button"} onClick={this.click}>{this.label}</button>
         );
     }
 }
