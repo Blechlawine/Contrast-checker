@@ -3,7 +3,7 @@
         <p>{{appName}}</p>
         <Tabs :tabs="tabs"></Tabs>
 
-        <ImgButton icon="more_vert" />
+        <ImgButton large icon="more_vert" />
     </header>
 </template>
 
