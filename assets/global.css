@@ -62,6 +62,10 @@ a {
     border-radius: 1px;
 }
 
+.centeredText {
+    text-align: center;
+}
+
 /* Custom Scrollbar, yeah */
 
 ::-webkit-scrollbar {

@@ -10,7 +10,7 @@
         <div class="column">
             <h2>Color</h2>
             <div id="color" :style="this.colorStyle">
-                <p :style="this.optimalTextColor">{{this.colorName}}</p>
+                <p class="centeredText" :style="this.optimalTextColor">{{this.colorName}}</p>
             </div>
             <h2>Adjustments</h2>
             <div class="sliderpartParent" :style="this.lightenStyle">
@@ -409,7 +409,7 @@ export default {
 
 #color > p {
     font-size: 50px;
-    font-weight: regular;
+    font-weight: normal;
 }
 
 .column > .copyField {
