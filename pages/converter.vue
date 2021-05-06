@@ -204,7 +204,7 @@ export default {
     computed: {
         optimalTextColor() {
             return {
-                "color": (this.brightText ? "white" : "black")
+                "color": (this.brightText ? "var(--text-white)" : "var(--text-dark)")
             };
         },
         desaturate() {
