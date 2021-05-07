@@ -55,9 +55,12 @@ export default {
                 "Auto",
                 "Analogous",
                 "Complementary",
+                "Split-complementary",
                 "Triadic",
                 "Tetradic",
                 "Square",
+                "Cool",
+                "Warm",
                 "Random"
             ],
             displayTypes: [
@@ -92,13 +95,14 @@ export default {
                     locked: false
                 }
             ],
-            harmony: "Auto",
+            harmony: "auto",
             selectedDisplayType: "HEX"
         }
     },
     methods: {
         changeHarmony(valueIndex) {
-            this.harmony = this.harmonyValues[valueIndex];
+            this.harmony = this.harmonyValues[valueIndex].toLowerCase();
+            this.generateColorsForSelectedHarmony();
         },
         changeDisplayType(valueIndex) {
             this.selectedDisplayType = this.displayTypes[valueIndex];
@@ -115,12 +119,109 @@ export default {
         pinColor(color) {
             this.colors[color.id].locked = !this.colors[color.id].locked;
         },
-        generateRandomColors() {
+        getLockedColors() {
+            let lockedColors = [];
             for (let k = 0; k < this.colors.length; k++) {
+                if (this.colors[k].locked) lockedColors.push(this.colors[k]);
+            }
+            return lockedColors;
+        },
+        generateRandomColors(startIndex) {
+            for (let k = startIndex; k < this.colors.length; k++) {
                 let color = this.colors[k];
                 if (!color.locked) {
                     color.hex = chroma.random().hex();
                 }
+            }
+        },
+        generateColorsForSelectedHarmony() {
+            let startColor;
+            let locked = this.getLockedColors();
+            let startIndex = 0;
+            if (locked.length == 0) {
+                startColor = chroma.random();
+                this.colors[0].hex = startColor.hex();
+                startIndex = 1;
+            } else {
+                let randIndex = Math.round(Math.random() * (locked.length - 1));
+                startColor = chroma(locked[randIndex].hex);
+            }
+            switch (this.harmony) {
+                case "auto":
+                    break;
+                case "random":
+                    this.generateRandomColors(startIndex);
+                    break;
+                case "analogous":
+                    for (let k = startIndex; k < this.colors.length; k++) {
+                        let color = this.colors[k];
+                        if (!color.locked) {
+                            let hue = startColor.get("hsl.h");
+                            let sat = (Math.random());
+                            let lig = (Math.random());
+                            color.hex = chroma(hue, sat, lig, "hsl").hex();
+                        }
+                    }
+                    break;
+                case "triadic":
+                    for (let k = startIndex; k < this.colors.length; k++) {
+                        let color = this.colors[k];
+                        if (!color.locked) {
+                            let prob = Math.random();
+                            let hue = startColor.get("hsl.h");
+                            if (prob < 0.33) {
+                                hue += 240;
+                            } else if (prob < 0.66) {
+                                hue += 120;
+                            }
+                            hue %= 360;
+                            let sat = (Math.random());
+                            let lig = (Math.random());
+                            color.hex = chroma(hue, sat, lig, "hsl").hex();
+                        }
+                    }
+                    break;
+                case "tetradic":
+                    break;
+                case "complementary":
+                    for (let k = startIndex; k < this.colors.length; k++) {
+                        let color = this.colors[k];
+                        if (!color.locked) {
+                            let hue = (startColor.get("hsl.h") + (Math.random() < 0.5 ? 180 : 0)) % 360;
+                            let sat = (Math.random());
+                            let lig = (Math.random());
+                            color.hex = chroma(hue, sat, lig, "hsl").hex();
+                        }
+                    }
+                    break;
+                case "split-complementary":
+                    break;
+                case "square":
+                    for (let k = startIndex; k < this.colors.length; k++) {
+                        let color = this.colors[k];
+                        if (!color.locked) {
+                            let prob = Math.random();
+                            let hue = startColor.get("hsl.h");
+                            if (prob < 0.25) {
+                                hue += 90;
+                            } else if (prob < 0.5) {
+                                hue += 180;
+                            } else if (prob < 0.75) {
+                                hue += 270;
+                            }
+                            hue %= 360;
+                            let sat = (Math.random());
+                            let lig = (Math.random());
+                            color.hex = chroma(hue, sat, lig, "hsl").hex();
+                        }
+                    }
+                    break;
+                case "warm":
+                    break;
+                case "cool":
+                    break;
+                default:
+                    break;
             }
         },
         pinClasses(locked) {
@@ -151,10 +252,10 @@ export default {
         }
     },
     mounted() {
-        this.generateRandomColors();
+        this.generateColorsForSelectedHarmony();
         document.addEventListener("keypress", (event) => {
             if (event.code == "Space") {
-                this.generateRandomColors();
+                this.generateColorsForSelectedHarmony();
             }
         });
     }
