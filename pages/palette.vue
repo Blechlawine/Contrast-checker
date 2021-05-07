@@ -135,6 +135,7 @@ export default {
             }
         },
         generateColorsForSelectedHarmony() {
+            // https://www.luminous-landscape.com/color-harmonies-4-cool-warm-split-tetradic-and-square/
             let startColor;
             let locked = this.getLockedColors();
             let startIndex = 0;
