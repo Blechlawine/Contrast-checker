@@ -107,7 +107,7 @@ export default {
                     let hue = Math.round(chroma(hexIn).get("hsl.h"));
                     let sat = Math.round(chroma(hexIn).get("hsl.s") * 100);
                     let lig = Math.round(chroma(hexIn).get("hsl.l") * 100);
-                    return `hsl(${hue}, ${sat}%, ${lig}%)`
+                    return `hsl(${isNaN(hue) ? 0 : hue}, ${sat}%, ${lig}%)`
                     break;
                 case "rgb":
                     return chroma(hexIn).css();
