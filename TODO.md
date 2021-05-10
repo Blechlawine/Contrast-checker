@@ -6,3 +6,5 @@
 - palette generator routes
 - name
 - palette share function
+- COLORS checks
+- DIFF checks
