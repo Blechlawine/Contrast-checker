@@ -8,20 +8,25 @@
                 <ImgButton icon="share" v-on:onClick="this.share"/>
             </div>
             <div class="paletteColors">
-                <div v-for="color in this.colors" class="paletteColor" :style="`background-color: ${color.hex}; color: ${textColor(color.hex)}`">
+                <div v-for="color in this.colors" class="paletteColor"
+                     :style="`background-color: ${color.hex}; color: ${textColor(color.hex)}`">
                     <div class="addColorLeft">
-                        <span v-if="color.id == 0" style="transform: translateX(50%)" v-on:click="addColor(color.id)" class="material-icons">add</span>
+                        <span v-if="color.id == 0" style="transform: translateX(50%)" v-on:click="addColor(color.id)"
+                              class="material-icons">add</span>
                     </div>
                     <div class="colorInfo">
                         <p class="colorLabel">
-                            {{getDisplayText(color.hex)}}
+                            {{ getDisplayText(color.hex) }}
                         </p>
                         <span class="material-icons copyIcon" v-on:click="copyColor(color.hex)">content_copy</span>
-                        <span :class="pinClasses(color.locked)" :style="`opacity: ${color.locked ? '1' : '0.6'}`" v-on:click="pinColor(color)">push_pin</span>
+                        <span :class="pinClasses(color.locked)" :style="`opacity: ${color.locked ? '1' : '0.6'}`"
+                              v-on:click="pinColor(color)">push_pin</span>
                         <span class="material-icons" v-on:click="deleteColor(color)">delete</span>
                     </div>
                     <div class="addColorRight">
-                        <span :style="((color.id != colors.length - 1) ? 'transform: translateX(calc(50%))' : 'transform: translateX(-50%)')" class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
+                        <span
+                            :style="((color.id != colors.length - 1) ? 'transform: translateX(calc(50%))' : 'transform: translateX(-50%)')"
+                            class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
                     </div>
                 </div>
             </div>
@@ -47,9 +52,9 @@ export default {
     data() {
         return {
             tabs: [
-                { id: 0, title: "Contrast-checker", link: "/" },
-                { id: 1, title: "Palette", link: "/palette", active: true },
-                { id: 2, title: "Converter", link: "/converter" }
+                {id: 0, title: "Contrast-checker", link: "/"},
+                {id: 1, title: "Palette", link: "/palette", active: true},
+                {id: 2, title: "Converter", link: "/converter"}
             ],
             harmonyValues: [
                 "Auto",
@@ -102,7 +107,7 @@ export default {
     },
     methods: {
         getDisplayText(hexIn) {
-            switch(this.selectedDisplayType.toLowerCase()) {
+            switch (this.selectedDisplayType.toLowerCase()) {
                 case "hsl":
                     let hue = Math.round(chroma(hexIn).get("hsl.h"));
                     let sat = Math.round(chroma(hexIn).get("hsl.s") * 100);
@@ -196,7 +201,7 @@ export default {
         },
         generateTetradicColors(startIndex, startColor) {
             let startHue = startColor.get("hsl.h");
-            let angles = [[ startHue, 60 + startHue, 180 + startHue, 240 + startHue], [startHue, startHue - 60, startHue - 180, startHue - 240]];
+            let angles = [[startHue, 60 + startHue, 180 + startHue, 240 + startHue], [startHue, startHue - 60, startHue - 180, startHue - 240]];
             let angleArray = angles[Math.round(Math.random())];
             this.generateColorsWithFixedHueOffset(startColor, angleArray);
         },
@@ -261,7 +266,7 @@ export default {
             switch (this.harmony) {
                 case "auto":
                     let prob = Math.random() * 10;
-                    if(prob < 1) {
+                    if (prob < 1) {
                         this.generateRandomColors(startIndex, startColor);
                     } else if (prob < 2) {
                         this.generateAnalogousColors(startIndex, startColor);
@@ -316,9 +321,31 @@ export default {
                 default:
                     break;
             }
+
+            let queryString = "";
+            /*for (let i = 0; i < this.colors.) {
+                queryString.append(color.hex.substring(1));
+                if (color.id !== this.colors.length - 1) {
+                    queryString.append("-");
+                }
+
+                queryString.concat(color.hex.substring(1));
+                if (color.id !== this.colors.length - 1) {
+                    queryString.concat("-");
+                    console.log(queryString);
+                }
+            }*/
+
+            this.colors.map((color) => {
+                queryString += color.hex.substring(1);
+                if (color.id !== this.colors.length - 1) {
+                    queryString += "-";
+                }
+            });
+            this.$router.push({path: this.$route.path, query: {colors: queryString}});
         },
         pinClasses(locked) {
-            if(locked) {
+            if (locked) {
                 return "material-icons pinIcon";
             } else {
                 return "material-icons-outlined pinIcon";
@@ -331,7 +358,7 @@ export default {
             }
         },
         deleteColor(color) {
-            if(this.colors.length > 1) {
+            if (this.colors.length > 1) {
                 this.colors = this.colors.filter((col, index, arr) => {
                     return col.id != color.id;
                 });
