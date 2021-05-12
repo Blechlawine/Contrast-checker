@@ -323,18 +323,6 @@ export default {
             }
 
             let queryString = "";
-            /*for (let i = 0; i < this.colors.) {
-                queryString.append(color.hex.substring(1));
-                if (color.id !== this.colors.length - 1) {
-                    queryString.append("-");
-                }
-
-                queryString.concat(color.hex.substring(1));
-                if (color.id !== this.colors.length - 1) {
-                    queryString.concat("-");
-                    console.log(queryString);
-                }
-            }*/
 
             this.colors.map((color) => {
                 queryString += color.hex.substring(1);
@@ -372,12 +360,17 @@ export default {
         }
     },
     mounted() {
-        this.generateColorsForSelectedHarmony();
-        document.addEventListener("keypress", (event) => {
-            if (event.code == "Space") {
-                this.generateColorsForSelectedHarmony();
-            }
-        });
+
+        if(this.$route.params.colors == null) {
+            this.generateColorsForSelectedHarmony();
+            document.addEventListener("keypress", (event) => {
+                if (event.code == "Space") {
+                    this.generateColorsForSelectedHarmony();
+                }
+            });
+        } else {
+            console.log(this.$route.params.colors);
+        }
     }
 }
 </script>
