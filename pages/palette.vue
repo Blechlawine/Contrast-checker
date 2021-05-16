@@ -359,18 +359,28 @@ export default {
             }
         }
     },
-    mounted() {
-
-        if(this.$route.params.colors == null) {
+    created() {
+        // This is run on the server
+        if(this.$route.query.colors == null) {
             this.generateColorsForSelectedHarmony();
-            document.addEventListener("keypress", (event) => {
-                if (event.code == "Space") {
-                    this.generateColorsForSelectedHarmony();
-                }
-            });
         } else {
-            console.log(this.$route.params.colors);
+            let [...colorsIn] = this.$route.query.colors.split("-");
+            this.colors = [];
+            for (let i = 0; i < colorsIn.length; i++) {
+                this.colors.push({
+                    id: i,
+                    hex: "#" + colorsIn[i].toUpperCase(),
+                    locked: false
+                });
+            }
         }
+    },
+    mounted() {
+        document.addEventListener("keypress", (event) => {
+            if (event.code == "Space") {
+                this.generateColorsForSelectedHarmony();
+            }
+        });
     }
 }
 </script>
