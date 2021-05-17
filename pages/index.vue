@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="checker">
+        <div>
             <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
 
             <div class="horizontalFlex">
@@ -247,9 +247,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-.checker .colors {
+.colors {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -259,15 +259,15 @@ export default {
     width: 50vw;
 }
 
-.checker .foregroundColor {
+.foregroundColor {
     border-radius: 12px 0 0 12px;
 }
 
-.checker .backgroundColor {
+.backgroundColor {
     border-radius: 0 12px 12px 0;
 }
 
-.checker .foregroundColor, .backgroundColor {
+.foregroundColor, .backgroundColor {
     padding: 24px;
 
     height: 100%;
@@ -280,7 +280,7 @@ export default {
     grid-gap: 24px;
 }
 
-.checker input[type=text], textarea {
+input[type=text], textarea {
     border: none;
     outline: none;
     resize: none;
@@ -290,43 +290,43 @@ export default {
     background: transparent;
 }
 
-.checker textarea {
+textarea {
     width: 60%;
     height: 50%;
     overflow-x: hidden;
 }
 
-.checker .largeExampleInput {
+.largeExampleInput {
     font-size: 24px;
 }
 
-.checker #foregroundPicker {
+#foregroundPicker {
     margin-left: 2vw;
 }
-.checker #backgroundPicker {
+#backgroundPicker {
     margin-right: 2vw;
 }
 
-.checker .colorPickerBig {
+.colorPickerBig {
     /* position: absolute; */
     margin-top: 200px;
 }
 
-.checker #score {
+#score {
     text-align: center;
     margin-top: 60px;
     font-size: 120px;
     font-weight: 400;
 }
 
-.checker #checks {
+#checks {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
 }
 
-.checker .checkmarkDiv {
+.checkmarkDiv {
     width: 10ch;
     text-align: center;
     display: flex;
@@ -334,11 +334,11 @@ export default {
     grid-gap: 8px;
 }
 
-.checker .checkmarkDiv .material-icons {
+.checkmarkDiv .material-icons {
     font-size: 48px;
 }
 
-.checker .column {
+.column {
     display: flex;
     flex-direction: column;
     align-items: center;
