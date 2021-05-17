@@ -41,6 +41,10 @@ export default {
         valIn: {
             type: Number,
             default: 1
+        },
+        closable: {
+            type: Boolean,
+            default: false
         }
     },
     watch: {
@@ -151,6 +155,9 @@ export default {
         changeEnd() {
             this.triggerSort += 1;
             this.$emit("onChangeEnd");
+        },
+        plsCloseMe() {
+            this.$emit("pickerClose");
         }
     },
     computed: {
@@ -195,6 +202,9 @@ export default {
     render(h) {
         return (
             <div class={style.colorPicker}>
+                <div class="horizontalFlex">
+                    {(this.closable ? (<span class="material-icons" v-on:click={this.plsCloseMe}>close</span>) : "")}
+                </div>
                 <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged} v-on:onChangeEnd={this.changeEnd}/>
                 <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged} v-on:onChangeEnd={this.changeEnd}/>
                 <div class="horizontalDivider"></div>

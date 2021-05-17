@@ -11,7 +11,7 @@
                 <div v-for="color in this.colors" class="paletteColor"
                      :style="`background-color: ${color.hex}; color: ${textColor(color.hex)}`">
                     <div class="addColorLeft">
-                        <span v-if="color.id == 0" style="transform: translateX(50%)" v-on:click="addColor(color.id)"
+                        <span :style="((color.id == 0) ? 'transform: translateX(50%)' : 'transform: translateX(-50%)')" v-on:click="addColor(color.id)"
                               class="material-icons">add</span>
                     </div>
                     <div class="colorInfo">
@@ -19,6 +19,7 @@
                             {{ getDisplayText(color.hex) }}
                         </p>
                         <span class="material-icons copyIcon" v-on:click="copyColor(color.hex)">content_copy</span>
+                        <span class="material-icons" v-on:click="togglePicker(color.id)">edit</span>
                         <span :class="pinClasses(color.locked)" :style="`opacity: ${color.locked ? '1' : '0.6'}`"
                               v-on:click="pinColor(color)">push_pin</span>
                         <span class="material-icons" v-on:click="deleteColor(color)">delete</span>
@@ -28,6 +29,7 @@
                             :style="((color.id != colors.length - 1) ? 'transform: translateX(calc(50%))' : 'transform: translateX(-50%)')"
                             class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
                     </div>
+                    <ColorPickerBig closable :hueIn="chromia(color.hex).get('hsv.h')" :satIn="chromia(color.hex).get('hsv.s')" :valIn="chromia(color.hex).get('hsv.v')" class="colorPickerBig" v-on:colorChanged="(event) => editColor(color, event)" v-on:pickerClose="() => togglePicker(color.id)" :ref="`picker${color.id}`"/>
                 </div>
             </div>
         </div>
@@ -38,6 +40,7 @@
 import MenuBar from "../components/Menubar/Menubar.vue";
 import Dropdown from "../components/Input/Dropdown.jsx";
 import ImgButton from "../components/Button/ImgButton.vue"
+import ColorPickerBig from "../components/Picker/ColorPickerBig.jsx"
 
 import {copyString} from "../assets/utils.js";
 import * as chroma from "chroma-js";
@@ -47,7 +50,8 @@ export default {
     components: {
         MenuBar,
         Dropdown,
-        ImgButton
+        ImgButton,
+        ColorPickerBig
     },
     data() {
         return {
@@ -101,6 +105,8 @@ export default {
                     locked: false
                 }
             ],
+            chromia: chroma,
+            openPickerId: -1,
             harmony: "auto",
             selectedDisplayType: "HEX"
         }
@@ -132,7 +138,6 @@ export default {
         share() {
             let path = window.location.href;
             copyString(path);
-            
         },
         textColor(hex) {
             return chroma(hex).luminance() < 0.5 ? 'var(--text-white)' : 'var(--text-dark)';
@@ -142,6 +147,25 @@ export default {
         },
         pinColor(color) {
             this.colors[color.id].locked = !this.colors[color.id].locked;
+        },
+        editColor(color, data) {
+            console.log(data, color);
+            color.hex = chroma(data.hue, data.sat, data.val, "hsv").hex();
+            this.updateRoute();
+        },
+        togglePicker(id) {
+            for (let i = 0; i < this.colors.length; i++) {
+                this.$refs[`picker${i}`][0].$el.style.opacity = "";
+                this.$refs[`picker${i}`][0].$el.style.pointerEvents = "";
+            }
+            let currentPicker = this.$refs[`picker${id}`][0].$el;
+            if (this.openPickerId != id) {
+                currentPicker.style.opacity = 1;
+                currentPicker.style.pointerEvents = "auto";
+                this.openPickerId = id;
+            } else {
+                this.openPickerId = -1;
+            }
         },
         getLockedColors() {
             let lockedColors = [];
@@ -391,8 +415,8 @@ export default {
 }
 </script>
 
-<style>
-.palette .settingsBar {
+<style scoped>
+.settingsBar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -404,7 +428,7 @@ export default {
     border-bottom: var(--light-gray) solid 2px;
 }
 
-.palette .paletteColors {
+.paletteColors {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -414,7 +438,7 @@ export default {
     height: calc(100vh - 60px - 54px - 4px);
 }
 
-.palette .paletteColor {
+.paletteColor {
     width: 100%;
     height: 100%;
     text-align: center;
@@ -424,10 +448,12 @@ export default {
     align-items: center;
     justify-content: space-between;
 
+    position: relative;
+
     /* padding: 24px; */
 }
 
-.palette .colorInfo {
+.colorInfo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -435,38 +461,48 @@ export default {
     grid-gap: 24px;
 }
 
-.palette .paletteColor * {
+.paletteColor * {
     color: inherit;
 }
 
-.palette .paletteColor span {
+.paletteColor span {
     font-size: 28px;
 }
 
-.palette .colorLabel {
+.colorLabel {
     font-size: 24px;
 }
 
-.palette .copyIcon, .palette .pinIcon {
+.copyIcon, .pinIcon {
     cursor: pointer;
 }
 
-.palette .addColorRight span, .palette .addColorLeft span {
+.addColorRight span, .addColorLeft span {
     background-color: var(--background);
     border-radius: 50%;
     color: var(--text-dark)
 }
 
-.palette .addColorRight {
+.addColorRight {
     width: 28px;
     height: 28px;
     float: right;
 }
 
-.palette .addColorLeft {
+.addColorLeft {
     width: 28px;
     height: 28px;
     float: left;
+}
+
+.colorPickerBig {
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 </style>
