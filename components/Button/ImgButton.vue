@@ -33,3 +33,9 @@
         }
     }
 </script>
+
+<style>
+.imgButton {
+    cursor: pointer;
+}
+</style>
