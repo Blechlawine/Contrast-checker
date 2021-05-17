@@ -7,6 +7,7 @@
     --text-white: #FFFFFF;
     --text-white-inactive: #EBEBEB;
     --text-dark-inactive: #3B3B3B;
+    --textColor: var(--text-dark);
     --light-gray: #E9E9E9;
     --middle-gray: #959595;
     --accent: #00BCD4;

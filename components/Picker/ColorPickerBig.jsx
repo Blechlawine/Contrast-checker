@@ -15,7 +15,7 @@ import {scale} from "../../assets/utils.js";
 
 import * as chroma from "chroma-js";
 
-import "./ColorPicker.css";
+import style from "./ColorPicker.css?module";
 
 
 export default {
@@ -194,7 +194,7 @@ export default {
     },
     render(h) {
         return (
-            <div class="colorPicker">
+            <div class={style.colorPicker}>
                 <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged} v-on:onChangeEnd={this.changeEnd}/>
                 <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged} v-on:onChangeEnd={this.changeEnd}/>
                 <div class="horizontalDivider"></div>

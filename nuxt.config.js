@@ -42,7 +42,15 @@ export default {
     modules: [],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    build: {
+        loaders: {
+            css: {
+                modules: {
+                    localIdentName: '[local]_[hash:base64:5]'
+                }
+            }
+        }
+    },
 
     serverMiddleware: [
         {

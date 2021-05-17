@@ -3,6 +3,7 @@
     padding: 12px;
     border-radius: 12px;
     box-shadow: var(--shadow4px);
+    color: var(--textColor);
 
     display: flex;
     flex-direction: column;

@@ -1,4 +1,4 @@
-import "./NumberInput.css";
+import style from "./NumberInput.css?module";
 
 export default {
     name: "numberinput",
@@ -49,14 +49,14 @@ export default {
         this.numberData = this.number;
     },
     render(h) {
-        return (<div class="numberInput">
+        return (<div class={style.numberInput}>
             <input type="number" v-model={this.numberData} min={this.min} max={this.max} step={this.step} onInput={this.onInput}/>
-            <div class="numberInputButtons">
-                <div class="numberInputButton minus" onClick={this.subNumber}>
+            <div class={style.numberInputButtons}>
+                <div class={style.numberInputButton + " minus"} onClick={this.subNumber}>
                     <span class="material-icons smol">remove</span>
                 </div>
-                <div class="divider"></div>
-                <div class="numberInputButton plus" onClick={this.addNumber}>
+                <div class={style.divider}></div>
+                <div class={style.numberInputButton + " plus"} onClick={this.addNumber}>
                     <span class="material-icons smol">add</span>
                 </div>
             </div>

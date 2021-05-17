@@ -34,7 +34,7 @@
     }
 </script>
 
-<style>
+<style scoped>
 .imgButton {
     cursor: pointer;
 }

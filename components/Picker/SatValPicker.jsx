@@ -1,4 +1,4 @@
-import "./SatValPicker.css";
+import style from "./SatValPicker.css?module";
 
 import { scale } from "../../assets/utils.js";
 import * as chroma from "chroma-js";
@@ -101,8 +101,8 @@ export default {
     },
     render(h) {
         return (
-            <div v-on:mousedown={this.handleMouseDown} class="satValPicker" style={this.gradientStyles} ref="field">
-                <div class="satValHandle" style={this.handleStyles}></div>
+            <div v-on:mousedown={this.handleMouseDown} class={style.satValPicker} style={this.gradientStyles} ref="field">
+                <div class={style.satValHandle} style={this.handleStyles}></div>
             </div>
         )
     }

@@ -1,4 +1,4 @@
-import "./CopyField.css";
+import style from "./CopyField.css?module";
 import { copyString } from "../../assets/utils.js";
 
 
@@ -28,9 +28,11 @@ export default {
     },
     render(h) {
         return (
-            <div class="copyField">
+            <div class={style.copyField}>
                 <p>{this.value}</p>
-                <div class="copyBtn" onClick={this.copyToClipboard}><span class="material-icons middle">content_copy</span></div>
+                <div class={style.copyBtn} onClick={this.copyToClipboard}>
+                    <span class="material-icons middle">content_copy</span>
+                </div>
             </div>
         );
     }

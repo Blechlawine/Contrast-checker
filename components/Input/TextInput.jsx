@@ -1,4 +1,4 @@
-import "./TextInput.css";
+import style from "./TextInput.css?module";
 
 export default {
     name: "textinput",
@@ -43,8 +43,8 @@ export default {
     },
     render(h) {
         return (
-            <div class="textInput">
-                <input placeholder={this.placeholder} style={this.textBoxBorder} type="text" class="textInputInput" v-model={this.text} v-on:input={this.onInput} onFocus={() => this.active = true} onBlur={() => this.active = false}/>
+            <div class={style.textInput}>
+                <input placeholder={this.placeholder} style={this.textBoxBorder} type="text" class={style.textInputInput} v-model={this.text} v-on:input={this.onInput} onFocus={() => this.active = true} onBlur={() => this.active = false}/>
             </div>
         );
     }

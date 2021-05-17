@@ -1,56 +1,54 @@
 <template>
     <div id="app">
-        <div>
-            <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
+        <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
 
-            <div class="horizontalFlex">
-                <div class="column">
-                    <ColorPickerBig :hueIn="0" :satIn="0" :valIn="0" id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
-                </div>
-                <div class="column">
-                    <h1 id="score">{{this.score.toString().substring(0, 4)}}</h1>
+        <div class="horizontalFlex">
+            <div class="column">
+                <ColorPickerBig :hueIn="0" :satIn="0" :valIn="0" id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
+            </div>
+            <div class="column">
+                <h1 id="score">{{this.score.toString().substring(0, 4)}}</h1>
 
-                    <div id="checks">
-                        <div class="checkmarkDiv">
-                            <p>AA</p>
-                            <span class="material-icons" :style="this.aaColor">{{this.AApass ? "done" : "close"}}</span>
-                        </div>
-                        <div class="checkmarkDiv">
-                            <p>AAA</p>
-                            <span class="material-icons" :style="this.aaaColor">{{this.AAApass ? "done" : "close"}}</span>
-                        </div>
-                        <div class="checkmarkDiv">
-                            <p>AA Large</p>
-                            <span class="material-icons" :style="this.aaLargeColor">{{this.AALargePass ? "done" : "close"}}</span>
-                        </div>
-                        <div class="checkmarkDiv">
-                            <p>AAA Large</p>
-                            <span class="material-icons" :style="this.aaaLargeColor">{{this.AAALargePass ? "done" : "close"}}</span>
-                        </div>
-                        <div class="checkmarkDiv">
-                            <p>COLORS</p>
-                            <span class="material-icons" :style="this.colorsColor">{{this.COLORPass ? "done" : "close"}}</span>
-                        </div>
-                        <div class="checkmarkDiv">
-                            <p>DIFF</p>
-                            <span class="material-icons" :style="this.diffColor">{{this.DIFFPass ? "done" : "close"}}</span>
-                        </div>
+                <div id="checks">
+                    <div class="checkmarkDiv">
+                        <p>AA</p>
+                        <span class="material-icons" :style="this.aaColor">{{this.AApass ? "done" : "close"}}</span>
                     </div>
-
-                    <div class="colors">
-                        <div class="foregroundColor" :style="this.foregroundColorBackground">
-                            <input type="text" class="largeExampleInput" :value="this.quoteForeground.groot" :style="this.backgroundColorText" id="backgroundLargeInput">
-                            <textarea type="text" class="smallExampleInput" :value="this.quoteForeground.quote" :style="this.backgroundColorText" id="backgroundSmallInput"></textarea>
-                        </div>
-                        <div class="backgroundColor" :style="this.backgroundColorBackground">
-                            <input type="text" class="largeExampleInput" :value="this.quoteBackground.groot" :style="this.foregroundColorText" id="foregroundLargeInput">
-                            <textarea type="text" class="smallExampleInput" :value="this.quoteBackground.quote" :style="this.foregroundColorText" id="foregroundSmallInput"></textarea>
-                        </div>
+                    <div class="checkmarkDiv">
+                        <p>AAA</p>
+                        <span class="material-icons" :style="this.aaaColor">{{this.AAApass ? "done" : "close"}}</span>
+                    </div>
+                    <div class="checkmarkDiv">
+                        <p>AA Large</p>
+                        <span class="material-icons" :style="this.aaLargeColor">{{this.AALargePass ? "done" : "close"}}</span>
+                    </div>
+                    <div class="checkmarkDiv">
+                        <p>AAA Large</p>
+                        <span class="material-icons" :style="this.aaaLargeColor">{{this.AAALargePass ? "done" : "close"}}</span>
+                    </div>
+                    <div class="checkmarkDiv">
+                        <p>COLORS</p>
+                        <span class="material-icons" :style="this.colorsColor">{{this.COLORPass ? "done" : "close"}}</span>
+                    </div>
+                    <div class="checkmarkDiv">
+                        <p>DIFF</p>
+                        <span class="material-icons" :style="this.diffColor">{{this.DIFFPass ? "done" : "close"}}</span>
                     </div>
                 </div>
-                <div class="column">
-                    <ColorPickerBig :hueIn="0" :satIn="0" :valIn="1" id="backgroundPicker" class="colorPickerBig" v-on:colorChanged="this.onBackgroundColorChanged"/>
+
+                <div class="colors">
+                    <div class="foregroundColor" :style="this.foregroundColorBackground">
+                        <input type="text" class="largeExampleInput" :value="this.quoteForeground.groot" :style="this.backgroundColorText" id="backgroundLargeInput">
+                        <textarea type="text" class="smallExampleInput" :value="this.quoteForeground.quote" :style="this.backgroundColorText" id="backgroundSmallInput"></textarea>
+                    </div>
+                    <div class="backgroundColor" :style="this.backgroundColorBackground">
+                        <input type="text" class="largeExampleInput" :value="this.quoteBackground.groot" :style="this.foregroundColorText" id="foregroundLargeInput">
+                        <textarea type="text" class="smallExampleInput" :value="this.quoteBackground.quote" :style="this.foregroundColorText" id="foregroundSmallInput"></textarea>
+                    </div>
                 </div>
+            </div>
+            <div class="column">
+                <ColorPickerBig :hueIn="0" :satIn="0" :valIn="1" id="backgroundPicker" class="colorPickerBig" v-on:colorChanged="this.onBackgroundColorChanged"/>
             </div>
         </div>
     </div>

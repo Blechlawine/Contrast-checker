@@ -1,4 +1,4 @@
-import "./Swatches.css";
+import style from "./Swatches.css?module";
 
 import * as chroma from "chroma-js";
 
@@ -88,10 +88,10 @@ export default {
         },
         swatchElements() {
             return (
-                <div class="smolSwatches">
+                <div class={style.smolSwatches}>
                     {this.swatches.slice(3).map(swatchData => (
-                        <div class="smolSwatch" style={`background-color: #${swatchData.hex}`} onClick={(event) => this.onSwatchClick(event, swatchData.hex)}>
-                            <div class="swatchLabel">{this.upperCase ? swatchData.name.toUpperCase() : swatchData.name}</div>
+                        <div class={style.smolSwatch} style={`background-color: #${swatchData.hex}`} onClick={(event) => this.onSwatchClick(event, swatchData.hex)}>
+                            <div class={style.swatchLabel}>{this.upperCase ? swatchData.name.toUpperCase() : swatchData.name}</div>
                         </div>
                     ))}
                 </div>
@@ -106,16 +106,16 @@ export default {
     },
     render() {
         return (
-            <div class="swatches">
-                <div class="bigSwatches">
-                    <div class="swatch" style={this.firstSwatch} onClick={(event) => this.onSwatchClick(event, this.firstColor)}>
-                        <div class="bigSwatchLabel">{this.firstName}</div>
+            <div class={style.swatches}>
+                <div class={style.bigSwatches}>
+                    <div class={style.swatch} style={this.firstSwatch} onClick={(event) => this.onSwatchClick(event, this.firstColor)}>
+                        <div class={style.bigSwatchLabel}>{this.firstName}</div>
                     </div>
-                    <div class="swatch" style={this.secondSwatch} onClick={(event) => this.onSwatchClick(event, this.secondColor)}>
-                        <div class="bigSwatchLabel">{this.secondName}</div>
+                    <div class={style.swatch} style={this.secondSwatch} onClick={(event) => this.onSwatchClick(event, this.secondColor)}>
+                        <div class={style.bigSwatchLabel}>{this.secondName}</div>
                     </div>
-                    <div class="swatch" style={this.thirdSwatch} onClick={(event) => this.onSwatchClick(event, this.thirdColor)}>
-                        <div class="bigSwatchLabel">{this.thirdName}</div>
+                    <div class={style.swatch} style={this.thirdSwatch} onClick={(event) => this.onSwatchClick(event, this.thirdColor)}>
+                        <div class={style.bigSwatchLabel}>{this.thirdName}</div>
                     </div>
                 </div>
                 {this.swatchElements}

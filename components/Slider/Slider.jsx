@@ -1,4 +1,4 @@
-import "./Slider.css";
+import style from "./Slider.css?module";
 import { scale } from "../../assets/utils.js";
 import * as chroma from "chroma-js";
 
@@ -87,8 +87,8 @@ export default {
     },
     render(h) {
         return (
-            <div v-on:mousedown={this.handleMouseDown} class="slider" ref="slider" style={this.sliderBackground}>
-                <div style={this.handleStyles} class="sliderHandle"></div>
+            <div v-on:mousedown={this.handleMouseDown} class={style.slider} ref="slider" style={this.sliderBackground}>
+                <div style={this.handleStyles} class={style.sliderHandle}></div>
             </div>
         )
     }

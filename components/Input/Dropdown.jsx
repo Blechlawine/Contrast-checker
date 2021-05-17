@@ -1,4 +1,4 @@
-import "./Dropdown.css";
+import style from "./Dropdown.css?module";
 
 export default {
     name: "dropdown",
@@ -62,13 +62,13 @@ export default {
     },
     render(h) {
         return (
-            <div class="dropdown">
-                <div class="hackyCloseButton" style={this.hackyCloseButtonStyles} onClick={() => {this.open = false}}></div>
-                <div onClick={this.toggleDropdown} class="dropdownValue" ref="value" style={[this.widthStyle, this.valueStyle]}>
+            <div class={style.dropdown}>
+                <div class={style.hackyCloseButton} style={this.hackyCloseButtonStyles} onClick={() => {this.open = false}}></div>
+                <div onClick={this.toggleDropdown} class={style.dropdownValue} ref="value" style={[this.widthStyle, this.valueStyle]}>
                     <p>{this.value}</p>
                     <span class="material-icons">{this.open ? "expand_less" : "expand_more"}</span>
                 </div>
-                <div class="dropdownValues" style={[this.widthStyle, this.valuesOpen]}>
+                <div class={style.dropdownValues} style={[this.widthStyle, this.valuesOpen]}>
                     {this.values.map(v => (
                         <span onClick={this.onValueClick}>{v}</span>
                     ))}

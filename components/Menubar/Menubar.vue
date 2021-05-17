@@ -8,7 +8,7 @@
 </template>
 
 <script>
-    import "./menuBar.css";
+    // import "./menuBar.css";
     import ImgButton from "../Button/ImgButton.vue";
     import Tabs from "./Tabs.jsx";
 
@@ -30,3 +30,22 @@
         }
     }
 </script>
+
+<style module>
+header {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 2px solid var(--light-gray);
+    top: 0;
+    position: sticky;
+
+    z-index: 20;
+    background-color: var(--background);
+
+    padding: 8px 8px 8px 16px;
+}
+</style>
