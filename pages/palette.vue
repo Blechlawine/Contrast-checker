@@ -322,15 +322,7 @@ export default {
                     break;
             }
 
-            let queryString = "";
-
-            this.colors.map((color) => {
-                queryString += color.hex.substring(1);
-                if (color.id !== this.colors.length - 1) {
-                    queryString += "-";
-                }
-            });
-            this.$router.push({path: this.$route.path, query: {colors: queryString}});
+            this.updateRoute();
         },
         pinClasses(locked) {
             if (locked) {
@@ -343,6 +335,7 @@ export default {
             if (this.colors.length < 10) {
                 this.colors.splice(index, 0, {id: index, hex: chroma.random().hex(), locked: false});
                 this.updateColorIndizes();
+                this.updateRoute();
             }
         },
         deleteColor(color) {
@@ -357,6 +350,17 @@ export default {
             for (let k = 0; k < this.colors.length; k++) {
                 this.colors[k].id = k;
             }
+        },
+        updateRoute() {
+            let queryString = "";
+
+            this.colors.map((color) => {
+                queryString += color.hex.substring(1);
+                if (color.id !== this.colors.length - 1) {
+                    queryString += "-";
+                }
+            });
+            this.$router.push({path: this.$route.path, query: {colors: queryString}});
         }
     },
     created() {
