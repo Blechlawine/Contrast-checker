@@ -4,6 +4,6 @@
 - center tabs
 - menubar menu on the right
 - name
-- palette share function
+- edit color in palette
 - COLORS checks
 - DIFF checks
