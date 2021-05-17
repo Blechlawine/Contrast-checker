@@ -130,7 +130,9 @@ export default {
             this.selectedDisplayType = this.displayTypes[valueIndex];
         },
         share() {
-            console.log("Shared");
+            let path = window.location.href;
+            copyString(path);
+            
         },
         textColor(hex) {
             return chroma(hex).luminance() < 0.5 ? 'var(--text-white)' : 'var(--text-dark)';
