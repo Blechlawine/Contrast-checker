@@ -370,6 +370,7 @@ export default {
                     return col.id != color.id;
                 });
                 this.updateColorIndizes();
+                this.updateRoute();
             }
         },
         updateColorIndizes() {
