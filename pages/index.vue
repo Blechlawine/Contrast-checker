@@ -91,8 +91,6 @@ export default {
             AAApass: false,
             AALargePass: false,
             AAALargePass: false,
-            COLORPass: false,
-            DIFFPass: false
         }
     },
     methods: {
@@ -160,16 +158,6 @@ export default {
         aaaLargeColor() {
             return {
                 "color": this.AAALargePass ? "#4CAF50" : "#E35141"
-            }
-        },
-        colorsColor() {
-            return {
-                "color": this.COLORPass ? "#4CAF50" : "#E35141"
-            }
-        },
-        diffColor() {
-            return {
-                "color": this.DIFFPass ? "#4CAF50" : "#E35141"
             }
         },
         score() {
