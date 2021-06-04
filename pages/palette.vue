@@ -150,7 +150,8 @@ export default {
         },
         editColor(color, data) {
             console.log(data, color);
-            color.hex = chroma(data.hue, data.sat, data.val, "hsv").hex();
+            let hue = isNaN(data.hue) ? 0 : data.hue;
+            color.hex = chroma(hue, data.sat, data.val, "hsv").hex();
             this.updateRoute();
         },
         togglePicker(id) {
