@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="top">
-            <p>{{appName}}</p>
+            <p>{{$store.state.appName}}</p>
 
             <div class="rightStuff">
                 <ToggleSwitch></ToggleSwitch>
@@ -28,10 +28,6 @@
             ToggleSwitch
         },
         props: {
-            appName: {
-                type: String,
-                required: true
-            },
             tabs: {
                 type: Array,
                 required: true
@@ -43,6 +39,7 @@
 <style>
 header {
     width: 100%;
+    height: 64px;
     border-bottom: 2px solid var(--light-gray);
     top: 0;
     position: sticky;

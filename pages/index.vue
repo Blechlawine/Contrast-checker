@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
+        <MenuBar :tabs="tabs"/>
 
         <div class="horizontalFlex">
             <div class="column">

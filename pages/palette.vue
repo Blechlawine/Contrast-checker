@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <div class="palette">
-            <MenuBar appName="Untitled Vue App" :tabs="tabs"/>
+            <MenuBar :tabs="tabs"/>
             <div class="settingsBar">
                 <Dropdown :values="this.harmonyValues" v-on:onSelect="this.changeHarmony"/>
                 <Dropdown :values="this.displayTypes" v-on:onSelect="this.changeDisplayType"/>

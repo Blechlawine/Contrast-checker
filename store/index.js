@@ -1,6 +1,7 @@
 export const state = () => ({
     hehe: 0,
-    darkmode: false
+    darkmode: false,
+    appName: "Dyetools"
 });
 
 export const mutations = {

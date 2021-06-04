@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <MenuBar appName="Untitled Vue App" :tabs="tabs" />
+    <MenuBar :tabs="tabs" />
     <div class="content">
         <div class="column">
             <ColorPickerBig :hueIn="this.hue" :satIn="this.saturation" :valIn="this.value" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName" />

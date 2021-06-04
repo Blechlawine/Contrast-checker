@@ -2,4 +2,3 @@
 
 - Responsive?
 - menubar menu on the right
-- name
