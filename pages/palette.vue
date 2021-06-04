@@ -53,6 +53,11 @@ export default {
         ImgButton,
         ColorPickerBig
     },
+    head() {
+        return {
+            title: "Dyetools - Color palette",
+        };
+    },
     data() {
         return {
             tabs: [
@@ -405,6 +410,24 @@ export default {
                     locked: false
                 });
             }
+            const {set, remove} = this.$meta().addApp("ssr");
+            set({
+                meta: [
+                    {
+                        name: "description",
+                        hid: "description",
+                        content: colorsIn.join(", ")
+                    },
+                    {
+                        property: "og:description",
+                        content: colorsIn.join(", ")
+                    },
+                    {
+                        property: "og:image",
+                        content: "/favicon.ico"
+                    }
+                ]
+            });
         }
     },
     mounted() {
