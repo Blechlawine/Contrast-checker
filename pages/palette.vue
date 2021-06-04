@@ -423,6 +423,10 @@ export default {
                         content: colorsIn.join(", ")
                     },
                     {
+                        property: "og:title",
+                        content: "Dyetools - Color palette"
+                    },
+                    {
                         property: "og:image",
                         content: "/favicon.ico"
                     }
