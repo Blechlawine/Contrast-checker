@@ -60,7 +60,7 @@ export default {
     },
     head() {
         return {
-            title: "Dytools - Contrast checker",
+            title: "Dyetools - Contrast checker",
             meta: [
                 {
                     property: "og:title",

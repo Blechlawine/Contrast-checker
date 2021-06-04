@@ -75,7 +75,7 @@ export default {
     },
     head() {
         return {
-            title: "Dytools - Color picker",
+            title: "Dyetools - Color picker",
             meta: [
                 {
                     property: "og:title",
