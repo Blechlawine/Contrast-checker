@@ -5,5 +5,3 @@
 - center tabs
 - menubar menu on the right
 - name
-- COLORS checks
-- DIFF checks

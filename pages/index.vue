@@ -26,14 +26,6 @@
                         <p>AAA Large</p>
                         <span class="material-icons" :style="this.aaaLargeColor">{{this.AAALargePass ? "done" : "close"}}</span>
                     </div>
-                    <div class="checkmarkDiv">
-                        <p>COLORS</p>
-                        <span class="material-icons" :style="this.colorsColor">{{this.COLORPass ? "done" : "close"}}</span>
-                    </div>
-                    <div class="checkmarkDiv">
-                        <p>DIFF</p>
-                        <span class="material-icons" :style="this.diffColor">{{this.DIFFPass ? "done" : "close"}}</span>
-                    </div>
                 </div>
 
                 <div class="colors">
