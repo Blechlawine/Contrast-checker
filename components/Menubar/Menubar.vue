@@ -3,7 +3,10 @@
         <p>{{appName}}</p>
         <Tabs :tabs="tabs"></Tabs>
 
-        <ImgButton large icon="more_vert" />
+        <div class="rightStuff">
+            <ToggleSwitch></ToggleSwitch>
+            <ImgButton large icon="more_vert" />
+        </div>
     </header>
 </template>
 
@@ -11,12 +14,14 @@
     // import "./menuBar.css";
     import ImgButton from "../Button/ImgButton.vue";
     import Tabs from "./Tabs.jsx";
+    import ToggleSwitch from "../Switch/ToggleSwitch.jsx";
 
     export default {
         name: "menubar",
         components: { // Liste der Komponenten, die im template benutzt werden
             ImgButton,
-            Tabs
+            Tabs,
+            ToggleSwitch
         },
         props: {
             appName: {
@@ -31,7 +36,7 @@
     }
 </script>
 
-<style module>
+<style>
 header {
     width: 100%;
     height: 64px;
@@ -47,5 +52,13 @@ header {
     background-color: var(--background);
 
     padding: 8px 8px 8px 16px;
+}
+
+.rightStuff {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 12px;
 }
 </style>

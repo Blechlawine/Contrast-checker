@@ -3,22 +3,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-    --text-dark: #2E2E2E;
-    --text-white: #FFFFFF;
-    --text-white-inactive: #EBEBEB;
-    --text-dark-inactive: #3B3B3B;
-    --textColor: var(--text-dark);
+    --textColorDark: var(--text-dark);
+    --textColorLight: var(--text-light);
     --light-gray: #E9E9E9;
     --middle-gray: #959595;
     --accent: #00BCD4;
+    --light-accent: #9BF4FF;
     --warning-red: rgb(244,67,54);
     --gray: #BBBBBB;
     --shadow: rgba(97, 97, 97, 0.18);
     --background: white;
     --labelBackground: var(--background);
 
-    /* Das bleibt weiß */
+    /* mode-unabhängig */
     --white: #FFFFFF;
+    --text-dark: #2E2E2E;
+    --text-white: #FFFFFF;
+    --text-white-inactive: #EBEBEB;
+    --text-dark-inactive: #3B3B3B;
 
     /* Schatten */
     --shadow4px: 0 2px 4px var(--shadow), 0 4px 8px var(--shadow);
@@ -31,7 +33,7 @@
     box-sizing: border-box;
 
     font-family: "Roboto", sans-serif;
-    color: var(--text-dark);
+    color: var(--textColorDark);
 }
 
 a {
@@ -41,6 +43,7 @@ a {
 
 body {
     overflow-x: hidden;
+    background-color: var(--background);
 }
 
 .material-icons {

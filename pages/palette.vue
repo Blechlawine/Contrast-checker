@@ -481,7 +481,7 @@ export default {
 .addColorRight span, .addColorLeft span {
     background-color: var(--background);
     border-radius: 50%;
-    color: var(--text-dark)
+    color: var(--textColorDark);
 }
 
 .addColorRight {

@@ -8,15 +8,16 @@ button {
     font-size: 16px;
     border-radius: 6px;
     padding: 8px 12px;
+    cursor: pointer;
 }
 
-.button .primary {
-    color: var(--text-white);
+.primary {
+    color: var(--textColorLight);
     background-color: var(--accent);
 }
 
-.button .secondary {
-    color: var(--text-dark);
+.secondary {
+    color: var(--textColorDark);
     background-color: var(--light-gray);
 }
 
