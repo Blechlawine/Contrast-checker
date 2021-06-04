@@ -58,6 +58,21 @@ export default {
         MenuBar,
         ColorPickerBig
     },
+    head() {
+        return {
+            title: "Dytools - Contrast checker",
+            meta: [
+                {
+                    property: "og:title",
+                    content: "Dyetools - Contrast checker"
+                },
+                {
+                    property: "og:image",
+                    content: "/favicon.ico"
+                }
+            ]
+        };
+    },
     data() {
         return {
             tabs: [

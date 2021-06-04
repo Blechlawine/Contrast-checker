@@ -73,6 +73,21 @@ export default {
         CopyField,
         Button
     },
+    head() {
+        return {
+            title: "Dytools - Color picker",
+            meta: [
+                {
+                    property: "og:title",
+                    content: "Dyetools - Color picker"
+                },
+                {
+                    property: "og:image",
+                    content: "/favicon.ico"
+                }
+            ]
+        };
+    },
     data() {
         return {
             tabs: [{
