@@ -428,7 +428,7 @@ export default {
                     },
                     {
                         property: "og:image",
-                        content: "/favicon.ico"
+                        content: "/favicon.png"
                     }
                 ]
             });
