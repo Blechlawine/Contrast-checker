@@ -5,7 +5,6 @@
 
             <div class="rightStuff">
                 <ToggleSwitch></ToggleSwitch>
-                <ImgButton large icon="more_vert" />
             </div>
         </div>
         <div class="bottom">
