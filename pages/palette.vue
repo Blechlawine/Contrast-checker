@@ -19,10 +19,11 @@
                             {{ getDisplayText(color.hex) }}
                         </p>
                         <span class="material-icons copyIcon" v-on:click="copyColor(color.hex)">content_copy</span>
-                        <span class="material-icons" v-on:click="togglePicker(color.id)">edit</span>
-                        <span :class="pinClasses(color.locked)" :style="`opacity: ${color.locked ? '1' : '0.6'}`"
-                              v-on:click="pinColor(color)">push_pin</span>
-                        <span class="material-icons" v-on:click="deleteColor(color)">delete</span>
+                        <span class="material-icons editIcon" v-on:click="togglePicker(color.id)">edit</span>
+                        <span>
+                            <span :class="pinClasses(color.locked)" :style="`opacity: ${color.locked ? '1' : '0.6'}`" v-on:click="pinColor(color)">push_pin</span>
+                        </span>
+                        <span class="material-icons deleteIcon" v-on:click="deleteColor(color)">delete</span>
                         <span class="leftRightButtons">
                             <div class="moveLeftButton" v-on:click="moveColorLeft(color.id)" v-if="color.id !== 0">
                                 <span class="material-icons">chevron_left</span>
@@ -539,7 +540,7 @@ export default {
     transform: translateX(50%);
 }
 
-.copyIcon, .pinIcon {
+.copyIcon, .pinIcon, .editIcon, .deleteIcon {
     cursor: pointer;
 }
 
@@ -549,6 +550,17 @@ export default {
     flex-direction: column;
     align-items: center;
     grid-gap: 24px;
+}
+
+.colorInfo>*:not(.colorLabel) {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms;
+}
+
+.paletteColor:hover .colorInfo>* {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .colorLabel {
