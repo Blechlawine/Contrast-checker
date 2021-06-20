@@ -62,12 +62,32 @@ export default {
             // this.handlePosition = pos;
             this.value = scale(pos, this.minX, this.maxX, this.min, this.max);
             this.$emit("onSlide", this.value);
-        }
+        },
+        handleTouchStart(event) {
+            document.addEventListener("touchmove", this.handleTouchMove);
+            document.addEventListener("touchend", this.handleTouchEnd);
+            document.addEventListener("touchcancel", this.handleTouchEnd);
+            this.mouseDownPosX = event.touches[0].clientX;
+            let relativeX = (this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left);
+            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX));
+        },
+        handleTouchMove(event) {
+            this.distanceMouseMoved = event.touches[0].clientX - this.mouseDownPosX;
+            let relativeX = (this.mouseDownPosX - this.$refs.slider.getBoundingClientRect().left) + this.distanceMouseMoved;
+            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX));
+        },
+        handleTouchEnd(event) {
+            document.removeEventListener("touchmove", this.handleTouchMove);
+            document.removeEventListener("touchend", this.handleTouchEnd);
+            document.removeEventListener("touchcancel", this.handleTouchEnd);
+            this.$emit("onSlide", this.value);
+        },
     },
     mounted() {
         // console.log(this.valueIn);
         this.maxX = this.$refs.slider.clientWidth - 4;
         this.value = this.valueIn;
+        this.$refs.slider.addEventListener("touchstart", this.handleTouchStart);
     },
     computed: {
         handleStyles() {
