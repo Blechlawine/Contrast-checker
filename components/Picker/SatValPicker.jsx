@@ -64,6 +64,29 @@ export default {
             document.removeEventListener("mouseup", this.handleMouseUp);
             this.$emit("onChangeEnd", this.saturation, this.value);
         },
+        handleTouchStart(event) {
+            document.addEventListener("ontouchmove", this.handleTouchMove);
+            document.addEventListener("ontouchend", this.handleTouchEnd);
+            document.addEventListener("ontouchcancel", this.handleTouchEnd);
+            this.mouseDownPosX = event.touches[0].clientX;
+            this.mouseDownPosY = event.touches[0].clientY;
+            let relativeX = (this.mouseDownPosX - this.$refs.field.getBoundingClientRect().left);
+            let relativeY = (this.mouseDownPosY - this.$refs.field.getBoundingClientRect().top);
+            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX), Math.max(Math.min(relativeY, this.maxY), this.minY));
+        },
+        handleTouchMove(event) {
+            this.distanceMouseMovedX = event.touches[0].clientX - this.mouseDownPosX;
+            this.distanceMouseMovedY = event.touches[0].clientY - this.mouseDownPosY;
+            let relativeX = (this.mouseDownPosX - this.$refs.field.getBoundingClientRect().left) + this.distanceMouseMovedX;
+            let relativeY = (this.mouseDownPosY - this.$refs.field.getBoundingClientRect().top) + this.distanceMouseMovedY;
+            this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX), Math.max(Math.min(relativeY, this.maxY), this.minY));
+        },
+        handleTouchEnd(event) {
+            document.removeEventListener("ontouchmove", this.handleTouchMove);
+            document.removeEventListener("ontouchend", this.handleTouchEnd);
+            document.removeEventListener("ontouchcancel", this.handleTouchEnd);
+            this.$emit("onChangeEnd", this.saturation, this.value);
+        },
         setHandlePos(x, y) {
             // this.handlePosX = x;
             // this.handlePosY = y;
