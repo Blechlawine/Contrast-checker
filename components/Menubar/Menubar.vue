@@ -39,7 +39,7 @@
 <style>
 header {
     width: 100%;
-    height: 64px;
+    height: 128px;
     border-bottom: 2px solid var(--light-gray);
     top: 0;
     position: sticky;
@@ -76,6 +76,10 @@ header .bottom {
 @media all and (min-width: 750px) {
     header div.bottom {
         margin-top: -64px;
+    }
+
+    header {
+        height: 64px;
     }
 }
 </style>

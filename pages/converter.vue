@@ -434,6 +434,7 @@ export default {
     grid-gap: 24px;
 }
 
+
 .column {
     display: flex;
     flex-direction: column;
@@ -481,5 +482,16 @@ export default {
     grid-gap: 4px;
     border-radius: 12px;
     padding: 6px;
+}
+
+@media screen and (max-width: 1100px) {
+    .content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #color {
+        width: 100%;
+    }
 }
 </style>

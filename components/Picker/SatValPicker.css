@@ -5,6 +5,8 @@
 
     background-color: white;
 
+    /* Das blockiert scrollen wenn man den Picker toucht */
+    touch-action: none;
     position: relative;
 }
 
