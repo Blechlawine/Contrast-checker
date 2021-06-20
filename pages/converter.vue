@@ -2,10 +2,10 @@
 <div id="app">
     <MenuBar :tabs="tabs" />
     <div class="content">
-        <div class="column">
+        <div class="column" id="pickerColumn">
             <ColorPickerBig :hueIn="this.hue" :satIn="this.saturation" :valIn="this.value" v-on:colorChanged="this.updateColor" v-on:onChangeEnd="this.updateColorName" />
         </div>
-        <div class="column">
+        <div class="column" id="colorColumn">
             <h2>Color</h2>
             <div id="color" :style="this.colorStyle">
                 <p class="centeredText" :style="this.optimalTextColor">{{this.colorName}}</p>
@@ -40,13 +40,15 @@
                 </div>
             </div>
         </div>
-        <div class="column">
+        <div class="column" id="convertedColumn">
             <h2>Converted</h2>
-            <CopyField :value="this.hexText" />
-            <CopyField :value="this.rgbText" />
-            <CopyField :value="this.hslText" />
-            <CopyField :value="this.cmykText" />
-            <CopyField :value="this.labText" />
+            <div id="copyFields">
+                <CopyField :value="this.hexText" />
+                <CopyField :value="this.rgbText" />
+                <CopyField :value="this.hslText" />
+                <CopyField :value="this.cmykText" />
+                <CopyField :value="this.labText" />
+            </div>
         </div>
     </div>
 </div>
@@ -430,7 +432,7 @@ export default {
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-
+    padding: 12px;
     grid-gap: 24px;
 }
 
@@ -490,8 +492,32 @@ export default {
         align-items: center;
     }
 
+    .column {
+        width: 100%;
+        align-items: center;
+    }
+
     #color {
         width: 100%;
+    }
+
+    #copyFields {
+        display: flex;
+        grid-gap: 8px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #convertedColumn {
+        order: 2;
+    }
+
+    #pickerColumn {
+        order: 1;
+    }
+
+    #colorColumn {
+        order: 3;
     }
 }
 </style>
