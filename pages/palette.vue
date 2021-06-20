@@ -558,9 +558,18 @@ export default {
     transition: opacity 200ms;
 }
 
+.colorLabel {
+    transform: translateY(430%);
+    transition: transform 200ms;
+}
+
 .paletteColor:hover .colorInfo>* {
     opacity: 1;
     pointer-events: auto;
+}
+
+.paletteColor:hover .colorLabel {
+    transform: translateY(0);
 }
 
 .colorLabel {
