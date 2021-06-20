@@ -72,7 +72,7 @@ header .bottom {
     grid-gap: 12px;
 }
 
-@media all and (min-width: 750px) {
+@media all and (min-width: 600px) {
     header div.bottom {
         margin-top: -64px;
     }
