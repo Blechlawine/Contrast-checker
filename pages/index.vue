@@ -1,11 +1,7 @@
 <template>
     <div id="app">
         <MenuBar :tabs="tabs"/>
-
-        <div class="horizontalFlex">
-            <div class="column">
-                <ColorPickerBig :hueIn="0" :satIn="0" :valIn="0" id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
-            </div>
+        <div class="content">
             <div class="column">
                 <h1 id="score">{{this.score.toString().substring(0, 4)}}</h1>
 
@@ -39,10 +35,15 @@
                     </div>
                 </div>
             </div>
-            <div class="column">
-                <ColorPickerBig :hueIn="0" :satIn="0" :valIn="1" id="backgroundPicker" class="colorPickerBig" v-on:colorChanged="this.onBackgroundColorChanged"/>
+            <div class="horizontalFlex">
+                <div class="column">
+                    <ColorPickerBig :hueIn="0" :satIn="0" :valIn="0" id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
+                </div>
+                <div class="column">
+                    <ColorPickerBig :hueIn="0" :satIn="0" :valIn="1" id="backgroundPicker" class="colorPickerBig" v-on:colorChanged="this.onBackgroundColorChanged"/>
+                </div>
             </div>
-        </div>
+        </div> <!-- .content -->
     </div>
 </template>
 
@@ -339,4 +340,32 @@ textarea {
     grid-gap: 40px;
 }
 
+@media screen and (max-width: 1100px) {
+    .colors {
+        width: 100%;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-gap: 12px;
+    }
+
+    .horizontalFlex {
+        grid-gap: 12px;
+    }
+
+    #foregroundPicker {
+        margin-left: 0;
+    }
+    #backgroundPicker {
+        margin-right: 0;
+    }
+
+    .colorPickerBig {
+        /* position: absolute; */
+        margin-top: 0;
+    }
+}
 </style>
