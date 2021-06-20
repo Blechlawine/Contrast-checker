@@ -530,6 +530,7 @@ export default {
     background-color: var(--background);
     border-radius: 50%;
     color: var(--textColorDark);
+    cursor: pointer;
 }
 
 .addColorButton.moveLeft {
