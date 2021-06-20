@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="horizontalFlex">
+            <div class="horizontalFlex" id="pickerBox">
                 <div class="column">
                     <ColorPickerBig :hueIn="0" :satIn="0" :valIn="0" id="foregroundPicker" class="colorPickerBig" v-on:colorChanged="this.onForegroundColorChanged"/>
                 </div>
@@ -302,7 +302,6 @@ textarea {
 }
 
 .colorPickerBig {
-    /* position: absolute; */
     margin-top: 200px;
 }
 
@@ -340,7 +339,14 @@ textarea {
     grid-gap: 40px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (min-width: 1500px) {
+    #pickerBox {
+        position: absolute;
+        top: 0;
+    }
+}
+
+@media screen and (max-width: 1500px) {
     .colors {
         width: 100%;
     }
@@ -354,6 +360,7 @@ textarea {
 
     .horizontalFlex {
         grid-gap: 12px;
+        justify-content: center;
     }
 
     #foregroundPicker {
@@ -364,7 +371,6 @@ textarea {
     }
 
     .colorPickerBig {
-        /* position: absolute; */
         margin-top: 0;
     }
 }
