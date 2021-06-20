@@ -65,9 +65,9 @@ export default {
             this.$emit("onChangeEnd", this.saturation, this.value);
         },
         handleTouchStart(event) {
-            document.addEventListener("ontouchmove", this.handleTouchMove);
-            document.addEventListener("ontouchend", this.handleTouchEnd);
-            document.addEventListener("ontouchcancel", this.handleTouchEnd);
+            document.addEventListener("touchmove", this.handleTouchMove);
+            document.addEventListener("touchend", this.handleTouchEnd);
+            document.addEventListener("touchcancel", this.handleTouchEnd);
             this.mouseDownPosX = event.touches[0].clientX;
             this.mouseDownPosY = event.touches[0].clientY;
             let relativeX = (this.mouseDownPosX - this.$refs.field.getBoundingClientRect().left);
@@ -82,9 +82,9 @@ export default {
             this.setHandlePos(Math.max(Math.min(relativeX, this.maxX), this.minX), Math.max(Math.min(relativeY, this.maxY), this.minY));
         },
         handleTouchEnd(event) {
-            document.removeEventListener("ontouchmove", this.handleTouchMove);
-            document.removeEventListener("ontouchend", this.handleTouchEnd);
-            document.removeEventListener("ontouchcancel", this.handleTouchEnd);
+            document.removeEventListener("touchmove", this.handleTouchMove);
+            document.removeEventListener("touchend", this.handleTouchEnd);
+            document.removeEventListener("touchcancel", this.handleTouchEnd);
             this.$emit("onChangeEnd", this.saturation, this.value);
         },
         setHandlePos(x, y) {
@@ -101,6 +101,7 @@ export default {
         this.maxY = this.$refs.field.clientHeight - 4;
         this.saturation = this.saturationIn;
         this.value = this.valueIn;
+        this.$refs.field.addEventListener("touchstart", this.handleTouchStart);
     },
     computed: {
         gradientStyles() {
