@@ -49,8 +49,7 @@ export default {
         },
         valuesOpen() {
             return {
-                "opacity": this.open ? 1 : 0,
-                "pointerEvents": this.open ? "auto" : "none"
+                "display": this.open ? "" : "none",
             };
         },
         hackyCloseButtonStyles() {

@@ -10,8 +10,8 @@
             <div class="paletteColors">
                 <div v-for="color in this.colors" class="paletteColor"
                      :style="`background-color: ${color.hex}; color: ${textColor(color.hex)}`">
-                    <div class="addColorLeft">
-                        <span :style="((color.id == 0) ? 'transform: translateX(50%)' : 'transform: translateX(-50%)')" v-on:click="addColor(color.id)"
+                    <div :class="getClassesForLeftAddColorButton(color.id)">
+                        <span v-on:click="addColor(color.id)"
                               class="material-icons">add</span>
                     </div>
                     <div class="colorInfo">
@@ -24,10 +24,8 @@
                               v-on:click="pinColor(color)">push_pin</span>
                         <span class="material-icons" v-on:click="deleteColor(color)">delete</span>
                     </div>
-                    <div class="addColorRight">
-                        <span
-                            :style="((color.id != colors.length - 1) ? 'transform: translateX(calc(50%))' : 'transform: translateX(-50%)')"
-                            class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
+                    <div :class="getClassesForRightAddColorButton(color.id)">
+                        <span class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
                     </div>
                     <ColorPickerBig closable :hueIn="chromia(color.hex).get('hsv.h')" :satIn="chromia(color.hex).get('hsv.s')" :valIn="chromia(color.hex).get('hsv.v')" class="colorPickerBig" v-on:colorChanged="(event) => editColor(color, event)" v-on:pickerClose="() => togglePicker(color.id)" :ref="`picker${color.id}`"/>
                 </div>
@@ -117,6 +115,20 @@ export default {
         }
     },
     methods: {
+        getClassesForLeftAddColorButton(index) {
+            return {
+                "addColorButton": true,
+                "moveLeft": (index != 0),
+                "moveRight": (index == 0),
+            };
+        },
+        getClassesForRightAddColorButton(index) {
+            return {
+                "addColorButton": true,
+                "moveLeft": (index == this.colors.length - 1),
+                "moveRight": (index != this.colors.length - 1),
+            };
+        },
         getDisplayText(hexIn) {
             switch (this.selectedDisplayType.toLowerCase()) {
                 case "hsl":
@@ -445,14 +457,20 @@ export default {
 </script>
 
 <style scoped>
+
+.palette {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: 100vh;
+}
+
 .settingsBar {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-
+    grid-gap: 6px;
     padding: 6px;
-    grid-gap: 12px;
 
     border-bottom: var(--light-gray) solid 2px;
 }
@@ -460,78 +478,92 @@ export default {
 .paletteColors {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    /* 60px menubar, 54px settingsbar, 4px borders between */
-    height: calc(100vh - 60px - 54px - 4px);
+    flex: 1;
+    overflow-x: scroll;
+}
+
+.paletteColors > * {
+    flex: 1;
 }
 
 .paletteColor {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-
-    position: relative;
-
-    /* padding: 24px; */
-}
-
-.colorInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    grid-gap: 24px;
+    min-width: 128px;
 }
 
 .paletteColor * {
     color: inherit;
 }
 
-.paletteColor span {
-    font-size: 28px;
+.addColorIcon, .addColorButton {
+    width: 24px;
+    height: 24px;
+    background-color: var(--background);
+    border-radius: 50%;
+    color: var(--textColorDark);
 }
 
-.colorLabel {
-    font-size: 24px;
+.addColorButton.moveLeft {
+    transform: translateX(-50%);
+}
+
+.addColorButton.moveRight {
+    transform: translateX(50%);
 }
 
 .copyIcon, .pinIcon {
     cursor: pointer;
 }
 
-.addColorRight span, .addColorLeft span {
-    background-color: var(--background);
-    border-radius: 50%;
-    color: var(--textColorDark);
+.paletteColor .colorInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 24px;
 }
 
-.addColorRight {
-    width: 28px;
-    height: 28px;
-    float: right;
-}
-
-.addColorLeft {
-    width: 28px;
-    height: 28px;
-    float: left;
+.colorLabel {
+    font-size: 24px;
 }
 
 .colorPickerBig {
-    z-index: 10;
-    opacity: 0;
-    pointer-events: none;
     position: absolute;
 
-    margin-left: 50%;
-    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 100;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 768px) {
+
+    .paletteColors {
+        flex-direction: column;
+    }
+
+    .paletteColor {
+        flex-direction: column;
+        min-height: 100px;
+    }
+
+    .paletteColor .colorInfo {
+        flex-direction: row;
+    }
+
+    .addColorButton.moveLeft {
+        transform: translateY(-50%);
+    }
+
+    .addColorButton.moveRight {
+        transform: translateY(50%);
+    }
 }
 
 </style>
