@@ -517,7 +517,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    min-width: 128px;
+    min-width: 170px;
 }
 
 .paletteColor * {
@@ -559,7 +559,7 @@ export default {
 }
 
 .colorLabel {
-    transform: translateY(430%);
+    transform: translateY(443%);
     transition: transform 200ms;
 }
 
