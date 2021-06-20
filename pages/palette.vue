@@ -23,6 +23,14 @@
                         <span :class="pinClasses(color.locked)" :style="`opacity: ${color.locked ? '1' : '0.6'}`"
                               v-on:click="pinColor(color)">push_pin</span>
                         <span class="material-icons" v-on:click="deleteColor(color)">delete</span>
+                        <span class="leftRightButtons">
+                            <div class="moveLeftButton" v-on:click="moveColorLeft(color.id)" v-if="color.id !== 0">
+                                <span class="material-icons">chevron_left</span>
+                            </div>
+                            <div class="moveRightButton" v-on:click="moveColorRight(color.id)" v-if="color.id !== colors.length - 1">
+                                <span class="material-icons">chevron_right</span>
+                            </div>
+                        </span>
                     </div>
                     <div :class="getClassesForRightAddColorButton(color.id)">
                         <span class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
@@ -115,6 +123,24 @@ export default {
         }
     },
     methods: {
+        moveColorLeft(id) {
+            let tempColors = this.colors;
+            let temp = tempColors[id];
+            tempColors[id] = tempColors[id-1];
+            tempColors[id-1] = temp;
+            this.colors = tempColors;
+            this.updateColorIndizes();
+            this.updateRoute();
+        },
+        moveColorRight(id) {
+            let tempColors = this.colors;
+            let temp = tempColors[id];
+            tempColors[id] = tempColors[id+1];
+            tempColors[id+1] = temp;
+            this.colors = tempColors;
+            this.updateColorIndizes();
+            this.updateRoute();
+        },
         getClassesForLeftAddColorButton(index) {
             return {
                 "addColorButton": true,
@@ -527,6 +553,17 @@ export default {
 
 .colorLabel {
     font-size: 24px;
+}
+
+.leftRightButtons {
+    display: flex;
+    flex-direction: row;
+    grid-gap: 24px;
+}
+
+.leftRightButtons .material-icons {
+    font-size: 32px;
+    cursor: pointer;
 }
 
 .colorPickerBig {
