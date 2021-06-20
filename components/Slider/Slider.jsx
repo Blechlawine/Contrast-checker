@@ -80,7 +80,7 @@ export default {
             document.removeEventListener("touchmove", this.handleTouchMove);
             document.removeEventListener("touchend", this.handleTouchEnd);
             document.removeEventListener("touchcancel", this.handleTouchEnd);
-            this.$emit("onSlide", this.value);
+            this.$emit("onChangeEnd", this.value);
         },
     },
     mounted() {
