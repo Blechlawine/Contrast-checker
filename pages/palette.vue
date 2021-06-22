@@ -560,6 +560,7 @@ export default {
 }
 
 .colorLabel {
+    font-size: 24px;
     transform: translateY(443%);
     transition: transform 200ms;
 }
@@ -571,10 +572,6 @@ export default {
 
 .paletteColor:hover .colorLabel {
     transform: translateY(0);
-}
-
-.colorLabel {
-    font-size: 24px;
 }
 
 .leftRightButtons {
@@ -622,6 +619,18 @@ export default {
 
     .addColorButton.moveRight {
         transform: translateY(50%);
+    }
+
+    .colorLabel {
+        transform: translateX(0%);
+    }
+
+    .leftRightButtons {
+        transform: rotateZ(90deg);
+        width: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
