@@ -17,7 +17,6 @@ import * as chroma from "chroma-js";
 
 import style from "./ColorPicker.css?module";
 
-
 export default {
     name: "ColorPickerBig",
     components: {
@@ -70,6 +69,7 @@ export default {
                 handlePosX: 0,
                 handlePosY: 0
             },
+            winHeight: 0,
             hue: 0,
             saturation: 1,
             value: 1,
@@ -95,6 +95,10 @@ export default {
         this.saturation = this.satIn;
         this.value = this.valIn;
         this.$emit("colorChanged", {hue: this.hue, sat: this.saturation, val: this.value});
+        this.winHeight = window.innerHeight;
+        window.addEventListener('resize', () => {
+            this.winHeight = window.innerHeight;
+        });
     },
     methods: {
         hueChanged(hue) {
@@ -202,18 +206,22 @@ export default {
     render(h) {
         return (
             <div class={style.colorPicker}>
-                <div class="horizontalFlex">
-                    {(this.closable ? (<span class="material-icons" v-on:click={this.plsCloseMe}>close</span>) : "")}
+                <div class={style.topPart}>
+                    <div class="horizontalFlex">
+                        {(this.closable ? (<span class="material-icons" v-on:click={this.plsCloseMe}>close</span>) : "")}
+                    </div>
+                    <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged} v-on:onChangeEnd={this.changeEnd}/>
+                    <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged} v-on:onChangeEnd={this.changeEnd}/>
                 </div>
-                <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged} v-on:onChangeEnd={this.changeEnd}/>
-                <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged} v-on:onChangeEnd={this.changeEnd}/>
-                <div class="horizontalDivider"></div>
-                <div class="horizontalFlex">
-                    <Dropdown values={this.sliderModes} v-on:onSelect={this.sliderModeChanged}/>
-                    <CopyField value={this.copyValue}/>
+                {(this.winHeight <= 768 ? (<div class="verticalDivider"></div>) : (<div class="horizontalDivider"></div>))}
+                <div class={style.bottomPart}>
+                    <div class="horizontalFlex">
+                        <Dropdown values={this.sliderModes} v-on:onSelect={this.sliderModeChanged}/>
+                        <CopyField value={this.copyValue}/>
+                    </div>
+                    <div class="horizontalDivider"></div>
+                    {this.getSliderCollection}
                 </div>
-                <div class="horizontalDivider"></div>
-                {this.getSliderCollection}
             </div>
         );
     }

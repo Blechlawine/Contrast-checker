@@ -23,3 +23,24 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.topPart, .bottomPart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    grid-gap: 8px;
+}
+
+@media only screen and (max-height: 768px) {
+    .topPart, .bottomPart {
+        width: 345px;
+    }
+
+    .colorPicker {
+        flex-direction: row;
+        width: calc(345px * 2);
+        height: 298px;
+    }
+}

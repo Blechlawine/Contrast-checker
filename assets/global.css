@@ -73,6 +73,13 @@ body {
     border-radius: 1px;
 }
 
+.verticalDivider {
+    width: 2px;
+    height: 100%;
+    background-color: var(--light-gray);
+    border-radius: 1px;
+}
+
 .centeredText {
     text-align: center;
 }
