@@ -471,6 +471,12 @@ export default {
     flex-grow: 1000;
 }
 
+#copyFields {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 8px;
+}
+
 .sliderpartpart {
     border-radius: 12px;
     width: 100%;
@@ -502,8 +508,6 @@ export default {
     }
 
     #copyFields {
-        display: flex;
-        grid-gap: 8px;
         flex-direction: row;
         flex-wrap: wrap;
     }
