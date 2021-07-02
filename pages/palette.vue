@@ -36,7 +36,7 @@
                     <div :class="getClassesForRightAddColorButton(color.id)">
                         <span class="material-icons" v-on:click="addColor(color.id + 1)">add</span>
                     </div>
-                    <ColorPickerBig closable :hueIn="chromia(color.hex).get('hsv.h')" :satIn="chromia(color.hex).get('hsv.s')" :valIn="chromia(color.hex).get('hsv.v')" class="colorPickerBig" v-on:colorChanged="(event) => editColor(color, event)" v-on:pickerClose="() => togglePicker(color.id)" :ref="`picker${color.id}`"/>
+                    <ColorPickerBig responsive closable :hueIn="chromia(color.hex).get('hsv.h')" :satIn="chromia(color.hex).get('hsv.s')" :valIn="chromia(color.hex).get('hsv.v')" class="colorPickerBig" v-on:colorChanged="(event) => editColor(color, event)" v-on:pickerClose="() => togglePicker(color.id)" :ref="`picker${color.id}`"/>
                 </div>
             </div>
         </div>

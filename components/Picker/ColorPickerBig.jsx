@@ -44,6 +44,10 @@ export default {
         closable: {
             type: Boolean,
             default: false
+        },
+        responsive: {
+            type: Boolean,
+            default: false
         }
     },
     watch: {
@@ -201,20 +205,46 @@ export default {
                     return (<Swatches hexIn={chrome.hex()} triggerSort={this.triggerSort} typ="pantone" v-on:changed={this.textIn}/>);
                 default: return (<div>Hello</div>);
             }
+        },
+        colorPickerResponsiveStyles() {
+            if (this.responsive && this.winHeight <= 768) {
+                return {
+                    flexDirection: "row",
+                    width: "calc(345px * 2)",
+                    height: "298px",
+                };
+            } else {
+                return {
+                    width: "345px",
+                    flexDirection: "",
+                    height: "",
+                };
+            }
+        },
+        topBottomResponsiveStyles() {
+            if (this.responsive && this.winHeight <= 768) {
+                return {
+                    width: "345px",
+                };
+            } else {
+                return {
+                    width: "",
+                };
+            }
         }
     },
     render(h) {
         return (
-            <div class={style.colorPicker}>
-                <div class={style.topPart}>
+            <div class={style.colorPicker} style={this.colorPickerResponsiveStyles}>
+                <div class={style.topPart} style={this.topBottomResponsiveStyles}>
                     <div class="horizontalFlex">
                         {(this.closable ? (<span class="material-icons" v-on:click={this.plsCloseMe}>close</span>) : "")}
                     </div>
                     <SatValPicker saturationIn={this.saturation} valueIn={this.value} hue={this.hue} saturation={this.saturation} value={this.value} v-on:satValChanged={this.satValChanged} v-on:onChangeEnd={this.changeEnd}/>
                     <HueSlider handlePosition={this.hueSlider.handlePosition} hue={this.hue} v-on:hueChanged={this.hueChanged} v-on:onChangeEnd={this.changeEnd}/>
                 </div>
-                {(this.winHeight <= 768 ? (<div class="verticalDivider"></div>) : (<div class="horizontalDivider"></div>))}
-                <div class={style.bottomPart}>
+                {(this.winHeight <= 768 && this.responsive ? (<div class="verticalDivider"></div>) : (<div class="horizontalDivider"></div>))}
+                <div class={style.bottomPart} style={this.topBottomResponsiveStyles}>
                     <div class="horizontalFlex">
                         <Dropdown values={this.sliderModes} v-on:onSelect={this.sliderModeChanged}/>
                         <CopyField value={this.copyValue}/>

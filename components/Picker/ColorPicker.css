@@ -1,5 +1,4 @@
 .colorPicker {
-    width: 345px;
     padding: 12px;
     border-radius: 12px;
     box-shadow: var(--shadow4px);
@@ -31,16 +30,4 @@
     align-items: center;
     justify-content: flex-start;
     grid-gap: 8px;
-}
-
-@media only screen and (max-height: 768px) {
-    .topPart, .bottomPart {
-        width: 345px;
-    }
-
-    .colorPicker {
-        flex-direction: row;
-        width: calc(345px * 2);
-        height: 298px;
-    }
 }
