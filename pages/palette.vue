@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <div class="palette">
+            <Toast :message="this.toastMessage" ref="toast"></Toast>
             <MenuBar :tabs="tabs"/>
             <div class="settingsBar">
                 <Dropdown :values="this.harmonyValues" v-on:onSelect="this.changeHarmony"/>
@@ -48,6 +49,7 @@ import MenuBar from "../components/Menubar/Menubar.vue";
 import Dropdown from "../components/Input/Dropdown.jsx";
 import ImgButton from "../components/Button/ImgButton.vue"
 import ColorPickerBig from "../components/Picker/ColorPickerBig.jsx"
+import Toast from "../components/toast.vue";
 
 import {copyString} from "../assets/utils.js";
 import * as chroma from "chroma-js";
@@ -58,7 +60,8 @@ export default {
         MenuBar,
         Dropdown,
         ImgButton,
-        ColorPickerBig
+        ColorPickerBig,
+        Toast,
     },
     head() {
         return {
@@ -67,6 +70,7 @@ export default {
     },
     data() {
         return {
+            toastMessage: "Link copied!",
             tabs: [
                 {id: 0, title: "Contrast-checker", link: "/"},
                 {id: 1, title: "Palette", link: "/palette", active: true},
@@ -182,6 +186,7 @@ export default {
         share() {
             let path = window.location.href;
             copyString(path);
+            this.$refs.toast.show();
         },
         textColor(hex) {
             return chroma(hex).luminance() < 0.5 ? 'var(--text-white)' : 'var(--text-dark)';
