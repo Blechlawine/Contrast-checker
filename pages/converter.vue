@@ -12,28 +12,28 @@
             </div>
             <h2>Adjustments</h2>
             <div class="sliderpartParent" :style="this.lightenStyle">
-                <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="50" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground" />
+                <Sliderpart label="Lighten" :min="0" :max="100" :valueIn="0" :background="this.lighten" v-on:change="this.lightenFactorChange" :handleBackground="this.lighten" :sliderBackground="this.lightenSliderBackground" />
                 <div class="horizontalFlex">
                     <CopyField :value="this.hexCopylighten" />
                     <Button label="Apply" v-on:onClick="this.lightenClicked" />
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.darkenStyle">
-                <Sliderpart label="Darken" :min="0" :max="100" :valueIn="50" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground" />
+                <Sliderpart label="Darken" :min="0" :max="100" :valueIn="0" :background="this.darken" v-on:change="this.darkenFactorChange" :handleBackground="this.darken" :sliderBackground="this.darkenSliderBackground" />
                 <div class="horizontalFlex">
                     <CopyField :value="this.hexCopyDarken" />
                     <Button label="Apply" v-on:onClick="this.darkenClicked" />
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.saturateStyle">
-                <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="50" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground" />
+                <Sliderpart label="Saturate" :min="0" :max="100" :valueIn="0" :background="this.saturate" v-on:change="this.saturationFactorChange" :handleBackground="this.saturate" :sliderBackground="this.saturateSliderBackground" />
                 <div class="horizontalFlex">
                     <CopyField :value="this.hexCopySaturation" />
                     <Button label="Apply" v-on:onClick="this.saturationClicked" />
                 </div>
             </div>
             <div class="sliderpartParent" :style="this.desaturateStyle">
-                <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="50" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground" />
+                <Sliderpart label="Desaturate" :min="0" :max="100" :valueIn="0" :background="this.desaturate" v-on:change="this.desaturationFactorChange" :handleBackground="this.desaturate" :sliderBackground="this.desaturateSliderBackground" />
                 <div class="horizontalFlex">
                     <CopyField :value="this.hexCopyDesaturation"/>
                     <Button label="Apply" v-on:onClick="this.desaturationClicked" />
