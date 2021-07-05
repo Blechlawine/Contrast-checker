@@ -62,6 +62,7 @@ export default {
             }
         },
         onSwatchClick(event, color) {
+            this.$refs.swatches.scroll(0, 0);
             this.$emit("changed", color);
         },
         async getData() {
@@ -106,7 +107,7 @@ export default {
     },
     render() {
         return (
-            <div class={style.swatches}>
+            <div class={style.swatches} ref="swatches">
                 <div class={style.bigSwatches}>
                     <div class={style.swatch} style={this.firstSwatch} onClick={(event) => this.onSwatchClick(event, this.firstColor)}>
                         <div class={style.bigSwatchLabel}>{this.firstName}</div>
