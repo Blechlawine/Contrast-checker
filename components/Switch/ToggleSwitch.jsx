@@ -53,7 +53,7 @@ export default {
         return (
             <label class={style.switch} style={this.backStyle}>
                 <div class={style.switchThumb} style={this.thumbStyle}>
-                    <span class="material-icons">dark_mode</span>
+                    <span class="material-icons">{this.$store.darkmode ? "dark_mode" : "light_mode"}</span>
                     <input class={style.checkBox} type="checkbox" ref="checkBox" onClick={this.toggleDarkMode}/>
                 </div>
             </label>
