@@ -13,4 +13,8 @@ function copyString(value) {
     document.body.removeChild(el);
 }
 
-export { scale , copyString };
+function genRandHex(size) {
+    return [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join("");
+}
+
+export { scale , copyString, genRandHex };
