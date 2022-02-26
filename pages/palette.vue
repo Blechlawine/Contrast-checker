@@ -7,6 +7,7 @@
                 <Dropdown :values="this.harmonyValues" v-on:onSelect="this.changeHarmony"/>
                 <Dropdown :values="this.displayTypes" v-on:onSelect="this.changeDisplayType"/>
                 <ImgButton icon="share" v-on:onClick="this.share"/>
+                <ImgButton icon="refresh" @onClick="generateColorsForSelectedHarmony"></ImgButton>
             </div>
             <transition-group name="move" tag="div" class="paletteColors">
                 <div v-for="color in this.colors" class="paletteColor move-transition"
