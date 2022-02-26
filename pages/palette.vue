@@ -522,7 +522,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex: 1;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .paletteColors > * {
