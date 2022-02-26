@@ -7,17 +7,19 @@
                 <Dropdown :values="this.harmonyValues" v-on:onSelect="this.changeHarmony"/>
                 <Dropdown :values="this.displayTypes" v-on:onSelect="this.changeDisplayType"/>
                 <ImgButton icon="share" v-on:onClick="this.share"/>
+                <ImgButton icon="refresh" @onClick="generateColorsForSelectedHarmony"></ImgButton>
             </div>
-            <div class="paletteColors">
-                <div v-for="color in this.colors" class="paletteColor"
-                     :style="`background-color: ${color.hex}; color: ${textColor(color.hex)}`">
+            <transition-group name="move" tag="div" class="paletteColors">
+                <div v-for="color in this.colors" class="paletteColor move-transition"
+                    :style="`background-color: ${color.hex}; color: ${textColor(color.hex)}`" :key="color.hashId">
                     <div :class="getClassesForLeftAddColorButton(color.id)">
                         <span v-on:click="addColor(color.id)"
-                              class="material-icons">add</span>
+                            class="material-icons">add</span>
                     </div>
                     <div class="colorInfo">
                         <p class="colorLabel">
                             {{ getDisplayText(color.hex) }}
+                            <span class="material-icons" v-if="color.locked">push_pin</span>
                         </p>
                         <span class="material-icons copyIcon" v-on:click="copyColor(color.hex)">content_copy</span>
                         <span class="material-icons editIcon" v-on:click="togglePicker(color.id)">edit</span>
@@ -39,7 +41,7 @@
                     </div>
                     <ColorPickerBig responsive closable :hueIn="chromia(color.hex).get('hsv.h')" :satIn="chromia(color.hex).get('hsv.s')" :valIn="chromia(color.hex).get('hsv.v')" class="colorPickerBig" v-on:colorChanged="(event) => editColor(color, event)" v-on:pickerClose="() => togglePicker(color.id)" :ref="`picker${color.id}`"/>
                 </div>
-            </div>
+            </transition-group>
         </div>
     </div>
 </template>
@@ -51,7 +53,7 @@ import ImgButton from "../components/Button/ImgButton.vue"
 import ColorPickerBig from "../components/Picker/ColorPickerBig.jsx"
 import Toast from "../components/toast.vue";
 
-import {copyString} from "../assets/utils.js";
+import {copyString, genRandHex} from "../assets/utils.js";
 import * as chroma from "chroma-js";
 
 export default {
@@ -96,26 +98,31 @@ export default {
             ],
             colors: [
                 {
+                    hashId: genRandHex(6),
                     id: 0,
                     hex: "#FFFFFF",
                     locked: false
                 },
                 {
+                    hashId: genRandHex(6),
                     id: 1,
                     hex: "#FFFFFF",
                     locked: false
                 },
                 {
+                    hashId: genRandHex(6),
                     id: 2,
                     hex: "#FFFFFF",
                     locked: false
                 },
                 {
+                    hashId: genRandHex(6),
                     id: 3,
                     hex: "#FFFFFF",
                     locked: false
                 },
                 {
+                    hashId: genRandHex(6),
                     id: 4,
                     hex: "#FFFFFF",
                     locked: false
@@ -409,7 +416,12 @@ export default {
         },
         addColor(index) {
             if (this.colors.length < 10) {
-                this.colors.splice(index, 0, {id: index, hex: chroma.random().hex(), locked: false});
+                this.colors.splice(index, 0, {
+                    hashId: genRandHex(6),
+                    id: index,
+                    hex: chroma.random().hex(),
+                    locked: false
+                });
                 this.updateColorIndizes();
                 this.updateRoute();
             }
@@ -451,7 +463,8 @@ export default {
                 this.colors.push({
                     id: i,
                     hex: "#" + colorsIn[i].toUpperCase(),
-                    locked: false
+                    locked: false,
+                    hashId: genRandHex(6),
                 });
             }
             const {set, remove} = this.$meta().addApp("ssr");
@@ -511,7 +524,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex: 1;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .paletteColors > * {
@@ -568,6 +581,9 @@ export default {
     font-size: 24px;
     transform: translateY(443%);
     transition: transform 200ms;
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
 }
 
 .paletteColor:hover .colorInfo>* {
@@ -637,6 +653,25 @@ export default {
         align-items: center;
         justify-content: center;
     }
+}
+
+/* Transitions */
+.move-enter, .move-leave-to {
+    transform: translateY(100%);
+}
+
+.move-leave-active {
+    position: absolute;
+    opacity: 0;
+    height: 100%;
+}
+
+.move-enter-active *, .move-leave-active * {
+    opacity: 0;
+}
+
+.move-transition {
+    transition: all 300ms;
 }
 
 </style>
