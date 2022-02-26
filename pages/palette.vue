@@ -18,6 +18,7 @@
                     <div class="colorInfo">
                         <p class="colorLabel">
                             {{ getDisplayText(color.hex) }}
+                            <span class="material-icons" v-if="color.locked">push_pin</span>
                         </p>
                         <span class="material-icons copyIcon" v-on:click="copyColor(color.hex)">content_copy</span>
                         <span class="material-icons editIcon" v-on:click="togglePicker(color.id)">edit</span>
@@ -579,6 +580,9 @@ export default {
     font-size: 24px;
     transform: translateY(443%);
     transition: transform 200ms;
+    display: flex;
+    align-items: center;
+    grid-gap: 8px;
 }
 
 .paletteColor:hover .colorInfo>* {
