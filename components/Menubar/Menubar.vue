@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="top">
-            <p>{{$store.state.appName}}</p>
+            <p>{{ $store.state.appName }}</p>
 
             <div class="rightStuff">
                 <ToggleSwitch></ToggleSwitch>
@@ -10,29 +10,47 @@
         <div class="bottom">
             <Tabs :tabs="tabs"></Tabs>
         </div>
+        <div class="announcement" v-if="showAnnouncement">
+            <p>
+                <b>Announcement:</b>
+                Thank you for using Dyetools. This domain is going to stop working some time in november, which is why
+                we're moving to a new domain: <a href="https://dyetools.zmarc.de/">https://dyetools.zmarc.de/</a>. The
+                new version of dyetools is already available over there, so see you there!
+            </p>
+            <ImgButton @onClick="closeAnnouncement()" icon="close"></ImgButton>
+        </div>
     </header>
 </template>
 
 <script>
-    // import "./menuBar.css";
-    import ImgButton from "../Button/ImgButton.vue";
-    import Tabs from "./Tabs.jsx";
-    import ToggleSwitch from "../Switch/ToggleSwitch.jsx";
+// import "./menuBar.css";
+import ImgButton from "../Button/ImgButton.vue";
+import Tabs from "./Tabs.jsx";
+import ToggleSwitch from "../Switch/ToggleSwitch.jsx";
 
-    export default {
-        name: "menubar",
-        components: { // Liste der Komponenten, die im template benutzt werden
-            ImgButton,
-            Tabs,
-            ToggleSwitch
+export default {
+    name: "menubar",
+    components: {
+        // Liste der Komponenten, die im template benutzt werden
+        ImgButton,
+        Tabs,
+        ToggleSwitch,
+    },
+    props: {
+        tabs: {
+            type: Array,
+            required: true,
         },
-        props: {
-            tabs: {
-                type: Array,
-                required: true
-            }
-        }
-    }
+    },
+    data: () => ({
+        showAnnouncement: true,
+    }),
+    methods: {
+        closeAnnouncement() {
+            this.showAnnouncement = false;
+        },
+    },
+};
 </script>
 
 <style>
@@ -45,7 +63,6 @@ header {
 
     z-index: 20;
     background-color: var(--background);
-
 }
 
 header > div {
@@ -54,6 +71,16 @@ header > div {
     align-items: center;
     flex-direction: row;
     padding: 8px 8px 8px 16px;
+}
+
+.announcement {
+    background-color: var(--accent);
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.announcement a {
+    color: var(--background);
+    text-decoration: underline;
 }
 
 header .top {
